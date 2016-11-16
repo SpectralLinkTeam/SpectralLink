@@ -1,0 +1,72 @@
+@CHARSET "UTF-8";
+
+body { 
+  background: url('../images/background.jpg') no-repeat center center fixed; 
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+#header {
+	margin-top: 20px;
+	color: white;
+	font-weight: bold;
+	text-align:center;
+	text-shadow: 0 0 0.2em #99a8f0, 0 0 0.2em #99a8f0, 0 0 0.2em #99a8f0;
+}
+
+#header h1, h3 {
+	margin: 0;
+}
+
+.container {
+	padding: 0;
+	width: 750px;
+	margin: 50px auto 50px auto;
+}
+
+.col-sm-4 {
+	padding: 0;
+}
+
+.link {
+	overflow: hidden;
+}
+
+.row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.link img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+
+.link img:hover {
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+	opacity: 1;
+	-webkit-animation: flash 1.5s;
+	animation: flash 1.5s;
+}
+
+@-webkit-keyframes flash {
+	0% {
+		opacity: .8;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes flash {
+	0% {
+		opacity: .8;
+	}
+	100% {
+		opacity: 1;
+	}
+}
