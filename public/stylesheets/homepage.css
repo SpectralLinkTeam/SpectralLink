@@ -41,12 +41,13 @@ body {
 	overflow: hidden;
 }
 
+
 .row {
 	margin-left: 0;
 	margin-right: 0;
 }
 
-.link img {
+.link img, .linkws img {
 	-webkit-transform: scale(1);
 	transform: scale(1);
 	-webkit-transition: .3s ease-in-out;
@@ -54,7 +55,7 @@ body {
 }
 
 
-.link img:hover {
+.link img:hover, .linkws img:hover {
 	-webkit-transform: scale(1.1);
 	transform: scale(1.1);
 	opacity: 1;
