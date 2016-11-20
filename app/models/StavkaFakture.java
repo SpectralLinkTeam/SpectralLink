@@ -1,21 +1,32 @@
 package models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 import play.db.jpa.Model;
 
+@Entity
 public class StavkaFakture extends Model {
 	
+	@Column
 	public int kolicina;
 	
+	@Column
 	public double jedinicnaCena;
 	
+	@Column
 	public double rabat;
 	
+	@Column
 	public double osnovicaPDV;
 	
+	@Column
 	public int procenatPDV;
 	
+	@Column
 	public double iznosPDV;
 	
+	@Column
 	public double iznosStavke;
 
 	public StavkaFakture(int kolicina, double jedinicnaCena, double rabat,

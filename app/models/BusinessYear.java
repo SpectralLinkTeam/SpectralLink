@@ -1,12 +1,20 @@
 package models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 import play.db.jpa.Model;
 
+@Entity
 public class BusinessYear extends Model {
 	
+	@Column
 	public int year;
+	
 	//zakljucena
+	@Column
 	public boolean completed;
+	
 	public BusinessYear() {
 		super();
 		// TODO Auto-generated constructor stub
