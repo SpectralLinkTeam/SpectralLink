@@ -16,3 +16,18 @@ GET     /public/                                staticDir:public
 
 # Dobavljac -  staticka stranca (za sada)
 GET     /dobavljac                              Dobavljac.redirect
+
+
+# Staticni html-ovi (djelovi interfejsa dobavljaca - zbog modularnosti)
+GET     /table-cenovnik.html                 staticFile:/public/html/table-cenovnik.html
+GET     /table-poslovni-partneri.html                 staticFile:/public/html/table-poslovni-partneri.html
+GET     /table-webshop.html                 staticFile:/public/html/table-webshop.html
+GET     /table-narudzbenice.html                 staticFile:/public/html/table-narudzbenice.html
+
+GET     /add-new-partner-form.html                 staticFile:/public/html/add-new-partner-form.html
+GET     /add-new-product-form.html                 staticFile:/public/html/add-new-product-form.html
+
+GET     /modal-pdv.html                 staticFile:/public/html/modal-pdv.html
+GET     /modal-poslovna-godina.html                 staticFile:/public/html/modal-poslovna-godina.html
+
+GET     /view-product-list.html                 staticFile:/public/html/view-product-list.html

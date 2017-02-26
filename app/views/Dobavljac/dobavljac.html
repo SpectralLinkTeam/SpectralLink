@@ -1,118 +1,87 @@
 <!DOCTYPE html>
 <html lang="">
 <head>
-    <title>Spectral Link</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="@{'public/stylesheets/stylesheet.css'}" type="text/css" rel="stylesheet" >
-    
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link rel="icon" href="@{'public/images/logo/SpectralLink_LOGO.png'}">
+
+
+    <link rel="stylesheet" href="@{'public/stylesheets/bootstrap.min.css'}">
+    <link rel="stylesheet" href="@{'public/stylesheets/bootstrap-theme.min.css'}">
+    <link rel="stylesheet" href="@{'public/stylesheets/style.css'}">
+    <script src="https://use.fontawesome.com/df8138781c.js"></script>
     <script src="@{'public/javascripts/jquery-3.1.1.min.js'}"></script>
     <script src="@{'public/javascripts/bootstrap.min.js'}"></script>
-    <script src="@{'public/javascripts/script.js'}"></script>
-  <title></title>
+    <script src="@{'public/javascripts/interface.js'}"></script>
+  <title>Spectral Link</title>
 </head>
+   <body>
+   <div class="overlay"></div>
+       
+    <!-- HORIZONTALNA NAVIGACIJA -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">    
+        <p class="navbar-text navbar-center" style="margin-left:45%;">Spectral Link DOO (Admin panel)</p>   
+        <ul class="nav nav-pills" style="float:right;">
+            <li><a href="#" id="notif-narudzbenice"><i class="fa fa-bell-o fa-2x" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></a></li>
+        </ul>
+    </nav>    
+    
 
-<body>
-    <nav>
-        <div>
-            <ul>
-                <li><a href="#" id="webShopLink">WebShop</a></li>
-
-                <li><a href="#" ><img id="menuLogo" src="@{'public/images/logo/SpectralLink_LOGO.png'}"/><span>Spectral Link</span></a>
-                <li id="mrs"><a href="#" id="narudzbeniceLink">Narudzbenice<span id="brNarudzbenica">(2)</span></a></li>
-                
-            </ul>
-            
+    <!-- VERTIKALNA NAVIGACIJA -->
+    <nav class="navbar navbar-inverse" id="navbar-horizontal">
+        <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">
+                <img alt="Brand" src="@{'public/images/SpectralLink_LOGO.png'}" style="max-width:45px;">
+              </a>
+            </div>
+            <span class="text-center" style="line-height:60px;color:#EAEAEA;">Kontrolna tabla</span>
         </div>
+        <ul class="nav nav-pills nav-stacked">
+            <li><a href="#" id="webshop-admin">Administracija webshopa</a></li>
+            <li><a href="#" id="cenovnik-admin">Cenovnik</a></li>
+            <li><a href="#" id="partneri-admin">Poslovni partneri</a></li>
+            <li><a href="#" id="poslovna-godina-admin">Poslovna godina</a></li>
+            <li><a href="#" id="pdv-admin">Podesavanje PDV-a</a></li>
+            <li><a href="#" id="izdate-fakture">Izdate fakture</a></li>
+            <li><a href="#" id="izdate-otpremnice">Izdate otpremnice</a></li>
+        </ul>
     </nav>
-    
-    <div id="webShopContainer">
-        <img id="webShopBasketImg" src="@{'public/images/basketWeb.png'}" alt="Ovde ide WebShop">
-        <div style="text-align:center;font-size:1.4em;">Ovde ide WebShop</div>
-    </div>
-    
-    <div id="narudzbeniceContainer">
-        <div class="narudzbenica">
-            <table class="zaglavljeNarudzbenice">
-                
-                  <tr>
-                    <td class="tg-9hbo">Narudzbenica br. <span id="brNarudz-1">1</span></th>
-                    <td class="tg-yw4l">Ime i prezime / naziv firme: <span id="imeKupcaNarudz-1">Astral DOO</span></td>
-                  </tr>
-                  <tr>
-                    <td class="tg-yw4l">Ziro racun kupca: <span id="racunKupcaNarudz-1">840-1751666-08</span></td>
-                    <td class="tg-yw4l">Ulica i broj: <span id="adresaKupcaNarudz-1">Aleksandra Tisme 8</span></td>
-                  </tr>
-                  <tr>
-                    <td class="tg-yw4l">Rok isporuke: <span id="rokIsporukeNarudz-1">21.12.2016</span></td>
-                    <td class="tg-yw4l">Broj tel. : <span id="brTelKupcaNarudz-1">0658741548</span></td>
-                  </tr>
-            </table>
-            <span style="font-weight: bold;">Narucuje:</span>
         
-            <table class="sadrzajNarudzbenice">
-                <tr>
-                    <th>#</th>
-                    <th>Naziv dobra/usluge</th>
-                    <th>Kolicina</th>
-                    <th>Cena bez PDV-a</th>
-                    <th>Iznos</th>
-                </tr>
+    
+    <section class="main-content">
+        <table class="table-bordered table-striped">
+            <thead>
+                <th>ID</th>
+                <th>Naziv</th>
+                <th>Cena (RSD)</th>
+                <th>Raspoloziva kolicina</th>
+                <th>Opis</th>
+                <th>Akcija</th>
+            </thead>
+            <tbody>
                 <tr>
                     <td>1</td>
-                    <td>Maticna bloca B4123S</td>
-                    <td>4</td>
-                    <td>21999</td>
-                    <td>28999</td>
+                    <td>Asus ROG R724</td>
+                    <td>299 999,00</td>
+                    <td>6</td>
+                    <td>Republic of gamers high tech laptop</td>
+                    <td>
+                        <a><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a><i class="fa fa-times" aria-hidden="true"></i></a>
+                    </td>
                 </tr>
-            </table>
-            
-            <button class="btn-ok">Generisi fakturu</button>
-        </div>
-    
-    
-    
-        <!-- Druga kopija -->
-        <div class="narudzbenica">
-            <table class="zaglavljeNarudzbenice">
-                
-                  <tr>
-                    <td class="tg-9hbo">Narudzbenica br. <span id="brNarudz-2">1</span></th>
-                    <td class="tg-yw4l">Ime i prezime / naziv firme: <span id="imeKupcaNarudz-2">Astral DOO</span></td>
-                  </tr>
-                  <tr>
-                    <td class="tg-yw4l">Ziro racun kupca: <span id="racunKupcaNarudz-2">840-1751666-08</span></td>
-                    <td class="tg-yw4l">Ulica i broj: <span id="adresaKupcaNarudz-2">Aleksandra Tisme 8</span></td>
-                  </tr>
-                  <tr>
-                    <td class="tg-yw4l">Rok isporuke: <span id="rokIsporukeNarudz-2">21.12.2016</span></td>
-                    <td class="tg-yw4l">Broj tel. : <span id="brTelKupcaNarudz-2">0658741548</span></td>
-                  </tr>
-            </table>
-            <span style="font-weight: bold;">Narucuje:</span>
+            </tbody>
+        </table>
         
-            <table class="sadrzajNarudzbenice">
-                <tr>
-                    <th>#</th>
-                    <th>Naziv dobra/usluge</th>
-                    <th>Kolicina</th>
-                    <th>Cena bez PDV-a</th>
-                    <th>Iznos</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Maticna bloca B4123S</td>
-                    <td>4</td>
-                    <td>21999</td>
-                    <td>28999</td>
-                </tr>
-            </table>
-            
-            <button class="btn-ok">Generisi fakturu</button>
-        </div>
-    </div>
+        <button type="button" id="add-new-product" class="add-new-btn btn btn-primary"><i class="fa fa-plus-square-o fa-3x" aria-hidden="true"></i></button>
+    </section>
+
     
+    <div id="modal-container">
+    </div>
+
+
+  
 </body>
 </html>
