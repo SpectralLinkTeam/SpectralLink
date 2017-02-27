@@ -2,6 +2,7 @@ package models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 import play.db.jpa.Model;
 
@@ -28,6 +29,12 @@ public class StavkaFakture extends Model {
 	
 	@Column
 	public double iznosStavke;
+	
+	@ManyToOne
+	public Cenovnik cenovnik;
+	
+	@ManyToOne
+	public Roba roba;
 
 	public StavkaFakture(int kolicina, double jedinicnaCena, double rabat,
 			double osnovicaPDV, int procenatPDV, double iznosPDV,

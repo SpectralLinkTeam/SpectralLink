@@ -1,9 +1,12 @@
 package models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
 
@@ -30,6 +33,18 @@ public class Faktura extends Model {
 	
 	@Column(length=2)
 	public String statusFakture;
+	
+	@ManyToOne
+	public BusinessPartner poslovniPartneri;
+	
+	@ManyToOne
+	public BusinessYear poslovnaGodina;
+	
+	@ManyToOne
+	public Company preduzece;
+	
+	@OneToMany
+	public List<StavkaFakture> stavkeFakture;
 
 	public Faktura(int brojFakture, Date datumFakture, Date datumValute,
 			String osnovica, int ukupanPDV, double iznosZaPlacanje,

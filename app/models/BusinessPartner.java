@@ -1,7 +1,11 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
 
@@ -17,6 +21,15 @@ public class BusinessPartner extends Model {
 	//vrsta partnera
 	@Column(length=2)
 	public String type;
+	
+	@ManyToOne
+	public Mesto mesto;
+	
+	@ManyToOne
+	public Company preduzece;
+	
+	@OneToMany
+	public List<Faktura> fakture;
 	
 	public BusinessPartner() {
 		super();

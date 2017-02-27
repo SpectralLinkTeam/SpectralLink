@@ -1,7 +1,11 @@
 package models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
 
@@ -14,6 +18,9 @@ public class BusinessYear extends Model {
 	//zakljucena
 	@Column
 	public boolean completed;
+	
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	public List<Faktura> fakture;
 	
 	public BusinessYear() {
 		super();

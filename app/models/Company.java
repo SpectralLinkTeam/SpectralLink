@@ -1,7 +1,11 @@
 package models;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
 
@@ -28,6 +32,21 @@ public class Company extends Model {
 	
 	@Column
 	public String logo;
+	
+	@ManyToOne
+	public Mesto mesto;
+	
+	@OneToMany
+	public List<BusinessPartner> poslovniPartneri;
+	
+	@OneToMany
+	public List<Faktura> fakture;
+	
+	@OneToMany
+	public List<Cenovnik> cenovnici;
+	
+	@OneToMany
+	public List<GrupaRobe> grupeRobe;
 	
 	public Company(){
 		super();
