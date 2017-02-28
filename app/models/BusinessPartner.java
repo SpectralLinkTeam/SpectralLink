@@ -28,6 +28,9 @@ public class BusinessPartner extends Model {
 	@ManyToOne
 	public Company preduzece;
 	
+	@Column(columnDefinition="tinyint(1) default 0")
+	public boolean IsDeleted;
+	
 	@OneToMany
 	public List<Faktura> fakture;
 	

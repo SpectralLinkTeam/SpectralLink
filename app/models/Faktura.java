@@ -18,6 +18,9 @@ public class Faktura extends Model {
 	
 	@Column
 	public Date datumFakture;
+	
+	@Column(columnDefinition="tinyint(1) default 0")
+	public boolean IsDeleted;
 
 	@Column
 	public Date datumValute;

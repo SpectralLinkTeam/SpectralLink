@@ -16,7 +16,16 @@ public class Roba extends Model {
 	public String naziv;
 	
 	@Column
+	public String opis;
+	
+	@Column
+	public String slika;
+	
+	@Column
 	public String jedinicaMere;
+	
+	@Column(columnDefinition="tinyint(1) default 0")
+	public boolean IsDeleted;
 	
 	@ManyToOne
 	public GrupaRobe grupaRobe;
