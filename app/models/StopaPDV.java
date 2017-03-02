@@ -20,4 +20,7 @@ public class StopaPDV extends Model {
 	@ManyToOne
 	public PDV pdv;
 	
+	@Column(columnDefinition="tinyint(1) default 0")
+	public boolean IsDeleted;
+	
 }

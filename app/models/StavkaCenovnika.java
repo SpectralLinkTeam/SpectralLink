@@ -17,5 +17,8 @@ public class StavkaCenovnika extends Model {
 	
 	@ManyToOne
 	public Roba roba;
+	
+	@Column(columnDefinition="tinyint(1) default 0")
+	public boolean IsDeleted;
 
 }

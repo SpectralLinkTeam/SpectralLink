@@ -22,4 +22,7 @@ public class Mesto extends Model {
 	@OneToMany
 	public List<BusinessPartner> poslovniPartneri;
 	
+	@Column(columnDefinition="tinyint(1) default 0")
+	public boolean IsDeleted;
+	
 }

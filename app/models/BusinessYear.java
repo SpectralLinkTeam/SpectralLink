@@ -19,6 +19,9 @@ public class BusinessYear extends Model {
 	@Column
 	public boolean completed;
 	
+	@Column(columnDefinition="tinyint(1) default 0")
+	public boolean IsDeleted;
+	
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	public List<Faktura> fakture;
 	
