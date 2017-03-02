@@ -2,3 +2,6 @@
 
 require:
     - play
+    - play -> db 1.1.1
+    - mysql -> mysql-connector-java 6.0.4
+    - net.sourceforge.jtds -> jtds 1.3.1

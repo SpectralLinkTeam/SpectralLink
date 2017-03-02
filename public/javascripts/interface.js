@@ -1,25 +1,10 @@
     $(document).ready(function () {
-    
-    // NAVIGACIJA 
-    $("#webshop-admin").click(function () {
-        $("section").empty();
-        $("section").load("table-webshop.html");
-    });
-    
-    
-    $("#cenovnik-admin").click(function () {
-        $("section").empty();
-        $("section").load("table-cenovnik.html");
-    });
+
     
     $(document).on("click", "#print-cenovnik", function () {
         window.print();
     });
-    
-    $("#partneri-admin").on("click", function () {
-        $("section").empty();
-        $("section").load("table-poslovni-partneri.html");
-    });
+
     
     $("#poslovna-godina-admin").click(function () {
         $("#modal-container").empty();
@@ -43,7 +28,9 @@
     $("#izdate-otpremnice").click(function () {
         
     });
-    
+
+
+    // Cancel dugme
     $(document).on("click", ".odustani", function () {
         $("#modal-container").empty();
         $("#modal-container").css("display", "none");

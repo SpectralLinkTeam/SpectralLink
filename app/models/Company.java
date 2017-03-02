@@ -60,7 +60,7 @@ public class Company extends Model {
 		super();
 		this.name = naziv;
 		this.address = adresa;
-		PIB = pIB;
+		this.PIB = pIB;
 		this.telephone = telefon;
 		this.email = email;
 		this.logo = logo;
