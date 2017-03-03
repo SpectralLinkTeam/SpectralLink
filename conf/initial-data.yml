@@ -1,0 +1,166 @@
+Mesto(ns):
+    naziv: Novi Sad
+Mesto(bg):
+    naziv: Beograd
+Mesto(ni):
+    naziv: Nis
+
+Company(SpectralLink):
+    name: Spectral Link
+    address: Bulevar Oslobodjena 22
+    PIB: 333333
+    telephone: 021333333
+    email: spectral@link.com
+    logo: logo.png
+    mesto: [ns]
+                 
+
+PDV(visokiPDV):
+    naziv: Visoki PDV
+PDV(niskiPDV):
+    naziv: Niski PDV
+
+StopaPDV(20):
+    procenat: 20
+    datumVazenja: 2017-01-01
+    pdv: [visokiPDV]
+    
+StopaPDV(10):
+    procenat: 10
+    datumVazenja: 2017-01-01
+    pdv: [niskiPDV]
+    
+GrupaRobe(laptop):
+    naziv: Laptopovi
+    preduzece: [SpectralLink]
+    pdv: [niskiPDV]
+    
+GrupaRobe(racunari):
+    naziv: Desktop Racunari
+    preduzece: [SpectralLink]
+    pdv: [visokiPDV]
+
+Roba(l1):
+    naziv: Acer Aspire A1
+    opis: Laptop Acer Aspire, 4GB DDR3, Intel I3
+    slika: acer1.jpg
+    jedinicaMere: kom
+    grupaRobe: [laptop]
+    
+Roba(l2):
+    naziv: Acer Aspire A2
+    opis: Laptop Acer Aspire, 8GB DDR3, Intel I5
+    slika: acer2.png
+    jedinicaMere: kom
+    grupaRobe: [laptop]
+    
+Roba(l3):
+    naziv: Lenovo L1
+    opis: Laptop Lenovo, 4GB DDR3, Intel I5
+    slika: lenovo1.png
+    jedinicaMere: kom
+    grupaRobe: [laptop] 
+
+Roba(l4):
+    naziv: Lenovo L2
+    opis: Laptop Lenovo, 8GB DDR3, Intel I7
+    slika: acer2.png
+    jedinicaMere: kom
+    grupaRobe: [laptop]
+
+Roba(l5):
+    naziv: LG L3
+    opis: Laptop LG, 2GB DDR2, Intel Pentium IV
+    slika: lg1.jpg
+    jedinicaMere: kom
+    grupaRobe: [laptop]
+
+Roba(l6):
+    naziv: LG L4
+    opis: Laptop LG, 4GB DDR3, Intel I3
+    slika: lg2.jpg
+    jedinicaMere: kom
+    grupaRobe: [laptop]
+    
+Roba(l7):
+    naziv: Samsung S1
+    opis: Laptop Samsung, 4GB DDR3, Intel I3
+    slika: samsung1.jpg
+    jedinicaMere: kom
+    grupaRobe: [laptop]
+    
+Roba(l8):
+    naziv: Samsung S2
+    opis: Laptop Samsung, 8GB DDR3, Intel I5
+    slika: samsung2.jpg
+    jedinicaMere: kom
+    grupaRobe: [laptop]
+    
+Roba(l9):
+    naziv: Samsung S3
+    opis: Laptop Samsung, 4GB DDR3, Intel I7
+    slika: samsung3.jpg
+    jedinicaMere: kom
+    grupaRobe: [laptop]
+    
+Roba(l10):
+    naziv: Samsung S4
+    opis: Laptop Samsung, 8GB DDR4, Intel I7
+    slika: samsung4.jpg
+    jedinicaMere: kom
+    grupaRobe: [laptop]
+    
+Cenovnik(c1):
+    datumVazenja: 2017-01-01
+    preduzece: [SpectralLink]
+    
+StavkaCenovnika(sc1):
+    cena: 54000
+    cenovnik: [c1]
+    roba: [l1]
+    
+StavkaCenovnika(sc2):
+    cena: 57000
+    cenovnik: [c1]
+    roba: [l2]
+    
+StavkaCenovnika(sc3):
+    cena: 64000
+    cenovnik: [c1]
+    roba: [l3]
+    
+StavkaCenovnika(sc4):
+    cena: 66000
+    cenovnik: [c1]
+    roba: [l4]
+    
+StavkaCenovnika(sc5):
+    cena: 54000
+    cenovnik: [c1]
+    roba: [l5]
+    
+StavkaCenovnika(sc6):
+    cena: 57000
+    cenovnik: [c1]
+    roba: [l6]
+    
+StavkaCenovnika(sc7):
+    cena: 70000
+    cenovnik: [c1]
+    roba: [l7]
+    
+StavkaCenovnika(sc8):
+    cena: 72000
+    cenovnik: [c1]
+    roba: [l8]
+    
+StavkaCenovnika(sc9):
+    cena: 74000
+    cenovnik: [c1]
+    roba: [l9]
+    
+StavkaCenovnika(sc10):
+    cena: 78000
+    cenovnik: [c1]
+    roba: [l10]
+    
