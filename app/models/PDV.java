@@ -19,7 +19,4 @@ public class PDV extends Model {
 
 	@OneToMany
 	public List<GrupaRobe> grupeRobe;
-	
-	@Column(columnDefinition="tinyint(1) default 0")
-	public boolean IsDeleted;
 }
