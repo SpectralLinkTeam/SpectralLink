@@ -36,16 +36,16 @@ public class Company extends Model {
 	@ManyToOne
 	public Mesto mesto;
 	
-	@OneToMany
+	@OneToMany(mappedBy="Company")
 	public List<BusinessPartner> poslovniPartneri;
 	
-	@OneToMany
+	@OneToMany(mappedBy="Company")
 	public List<Faktura> fakture;
 	
-	@OneToMany
+	@OneToMany(mappedBy="Company")
 	public List<Cenovnik> cenovnici;
 	
-	@OneToMany
+	@OneToMany(mappedBy="Company")
 	public List<GrupaRobe> grupeRobe;
 	
 	public Company(){

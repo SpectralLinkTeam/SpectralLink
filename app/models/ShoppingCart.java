@@ -10,7 +10,7 @@ import play.db.jpa.Model;
 
 public class ShoppingCart extends Model {
 	
-	@OneToMany
+	@OneToMany(mappedBy="ShoppingCart")
 	public List<ShoppingCartItems> stavkeKorpe;
 
 }

@@ -15,7 +15,7 @@ public class GrupaRobe extends Model {
 	@Column
 	public String naziv;
 	
-	@OneToMany
+	@OneToMany(mappedBy="GrupaRobe")
 	public List<Roba> robe;
 	
 //	@ManyToOne

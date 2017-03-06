@@ -16,7 +16,7 @@ public class Cenovnik extends Model {
 	@Column
 	public Date datumVazenja;
 	
-	@OneToMany
+	@OneToMany(mappedBy="Cenovnik")
 	public List<StavkaCenovnika> stavkeCenovnika;
 	
 	@ManyToOne

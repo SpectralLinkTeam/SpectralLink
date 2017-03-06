@@ -14,9 +14,9 @@ public class PDV extends Model {
 	@Column
 	public String naziv;
 	
-	@OneToMany
+	@OneToMany(mappedBy="PDV")
 	public List<StopaPDV> stopePDV;
 
-	@OneToMany
+	@OneToMany(mappedBy="PDV")
 	public List<GrupaRobe> grupeRobe;
 }

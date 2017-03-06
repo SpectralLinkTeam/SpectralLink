@@ -30,9 +30,9 @@ public class Roba extends Model {
 	@ManyToOne
 	public GrupaRobe grupaRobe;
 	
-	@OneToMany
+	@OneToMany(mappedBy="Roba")
 	public List<StavkaFakture> stavkeFakture;
 
-	@OneToMany
+	@OneToMany(mappedBy="Roba")
 	public List<StavkaCenovnika> stavkeCenovnika;
 }

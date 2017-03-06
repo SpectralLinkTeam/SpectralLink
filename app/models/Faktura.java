@@ -46,7 +46,7 @@ public class Faktura extends Model {
 	@ManyToOne
 	public Company preduzece;
 	
-	@OneToMany
+	@OneToMany(mappedBy="Faktura")
 	public List<StavkaFakture> stavkeFakture;
 
 	public Faktura(int brojFakture, Date datumFakture, Date datumValute,

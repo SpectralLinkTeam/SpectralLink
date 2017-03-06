@@ -16,10 +16,10 @@ public class Mesto extends Model {
 	
 	//================== dodati atribute koji su neophodni za mesto
 	
-	@OneToMany
+	@OneToMany(mappedBy="Mesto")
 	public List<Company> preduzeca;
 
-	@OneToMany
+	@OneToMany(mappedBy="Mesto")
 	public List<BusinessPartner> poslovniPartneri;
 	
 }
