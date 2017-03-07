@@ -3,10 +3,7 @@ package models;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import play.db.jpa.Model;
 
@@ -45,8 +42,9 @@ public class Faktura extends Model {
 	
 	@ManyToOne
 	public Company preduzece;
-	
-	@OneToMany(mappedBy="Faktura")
+
+	@OneToMany(orphanRemoval = true)
+	@JoinColumn(name = "stavkeFakture_id")
 	public List<StavkaFakture> stavkeFakture;
 
 	public Faktura(int brojFakture, Date datumFakture, Date datumValute,

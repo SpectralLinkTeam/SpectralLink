@@ -2,14 +2,12 @@ package models;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import play.db.jpa.Model;
 
 @Entity
+@Table(name = "Company")
 public class Company extends Model {
 	
 	//naziv
@@ -36,16 +34,16 @@ public class Company extends Model {
 	@ManyToOne
 	public Mesto mesto;
 	
-	@OneToMany(mappedBy="Company")
+	@OneToMany(mappedBy="preduzece")
 	public List<BusinessPartner> poslovniPartneri;
 	
-	@OneToMany(mappedBy="Company")
+	@OneToMany(mappedBy="preduzece")
 	public List<Faktura> fakture;
 	
-	@OneToMany(mappedBy="Company")
+	@OneToMany(mappedBy="preduzece")
 	public List<Cenovnik> cenovnici;
 	
-	@OneToMany(mappedBy="Company")
+	@OneToMany(mappedBy="preduzece")
 	public List<GrupaRobe> grupeRobe;
 	
 	public Company(){

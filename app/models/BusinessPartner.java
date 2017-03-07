@@ -31,7 +31,7 @@ public class BusinessPartner extends Model {
 	@Column(columnDefinition="tinyint(1) default 0")
 	public boolean IsDeleted;
 	
-	@OneToMany(mappedBy="BusinessPartner")
+	@OneToMany(mappedBy="poslovniPartneri")
 	public List<Faktura> fakture;
 	
 	public BusinessPartner() {

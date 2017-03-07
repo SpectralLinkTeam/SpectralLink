@@ -19,7 +19,7 @@ public class BusinessYear extends Model {
 	@Column
 	public boolean completed;
 	
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE},mappedBy="BusinessYear")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE},mappedBy="poslovnaGodina")
 	public List<Faktura> fakture;
 	
 	public BusinessYear() {
