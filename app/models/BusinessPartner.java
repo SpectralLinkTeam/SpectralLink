@@ -28,7 +28,7 @@ public class BusinessPartner extends Model {
 	@ManyToOne
 	public Company preduzece;
 	
-	@Column(columnDefinition="tinyint(1) default 0")
+	@Column(columnDefinition="tinyint default 0")
 	public boolean IsDeleted;
 	
 	@OneToMany(mappedBy="poslovniPartneri")

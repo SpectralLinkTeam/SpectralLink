@@ -35,6 +35,9 @@ public class StavkaFakture extends Model {
 	public Cenovnik cenovnik;
 	
 	@ManyToOne
+	public Faktura faktura;
+	
+	@ManyToOne
 	public Roba roba;
 
 	public StavkaFakture(int kolicina, double jedinicnaCena, double rabat,

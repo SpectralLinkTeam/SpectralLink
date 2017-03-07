@@ -16,7 +16,7 @@ public class Faktura extends Model {
 	@Column
 	public Date datumFakture;
 	
-	@Column(columnDefinition="tinyint(1) default 0")
+	@Column(columnDefinition="tinyint default 0")
 	public boolean IsDeleted;
 
 	@Column
@@ -43,8 +43,8 @@ public class Faktura extends Model {
 	@ManyToOne
 	public Company preduzece;
 
-	@OneToMany(orphanRemoval = true)
-	@JoinColumn(name = "stavkeFakture_id")
+	@OneToMany(mappedBy="faktura")
+	//@JoinColumn(name = "stavkeFakture_id")
 	public List<StavkaFakture> stavkeFakture;
 
 	public Faktura(int brojFakture, Date datumFakture, Date datumValute,
