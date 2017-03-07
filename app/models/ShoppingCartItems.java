@@ -3,15 +3,15 @@ package models;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import play.db.jpa.Model;
 
+@Entity
 public class ShoppingCartItems extends Model {
 	
-	@Column
+	@OneToOne
+	@JoinColumn(name = "roba_id")
 	public Roba roba;
 	
 	@Column
