@@ -12,18 +12,18 @@ public class Narudzbenica extends Model {
 
 //	@OneToOne(mappedBy="narudzbenica",  cascade = {CascadeType.ALL})
 //	public Company narucioc;
-//	
-//	@Column
-//	public Date datumNarudzbine;
-//	
-//	@Column
-//	public String komentar;
-//	
+	
+	@Column
+	public Date datumNarudzbine;
+	
+	@Column
+	public String komentar;
+	
 //	@OneToMany(mappedBy="narudzbenica")
 //	public List<Roba> listaProizvoda;
-//	
-//	@Column(columnDefinition="tinyint default 0")
-//	public boolean IsDeleted;
+	
+	@Column(columnDefinition="tinyint default 0")
+	public boolean IsDeleted;
 	
 	/*
 	@OneToOne(mappedBy="narudzbenica",  cascade = {CascadeType.ALL})
