@@ -46,6 +46,11 @@ public class Company extends Model {
 	@OneToMany(mappedBy="preduzece")
 	public List<GrupaRobe> grupeRobe;
 	
+	//----------novo lista narudzbenica
+//	@OneToMany(mappedBy="preduzece")
+//	public List<Narudzbenica> listaNarudzbenica;
+	//------------------------------------
+	
 	public Company(){
 		super();
 	}
