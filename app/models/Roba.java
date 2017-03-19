@@ -21,6 +21,9 @@ public class Roba extends Model {
 	
 	@Column
 	public String jedinicaMere;
+
+	@Column
+	public int raspKol;
 	
 	@Column(columnDefinition="tinyint default 0")
 	public boolean IsDeleted;

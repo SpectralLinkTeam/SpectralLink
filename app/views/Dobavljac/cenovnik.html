@@ -7,10 +7,12 @@
     <th>Cena (RSD)</th>
     </thead>
     <tbody>
-    <tr>
-        <td>Asus ROG R724</td>
-        <td>299 999.00</td>
-    </tr>
+        #{list items=cenovnik.stavkeCenovnika, as: 'stavka'}
+        <tr>
+            <td>${stavka.roba.naziv}</td>
+            <td>${stavka.cena}</td>
+        </tr>
+        #{/list}
     </tbody>
 </table>
 

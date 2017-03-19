@@ -11,17 +11,19 @@
         <th>Akcija</th>
     </thead>
     <tbody>
+        #{list items:roba, as: 'stavka'}
         <tr>
-            <td>1</td>
-            <td>Asus ROG R724</td>
-            <td>299 999,00</td>
-            <td>6</td>
-            <td>Republic of gamers high tech laptop</td>
+            <td>${stavka.id}</td>
+            <td>${stavka.naziv}</td>
+            <td>${stavka.stavkeCenovnika.cena}</td>
+            <td>${stavka.raspKol}</td>
+            <td>${stavka.opis}</td>
             <td>
                 <a><i class="fa fa-pencil" aria-hidden="true"></i></a>
                 <a><i class="fa fa-times" aria-hidden="true"></i></a>
             </td>
         </tr>
+        #{/list}
     </tbody>
 </table>
 

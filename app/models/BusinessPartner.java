@@ -17,6 +17,12 @@ public class BusinessPartner extends Model {
 	
 	@Column
 	public String address;
+
+	@Column
+	String phoneNumber;
+
+	@Column
+	String email;
 	
 	//vrsta partnera
 	@Column(length=2)

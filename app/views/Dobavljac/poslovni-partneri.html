@@ -12,18 +12,20 @@
     <th>Akcija</th>
     </thead>
     <tbody>
+    #{list items:pp, as: 'poslovniPartner'}
     <tr>
-        <td>1</td>
-        <td>Asus DOO</td>
-        <td>Fremont</td>
-        <td>800 Corporate Way</td>
-        <td>510-739-3777 </td>
-        <td>media@asus.com</td>
+        <td>${poslovniPartner.id}</td>
+        <td>${poslovniPartner.name}</td>
+        <td>${poslovniPartner.mesto.naziv}</td>
+        <td>${poslovniPartner.address}y</td>
+        <td>${poslovniPartner.phoneNumber}</td>
+        <td>${poslovniPartner.email}</td>
         <td>
             <a><i class="fa fa-pencil" aria-hidden="true"></i></a>
             <a><i class="fa fa-times" aria-hidden="true"></i></a>
         </td>
     </tr>
+    #{/list}
     </tbody>
 </table>
 

@@ -13,26 +13,26 @@ public class Dobavljac extends Controller{
     // redirekcija na webshop kao default stranica Dobavljaca
     public static void redirect(){
         // ovde cemo povuci iz baze dobavljaca tipa Company
-        Company company = new Company();
-        renderTemplate("Dobavljac/webshop.html", company);
+        //Company company = new Company();
+        //renderTemplate("Dobavljac/webshop.html", company);
+        webshop();
     }
 
     // redirekcije sa dummy podacima ( prazne liste )
     public static void webshop(){
-    	//List<Roba> roba = Roba.find("byIsDeleted", 0).fetch();
+    	List<Roba> roba = Roba.find("byIsDeleted", 0).fetch();
     	//Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
     	//List<StavkaCenovnika> cene = StavkaCenovnika.find("byCenovnik", cenovnik.id).fetch();
-    	List<StavkaFakture> proizvodi = new ArrayList<>();
-		renderTemplate("Dobavljac/webshop.html", proizvodi);
+		renderTemplate("Dobavljac/webshop.html", roba);
 	}
 
 	public static void cenovnik(){
-        Cenovnik cenovnik = new Cenovnik();
+        Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
         renderTemplate("Dobavljac/cenovnik.html", cenovnik);
     }
 
     public static void poslovniPartneri(){
-	    List<BusinessPartner> pp = new ArrayList<>();
+	    List<BusinessPartner> pp = BusinessPartner.findAll();
         renderTemplate("Dobavljac/poslovni-partneri.html", pp);
     }
 
@@ -40,6 +40,27 @@ public class Dobavljac extends Controller{
         // napraviti Narudzbenica u modelu
         List<Object> narudzbenice = new ArrayList<>();
         renderTemplate("Dobavljac/narudzbenice.html", narudzbenice);
+    }
+
+    // CREATE or EDIT entities
+
+    public static void create(String grupaRobe, String naziv, double cena, int raspKol, String opis, String jedinicaMere){
+        Roba roba = new Roba();
+        roba.grupaRobe = GrupaRobe.findById(Long.parseLong(grupaRobe));
+        roba.naziv = naziv;
+        roba.raspKol = raspKol;
+        roba.opis = opis;
+        roba.jedinicaMere = jedinicaMere;
+        roba.save();
+
+        StavkaCenovnika sc = new StavkaCenovnika();
+        sc.cena = cena;
+        sc.cenovnik = Cenovnik.findById(1L);
+        sc.roba = roba;
+        sc.save();
+
+
+        webshop();
     }
     
 }
