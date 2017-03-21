@@ -26,7 +26,7 @@
 
     <div class="row">
         #{list items=roba, as: 'proizvod'}
-        <a href="@{Dobavljac.addToCart(proizvod.id)}">
+        <a href="@{ShoppingCartItemController.addToCart(proizvod.id)}">
         <div class="col-sm-3">
             <div class="product">
                 <div><img src="@{'/public/images/products'}/${proizvod.slika}" class="product-image"></div>
