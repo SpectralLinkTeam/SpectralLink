@@ -16,5 +16,4 @@ public class ShoppingCart extends Model {
 	public List<ShoppingCartItems> stavkeKorpe;
 
 
-
 }
