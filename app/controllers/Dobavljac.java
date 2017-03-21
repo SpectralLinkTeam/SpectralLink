@@ -14,16 +14,16 @@ public class Dobavljac extends Controller{
     public static void redirect(){
         // ovde cemo povuci iz baze dobavljaca tipa Company
         //Company company = new Company();
-        //renderTemplate("Dobavljac/webshop.html", company);
-        webshop();
+        //renderTemplate("Dobavljac/roba.html", company);
+        roba();
     }
 
     // redirekcije sa dummy podacima ( prazne liste )
-    public static void webshop(){
+    public static void roba(){
     	List<Roba> roba = Roba.find("byIsDeleted", 0).fetch();
     	//Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
     	//List<StavkaCenovnika> cene = StavkaCenovnika.find("byCenovnik", cenovnik.id).fetch();
-		renderTemplate("Dobavljac/webshop.html", roba);
+		renderTemplate("Dobavljac/roba.html", roba);
 	}
 
 	public static void cenovnik(){
@@ -58,9 +58,7 @@ public class Dobavljac extends Controller{
         sc.cenovnik = Cenovnik.findById(1L);
         sc.roba = roba;
         sc.save();
-
-
-        webshop();
+        roba();
     }
     
 }
