@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-.container-fluid{
+.product-container{
     margin-top: 20px;
 }
 
@@ -16,4 +16,9 @@
 .product-image{
     width: 150px;
     height: 150px;
+}
+
+#shopping-cart{
+    float: right;
+    margin-top: 5px;
 }
