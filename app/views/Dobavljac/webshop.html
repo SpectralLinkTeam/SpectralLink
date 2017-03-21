@@ -38,6 +38,13 @@
                         ${proizvod.stavkeCenovnika.cena}
                     </div>
                 </div>
+
+                <form action="@{Dobavljac.addToCart(proizvod.id)}">
+                    <input type="hidden" name="id">
+                    <label>Kolicina</label>
+                    <input type="number" name="kolicina">
+                    <input type="submit" value="Dodaj u korpu">
+                </form>
             </div>
         </div>
             </a>
