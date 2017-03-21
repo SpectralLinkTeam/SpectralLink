@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid{
+    margin-top: 20px;
+}
+
+.product{
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #A5A5A5;
+}
+
+.product-image{
+    width: 150px;
+    height: 150px;
+}

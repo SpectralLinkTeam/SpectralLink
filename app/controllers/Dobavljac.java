@@ -18,10 +18,17 @@ public class Dobavljac extends Controller{
         roba();
     }
 
+    //WEBSHOP
     public static void webshop() {
         List<Roba> roba = Roba.find("byIsDeleted", 0).fetch();
         renderTemplate("Dobavljac/webshop.html", roba);
     }
+
+    public static void addToCart(long id){
+
+    }
+
+    //ADMIN
 
     // redirekcije sa dummy podacima ( prazne liste )
     public static void roba(){
