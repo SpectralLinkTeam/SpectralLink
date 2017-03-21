@@ -18,6 +18,11 @@ public class Dobavljac extends Controller{
         roba();
     }
 
+    public static void webshop() {
+        List<Roba> roba = Roba.find("byIsDeleted", 0).fetch();
+        renderTemplate("Dobavljac/webshop.html", roba);
+    }
+
     // redirekcije sa dummy podacima ( prazne liste )
     public static void roba(){
     	List<Roba> roba = Roba.find("byIsDeleted", 0).fetch();
@@ -41,6 +46,8 @@ public class Dobavljac extends Controller{
         List<Object> narudzbenice = new ArrayList<>();
         renderTemplate("Dobavljac/narudzbenice.html", narudzbenice);
     }
+
+
 
     // CREATE or EDIT entities
 
