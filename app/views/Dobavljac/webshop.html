@@ -26,7 +26,6 @@
 
     <div class="row">
         #{list items=roba, as: 'proizvod'}
-        <a href="@{ShoppingCartItemController.addToCart(proizvod.id)}">
         <div class="col-sm-3">
             <div class="product">
                 <div><img src="@{'/public/images/products'}/${proizvod.slika}" class="product-image"></div>
@@ -35,15 +34,15 @@
                         ${proizvod.naziv}
                     </div>
                     <div class="product-price">
-                        ${proizvod.stavkeCenovnika.cena}
+                        ${proizvod.stavkeCenovnika.cena.value}RSD
                     </div>
                 </div>
 
-                <form action="@{Dobavljac.addToCart(proizvod.id)}">
-                    <input type="hidden" name="id">
+                <form action=@{Dobavljac.addToCart()} method="POST">
+                    <input type="hidden" name="id" value="${proizvod.id}">
                     <label>Kolicina</label>
-                    <input type="number" name="kolicina">
-                    <input type="submit" value="Dodaj u korpu">
+                    <input type="number" name="kolicina" class="form-control-static">
+                    <button type="submit" value="Dodaj u korpu" class="btn-primary" id="add-to-cart"><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></button>
                 </form>
             </div>
         </div>

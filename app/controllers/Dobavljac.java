@@ -74,5 +74,9 @@ public class Dobavljac extends Controller{
         sc.save();
         roba();
     }
+
+    public static void addToCart(long id, String kolicina){
+        System.out.println(kolicina + String.valueOf(id));
+    }
     
 }
