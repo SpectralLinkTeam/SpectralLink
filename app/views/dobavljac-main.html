@@ -1,72 +1,64 @@
 <!DOCTYPE html>
 <html lang="">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<link rel="stylesheet" href="@{'public/stylesheets/bootstrap.min.css'}">
-<link rel="stylesheet"
-	href="@{'public/stylesheets/bootstrap-theme.min.css'}">
-<link rel="stylesheet"
-	href="@{'public/stylesheets/style_dobavljac.css'}">
-<script src="https://use.fontawesome.com/df8138781c.js"></script>
-<script src="@{'public/javascripts/jquery-3.1.1.min.js'}"></script>
-<script src="@{'public/javascripts/bootstrap.min.js'}"></script>
-<script src="@{'public/javascripts/interface.js'}"></script>
-<title>#{get 'title' /}</title>
+    <link rel="stylesheet" href="@{'public/stylesheets/bootstrap.min.css'}">
+    <link rel="stylesheet" href="@{'public/stylesheets/bootstrap-theme.min.css'}">
+    <link rel="stylesheet" href="@{'public/stylesheets/style_dobavljac.css'}">
+    <script src="https://use.fontawesome.com/df8138781c.js"></script>
+    <script src="@{'public/javascripts/jquery-3.1.1.min.js'}"></script>
+    <script src="@{'public/javascripts/bootstrap.min.js'}"></script>
+    <script src="@{'public/javascripts/interface.js'}"></script>
+    <title>#{get 'title' /}</title>
 </head>
 <body>
 
-	<!-- Dim background overlay -->
-	<div class="overlay"></div>
+<!-- Dim background overlay -->
+<div class="overlay"></div>
 
-	<!-- HORIZONTALNA NAVIGACIJA -->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<p class="navbar-text navbar-center" style="margin-left: 45%;">Spectral
-			Link DOO (Admin panel)</p>
-		<ul class="nav nav-pills" style="float: right;">
-			<li><a href="@{controllers.Dobavljac.narudzbenice}"
-				id="notif-narudzbenice"><i class="fa fa-bell-o fa-2x"
-					aria-hidden="true"></i></a></li>
-			<li><a href="#"><i class="fa fa-user-circle-o fa-2x"
-					aria-hidden="true"></i></a></li>
-		</ul>
-	</nav>
+<!-- HORIZONTALNA NAVIGACIJA -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <p class="navbar-text navbar-center" style="margin-left:45%;">Spectral Link DOO (Admin panel)</p>
+    <ul class="nav nav-pills" style="float:right;">
+        <li><a href="@{controllers.Dobavljac.narudzbenice}" id="notif-narudzbenice"><i class="fa fa-bell-o fa-2x" aria-hidden="true"></i></a></li>
+        <li><a href="#"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></a></li>
+    </ul>
+</nav>
 
 
-	<!-- VERTIKALNA NAVIGACIJA -->
-	<nav class="navbar navbar-inverse" id="navbar-horizontal">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="@{controllers.Dobavljac.redirect}">
-					<img alt="Brand" src="@{'public/images/SpectralLink_LOGO.png'}"
-					style="max-width: 45px;">
-				</a>
-			</div>
-			<span class="text-center" style="line-height: 60px; color: #EAEAEA;">Kontrolna
-				tabla</span>
-		</div>
-		<ul class="nav nav-pills nav-stacked">
-			<li><a href="@{controllers.Dobavljac.webshop}"
-				id="webshop-admin">Administracija webshopa</a></li>
-			<li><a href="@{controllers.Dobavljac.cenovnik}"
-				id="cenovnik-admin">Cenovnik</a></li>
-			<li><a href="@{controllers.Dobavljac.poslovniPartneri}"
-				id="partneri-admin">Poslovni partneri</a></li>
-			<li><a href="#" id="poslovna-godina-admin">Poslovna godina</a></li>
-			<li><a href="#" id="pdv-admin">Podesavanje PDV-a</a></li>
-			<li><a href="#" id="izdate-fakture">Izdate fakture</a></li>
-			<li><a href="#" id="izdate-otpremnice">Izdate otpremnice</a></li>
-		</ul>
-	</nav>
+<!-- VERTIKALNA NAVIGACIJA -->
+<nav class="navbar navbar-inverse" id="navbar-horizontal">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="@{controllers.Dobavljac.roba}">
+                <img alt="Brand" src="@{'public/images/SpectralLink_LOGO.png'}" style="max-width:45px;">
+            </a>
+        </div>
+        <span class="text-center" style="line-height:60px;color:#EAEAEA;">Kontrolna tabla</span>
+    </div>
+    <ul class="nav nav-pills nav-stacked">
+        <li><a href="@{controllers.Dobavljac.roba}" id="webshop-admin">Administracija webshopa</a></li>
+        <li><a href="@{controllers.Dobavljac.cenovnik}" id="cenovnik-admin">Cenovnik</a></li>
+        <li><a href="@{controllers.Dobavljac.poslovniPartneri}" id="partneri-admin">Poslovni partneri</a></li>
+        <li><a href="#" id="poslovna-godina-admin">Poslovna godina</a></li>
+        <li><a href="#" id="pdv-admin">Podesavanje PDV-a</a></li>
+        <li><a href="#" id="izdate-fakture">Izdate fakture</a></li>
+        <li><a href="#" id="izdate-otpremnice">Izdate otpremnice</a></li>
+    </ul>
+</nav>
 
-	<!-- Container koji ce da sadrzi 'view' svih dijelova Dobavljaca -->
-	<section class="main-content">#{doLayout /}</section>
+<!-- Container koji ce da sadrzi 'view' svih dijelova Dobavljaca -->
+<section class="main-content">
+#{doLayout /}
+</section>
 
 
-	<!-- Container za modalne prozore -->
-	<div id="modal-container"></div>
+<!-- Container za modalne prozore -->
+<div id="modal-container">
+</div>
 
 
 

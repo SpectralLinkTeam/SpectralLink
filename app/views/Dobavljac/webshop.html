@@ -1,28 +1,55 @@
-#{extends 'dobavljac-main.html' /} #{set title:'WebShop' /}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="@{'public/stylesheets/bootstrap.min.css'}">
+    <link rel="stylesheet" href="@{'public/stylesheets/bootstrap-theme.min.css'}">
+    <link rel="stylesheet" href="@{'public/stylesheets/webshop.css'}">
 
-<table class="table-bordered table-striped">
-	<thead>
-		<th>ID</th>
-		<th>Naziv</th>
-		<th>Cena (RSD)</th>
-		<th>Raspoloziva kolicina</th>
-		<th>Opis</th>
-		<th>Akcija</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>1</td>
-			<td>Asus ROG R724</td>
-			<td>299 999,00</td>
-			<td>6</td>
-			<td>Republic of gamers high tech laptop</td>
-			<td><a><i class="fa fa-pencil" aria-hidden="true"></i></a> <a><i
-					class="fa fa-times" aria-hidden="true"></i></a></td>
-		</tr>
-	</tbody>
-</table>
+    <script src="https://use.fontawesome.com/df8138781c.js"></script>
+    <script src="@{'public/javascripts/jquery-3.1.1.min.js'}"></script>
+    <script src="@{'public/javascripts/bootstrap.min.js'}"></script>
+    <title>Webshop</title>
+</head>
+<body>
 
-<button type="button" id="add-new-product"
-	class="add-new-btn btn btn-primary">
-	<i class="fa fa-plus-square-o fa-3x" aria-hidden="true"></i>
-</button>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">SpectralLink</a>
+        </div>
+        <a href="webshop/shoppingcart.html" id="shopping-cart"><i class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i></a>
+    </div>
+</nav>
+
+<div class="container-fluid product-container">
+
+    <div class="row">
+        #{list items=roba, as: 'proizvod'}
+        <div class="col-sm-3">
+            <div class="product">
+                <div><img src="@{'/public/images/products'}/${proizvod.slika}" class="product-image"></div>
+                <div class="product-info">
+                    <div class="product-title">
+                        ${proizvod.naziv}
+                    </div>
+                    <div class="product-price">
+                        ${proizvod.stavkeCenovnika.cena.value}RSD
+                    </div>
+                </div>
+
+                <form action=@{Dobavljac.addToCart()} method="POST">
+                    <input type="hidden" name="id" value="${proizvod.id}">
+                    <label>Kolicina</label>
+                    <input type="number" name="kolicina" class="form-control-static">
+                    <button type="submit" value="Dodaj u korpu" class="btn-primary" id="add-to-cart"><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></button>
+                </form>
+            </div>
+        </div>
+            </a>
+        #{/list}
+    </div>
+</div>
+
+</body>
+</html>

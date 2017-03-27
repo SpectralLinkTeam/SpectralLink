@@ -5,14 +5,31 @@ Mesto(bg):
 Mesto(ni):
     naziv: Nis
 
-Company(SpectralLink):
-    name: Spectral Link
+Company(SpectralLinkDobavljac):
+    name: Spectral Link Dobavljac
     address: Bulevar Oslobodjena 22
     PIB: 333333
     telephone: 021333333
     email: spectral@link.com
     logo: logo.png
     mesto: [ns]
+
+Company(SpectralLinkDobavljacKupac):
+    name: Spectral Link Kupac
+    address: Bulevar Oslobodjena 22
+    PIB: 666666
+    telephone: 0216666666
+    email: spectralKupac@link.com
+    logo: logo.png
+    mesto: [bg]
+
+
+BusinessPartner(bp1):
+    name: Asus DOO
+    address: 800 Corporate Way
+    phoneNumber: 510-739-3777
+    email: media@asus.com
+    mesto: [bg]
                  
 
 PDV(visokiPDV):
@@ -32,13 +49,18 @@ StopaPDV(10):
     
 GrupaRobe(laptop):
     naziv: Laptopovi
-    preduzece: [SpectralLink]
+    preduzece: [SpectralLinkDobavljac]
     pdv: [niskiPDV]
     
-GrupaRobe(racunari):
+GrupaRobe(racunar):
     naziv: Desktop Racunari
-    preduzece: [SpectralLink]
+    preduzece: [SpectralLinkDobavljac]
     pdv: [visokiPDV]
+
+GrupaRobe(telefon):
+    naziv: Telefoni
+    preduzece: [SpectralLinkDobavljac]
+    pdv: [niskiPDV]
 
 Roba(l1):
     naziv: Acer Aspire A1
@@ -46,6 +68,7 @@ Roba(l1):
     slika: acer1.jpg
     jedinicaMere: kom
     grupaRobe: [laptop]
+    raspKol: 3
     
 Roba(l2):
     naziv: Acer Aspire A2
@@ -53,13 +76,15 @@ Roba(l2):
     slika: acer2.png
     jedinicaMere: kom
     grupaRobe: [laptop]
+    raspKol: 3
     
 Roba(l3):
     naziv: Lenovo L1
     opis: Laptop Lenovo, 4GB DDR3, Intel I5
     slika: lenovo1.png
     jedinicaMere: kom
-    grupaRobe: [laptop] 
+    grupaRobe: [laptop]
+    raspKol: 1
 
 Roba(l4):
     naziv: Lenovo L2
@@ -67,52 +92,59 @@ Roba(l4):
     slika: acer2.png
     jedinicaMere: kom
     grupaRobe: [laptop]
+    raspKol: 4
 
 Roba(l5):
     naziv: LG L3
     opis: Laptop LG, 2GB DDR2, Intel Pentium IV
     slika: lg1.jpg
     jedinicaMere: kom
-    grupaRobe: [laptop]
+    grupaRobe: [telefon]
+    raspKol: 3
 
 Roba(l6):
     naziv: LG L4
     opis: Laptop LG, 4GB DDR3, Intel I3
     slika: lg2.jpg
     jedinicaMere: kom
-    grupaRobe: [laptop]
+    grupaRobe: [telefon]
+    raspKol: 3
     
 Roba(l7):
     naziv: Samsung S1
     opis: Laptop Samsung, 4GB DDR3, Intel I3
     slika: samsung1.jpg
     jedinicaMere: kom
-    grupaRobe: [laptop]
+    grupaRobe: [telefon]
+    raspKol: 3
     
 Roba(l8):
     naziv: Samsung S2
     opis: Laptop Samsung, 8GB DDR3, Intel I5
     slika: samsung2.jpg
     jedinicaMere: kom
-    grupaRobe: [laptop]
+    grupaRobe: [telefon]
+    raspKol: 3
     
 Roba(l9):
     naziv: Samsung S3
     opis: Laptop Samsung, 4GB DDR3, Intel I7
     slika: samsung3.jpg
     jedinicaMere: kom
-    grupaRobe: [laptop]
+    grupaRobe: [telefon]
+    raspKol: 3
     
 Roba(l10):
     naziv: Samsung S4
     opis: Laptop Samsung, 8GB DDR4, Intel I7
     slika: samsung4.jpg
     jedinicaMere: kom
-    grupaRobe: [laptop]
+    grupaRobe: [telefon]
+    raspKol: 3
     
 Cenovnik(c1):
     datumVazenja: 2017-01-01
-    preduzece: [SpectralLink]
+    preduzece: [SpectralLinkDobavljac]
     
 StavkaCenovnika(sc1):
     cena: 54000
