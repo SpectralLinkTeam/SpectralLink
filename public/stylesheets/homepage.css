@@ -1,31 +1,30 @@
 @CHARSET "UTF-8";
 
-body { 
-  background: url('../images/background.jpg') no-repeat center center fixed; 
-  background-size: cover;
-  margin: 0;
-  padding: 0;
+body {
+	background: url('../images/background.jpg') no-repeat center center
+		fixed;
+	background-size: cover;
+	margin: 0;
+	padding: 0;
 }
 
-<<<<<<< HEAD
+<<<<<<<
+HEAD
 header {
-	margin-top: 20px;
-=======
-#header {
->>>>>>> branch 'master' of https://github.com/SpectralLinkTeam/SpectralLink.git
-	color: white;
+	margin-top: 20px; ======= # header { >>>>>>> branch 'master' of https :/
+	/ github.com/ SpectralLinkTeam/ SpectralLink.git color : white;
 	font-weight: bold;
-	text-align:center;
+	text-align: center;
 	text-shadow: 0 0 0.2em #99a8f0, 0 0 0.2em #99a8f0, 0 0 0.2em #99a8f0;
 	background-color: #EAEAEA;
 	border-bottom: 5px #601141 solid;
-	-webkit-box-shadow: 0px 9px 16px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 9px 16px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 9px 16px 0px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 0px 9px 16px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 9px 16px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 9px 16px 0px rgba(0, 0, 0, 0.75);
 }
 
-#header img{
-    margin:15px;
+#header img {
+	margin: 15px;
 }
 
 header h1, h3 {
@@ -42,8 +41,6 @@ footer {
 	position: relative;
 }
 
-
-
 .container {
 	padding: 0;
 	width: 750px;
@@ -58,7 +55,6 @@ footer {
 	overflow: hidden;
 }
 
-
 .row {
 	margin-left: 0;
 	margin-right: 0;
@@ -71,7 +67,6 @@ footer {
 	transition: .3s ease-in-out;
 }
 
-
 .link img:hover, .linkws img:hover {
 	-webkit-transform: scale(1.1);
 	transform: scale(1.1);
@@ -80,19 +75,28 @@ footer {
 	animation: flash 1.5s;
 }
 
-@-webkit-keyframes flash {
-	0% {
-		opacity: .8;
-	}
-	100% {
-		opacity: 1;
-	}
+@
+-webkit-keyframes flash { 0% {
+	opacity: .8;
 }
-@keyframes flash {
-	0% {
-		opacity: .8;
-	}
-	100% {
-		opacity: 1;
-	}
+
+100%
+{
+opacity
+:
+ 
+1;
+}
+}
+@
+keyframes flash { 0% {
+	opacity: .8;
+}
+100%
+{
+opacity
+:
+ 
+1;
+}
 }
