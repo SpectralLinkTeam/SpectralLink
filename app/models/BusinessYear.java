@@ -24,7 +24,6 @@ public class BusinessYear extends Model {
 	
 	public BusinessYear() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public BusinessYear(int year, boolean completed) {
 		super();
