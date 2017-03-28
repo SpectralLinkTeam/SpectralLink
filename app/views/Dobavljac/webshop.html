@@ -18,8 +18,8 @@
                     </div>
                 </div>
 
-                <form action=@{Dobavljac.addToCart()} method="POST">
-                    <input type="hidden" name="id" value="${proizvod.id}">
+                <form action=@{ShoppingCartItemController.addToCart()} method="POST">
+                    <input type="hidden" name="productId" value="${proizvod.id}">
                     <label>Kolicina</label>
                     <input type="number" name="kolicina" class="form-control-static">
                     <button type="submit" value="Dodaj u korpu" class="btn-primary" id="add-to-cart"><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></button>

@@ -7,7 +7,6 @@ import javax.persistence.*;
 import play.db.jpa.Model;
 
 @Entity
-@Table(name = "Company")
 public class Company extends Model {
 	
 	//naziv

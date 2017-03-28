@@ -42,7 +42,6 @@ public class BusinessPartner extends Model {
 	
 	public BusinessPartner() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public BusinessPartner(String name, String address, String type) {

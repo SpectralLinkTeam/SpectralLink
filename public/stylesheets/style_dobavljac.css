@@ -1,117 +1,113 @@
-body{
-    background-color: #EAEAEA;
-    font-family: 'Quicksand', sans-serif;
+body {
+	background-color: #EAEAEA;
+	font-family: 'Quicksand', sans-serif;
 }
 
 .overlay {
-    display: none;
-    position:fixed;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    background-color:#111111;
-    opacity:0.5;
-    z-index:99998;
+	display: none;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #111111;
+	opacity: 0.5;
+	z-index: 99998;
 }
 
-#navbar-horizontal{
-    max-width: 300px;
-    position: static;
-    float: left;
-    height: 100vh;
-    margin-left: 0;
-    margin-top: -9vh;
-    z-index: 99999;
+#navbar-horizontal {
+	max-width: 300px;
+	position: static;
+	float: left;
+	height: 100vh;
+	margin-left: 0;
+	margin-top: -9vh;
+	z-index: 99999;
 }
 
-.navbar{ 
-    position: static;
-    font-size: 1.2em;
-    font-weight: bold;
-    background-image: none;
-    border-style: none;
+.navbar {
+	position: static;
+	font-size: 1.2em;
+	font-weight: bold;
+	background-image: none;
+	border-style: none;
 }
 
-.navbar-inverse{
-    background-color: #272827;
+.navbar-inverse {
+	background-color: #272827;
 }
 
-.main-content{
-    width: 80vw;
-    height: 80vh;
-    float: right;
+.main-content {
+	width: 80vw;
+	height: 80vh;
+	float: right;
 }
 
-table{
-    float: left;
-    text-align: center;
-    width: 70vw;
+table {
+	float: left;
+	text-align: center;
+	width: 70vw;
 }
 
-th{
-    text-align: center;
-    font-weight: bold;
-    background-color: #272827;
-    color: #EAEAEA;
+th {
+	text-align: center;
+	font-weight: bold;
+	background-color: #272827;
+	color: #EAEAEA;
 }
 
 #print-cenovnik {
-    float: right;
-    margin-right: 5vw;
-    width: 60px;
-    height: 60px;
+	float: right;
+	margin-right: 5vw;
+	width: 60px;
+	height: 60px;
 }
-
 
 #modal-container {
-    display: none;
-    margin: 0 auto;
-    width: 30vw;
-    vertical-align: middle;
+	display: none;
+	margin: 0 auto;
+	width: 30vw;
+	vertical-align: middle;
 }
-
 
 .modal-content {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    
-    padding: 15px;
-    border: 3px solid;
-    border-radius: 5px;
-    z-index: 99999;
-    background-color: #EAEAEA;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 15px;
+	border: 3px solid;
+	border-radius: 5px;
+	z-index: 99999;
+	background-color: #EAEAEA;
 }
-
 
 .add-new-btn {
-    position: fixed;
-    top: 50vh;
-    right: 0px;
-    color: #272827;
-    width: 70px;
-    height: 60px;
+	position: fixed;
+	top: 50vh;
+	right: 0px;
+	color: #272827;
+	width: 70px;
+	height: 60px;
 }
-
 
 #generisi_sve_btn {
-    display: block;
-    width: 15%;
-    float: right;
-    margin-right: 10vw;
-    margin-top: 5vh;
+	display: block;
+	width: 15%;
+	float: right;
+	margin-right: 10vw;
+	margin-top: 5vh;
 }
 
-#proizvodi-detaljno{
-    width: 400px;
+#proizvodi-detaljno {
+	width: 400px;
 }
-
 
 @media print {
-    @page { margin-bottom: 0; }
-    
-    #print-cenovnik {
-        display: none;
-    }
+	@page {
+		margin-bottom: 0;
+	}
+	#print-cenovnik {
+		display: none;
+	}
 }

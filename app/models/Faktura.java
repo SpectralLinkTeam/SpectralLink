@@ -62,7 +62,6 @@ public class Faktura extends Model {
 
 	public Faktura() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	
