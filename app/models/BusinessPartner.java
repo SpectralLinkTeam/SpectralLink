@@ -40,6 +40,9 @@ public class BusinessPartner extends Model {
 	@OneToMany(mappedBy="poslovniPartneri")
 	public List<Faktura> fakture;
 	
+	@OneToMany(mappedBy="kupac")
+	public List<Narudzbenica> narudzbenice;
+	
 	public BusinessPartner() {
 		super();
 	}
