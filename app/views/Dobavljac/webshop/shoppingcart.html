@@ -1,4 +1,23 @@
-#{extends 'main.html' /}
-#{set title:'shoppingcart.html' /}
+#{extends 'webshop-main.html' /}
+#{set title:'Shopping cart' /}
 
-Here goes your content.
+<table class="table-bordered table-striped" id="shopping-cart-table">
+    <thead>
+    <th>Slika</th>
+    <th>Naziv artikla</th>
+    <th>Kolicina</th>
+    <th>Cena (RSD)</th>
+    <th>Ukupno (RSD)</th>
+    </thead>
+    <tbody>
+    #{list items=proizvodi, as: 'proizvod'}
+    <tr>
+        <td><img src="@{'/public/images/products'}/${proizvod.slika}" class="product-image"></td>
+        <td>${proizvod.naziv}</td>
+        <td>${proizvod.kolicina}</td>
+        <td>${proizvod.roba.cena}</td>
+        <td>${proizvod.naziv}</td>
+    </tr>
+    #{/list}
+    </tbody>
+</table>

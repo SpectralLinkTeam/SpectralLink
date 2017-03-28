@@ -1,26 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="@{'public/stylesheets/bootstrap.min.css'}">
-    <link rel="stylesheet" href="@{'public/stylesheets/bootstrap-theme.min.css'}">
-    <link rel="stylesheet" href="@{'public/stylesheets/webshop.css'}">
+#{extends 'webshop-main.html' /}
+#{set title:'Webshop' /}
 
-    <script src="https://use.fontawesome.com/df8138781c.js"></script>
-    <script src="@{'public/javascripts/jquery-3.1.1.min.js'}"></script>
-    <script src="@{'public/javascripts/bootstrap.min.js'}"></script>
-    <title>Webshop</title>
-</head>
-<body>
-
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">SpectralLink</a>
-        </div>
-        <a href="webshop/shoppingcart.html" id="shopping-cart"><i class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i></a>
-    </div>
-</nav>
 
 <div class="container-fluid product-container">
 
@@ -50,6 +30,3 @@
         #{/list}
     </div>
 </div>
-
-</body>
-</html>
