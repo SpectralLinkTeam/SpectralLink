@@ -16,8 +16,5 @@ public class ShoppingCartItems extends Model {
 	
 	@Column
 	public int kolicina;
-	
-	@ManyToOne
-	public ShoppingCart shoppingCart;
 
 }
