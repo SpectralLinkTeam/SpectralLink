@@ -15,10 +15,7 @@ public class GrupaRobe extends Model {
 	
 	@OneToMany(mappedBy="grupaRobe")
 	public List<Roba> robe;
-	
-//	@ManyToOne
-//	public Cenovnik cenovnik;
-	
+		
 	@ManyToOne
 	public Company preduzece;
 	
