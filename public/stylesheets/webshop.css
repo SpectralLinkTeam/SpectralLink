@@ -61,7 +61,7 @@ body{
     padding: 10px;
 }
 
-#shopping-cart-table button{
+#shopping-cart-table a{
     margin-top: 20px;
     margin-left: 5px;
     float: right;

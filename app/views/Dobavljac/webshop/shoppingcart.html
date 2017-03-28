@@ -8,6 +8,7 @@
     <th>Naziv artikla</th>
     <th>Kolicina</th>
     <th>Cena (RSD)</th>
+    <th>PDV</th>
     <th>Ukupno (RSD)</th>
     </thead>
     <tbody>
@@ -16,13 +17,14 @@
         <td><img src="@{'/public/images/products'}/${proizvod.roba.slika}" class="product-image"></td>
         <td>${proizvod.roba.naziv}</td>
         <td>${proizvod.kolicina}</td>
-        <td>${proizvod.roba.stavkeCenovnika.cena.value}</td>
-        <td>666666</td>
+        <td>${cena}</td>
+        <td>${pdv}</td>
+        <td>${ukupno}</td>
     </tr>
     #{/list}
     </tbody>
 </table>
-    <button class="btn-primary">Kupi!</button>
-    <button class="btn-danger">Isprazni korpu</button>
+    <a href="@{controllers.ShoppingCartItemController.zavrsiKupovinu}" type="button" class="btn btn-primary" >Kupi!</a>
+    <a type="button" class="btn btn-danger">Isprazni korpu</a>
 </div>
 
