@@ -33,7 +33,7 @@ public class BusinessYearController extends Controller {
 	}
 	
 	public static void search(String yearInput){
-		List<BusinessPartner> pp = BusinessPartner.find("byYear", yearInput).fetch();
+		List<BusinessYear> pp = BusinessYear.find("byYear", yearInput).fetch();
         renderTemplate("Dobavljac/BusinessYear/show.html", pp);
 	}
 }
