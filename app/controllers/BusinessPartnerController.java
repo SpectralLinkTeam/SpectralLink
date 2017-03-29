@@ -8,7 +8,7 @@ import play.mvc.Controller;
 public class BusinessPartnerController extends Controller {
 
 	public static void show(){
-	    List<BusinessPartner> pp = BusinessPartner.findAll();
+	    List<BusinessPartner> pp = BusinessPartner.find("byIsDeleted", "0").fetch();
         renderTemplate("Dobavljac/BusinessPartner/show.html", pp);
     }
 	
@@ -31,7 +31,8 @@ public class BusinessPartnerController extends Controller {
 	}
 	
 	public static void search(String searchTerm){
-		
+		List<BusinessPartner> pp = BusinessPartner.find("byIsDeletedAndNameLike", "0", "%"+searchTerm+"%").fetch();
+        renderTemplate("Dobavljac/BusinessPartner/show.html", pp);
 	}
 	
 }
