@@ -1,9 +1,12 @@
 package controllers;
 import models.*;
+import play.db.jpa.JPA;
 import play.mvc.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.management.Query;
 
 /**
  * Created by alligator on 25.12.16..
@@ -20,7 +23,7 @@ public class Dobavljac extends Controller{
 
     //WEBSHOP
     public static void webshop() {
-        List<Roba> roba = Roba.find("byIsDeleted", 0).fetch();
+        List<Roba> roba = Roba.find("byIsDeleted", "0").fetch();
         renderTemplate("Dobavljac/webshop.html", roba);
     }
 
