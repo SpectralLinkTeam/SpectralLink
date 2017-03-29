@@ -2,11 +2,11 @@ package models;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import play.db.jpa.Model;
 
+@Entity
 public class Otpremnica extends Model {
 
 	@Column
