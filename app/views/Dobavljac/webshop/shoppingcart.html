@@ -12,14 +12,14 @@
     <th>Ukupno (RSD)</th>
     </thead>
     <tbody>
-    #{list items=proizvodi, as: 'proizvod'}
+    #{list items=items, as: 'proizvod'}
     <tr>
         <td><img src="@{'/public/images/products'}/${proizvod.roba.slika}" class="product-image"></td>
         <td>${proizvod.roba.naziv}</td>
         <td>${proizvod.kolicina}</td>
-        <td>${cena}</td>
-        <td>${pdv}</td>
-        <td>${ukupno}</td>
+        <td>${proizvod.jedinicnaCena}</td>
+        <td>${proizvod.procenatPdv}%</td>
+        <td>${proizvod.ukupno}</td>
     </tr>
     #{/list}
     </tbody>

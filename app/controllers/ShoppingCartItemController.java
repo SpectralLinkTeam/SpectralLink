@@ -5,20 +5,33 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import models.BusinessPartner;
-import models.Narudzbenica;
-import models.Roba;
-import models.ShoppingCartItems;
-import models.StavkaNarudzbenice;
+import models.*;
 import play.mvc.Controller;
+import viewmodels.ShoppingCartViewModel;
 
 public class ShoppingCartItemController extends Controller {
 
 	public static void getAll(){
     	List<ShoppingCartItems> proizvodi = ShoppingCartItems.findAll();
-    	//Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
+    	Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
+    	List<ShoppingCartViewModel> items = new ArrayList<ShoppingCartViewModel>();
+    	for(ShoppingCartItems item : proizvodi){
+    		GrupaRobe grupa = item.roba.grupaRobe;
+    		PDV pdv = grupa.pdv;
+    		StopaPDV pdvStopa = StopaPDV.find("byPdv_idAndOrderByDatumVazenjaDesc", pdv.id).first();
+    		int stopa = pdvStopa.procenat;
+    		StavkaCenovnika cena = StavkaCenovnika.find("byRoba_idAndCenovnik_id", item.roba.id, cenovnik.id).first();
+    		double jedinicnaCena = cena.cena;
+    		ShoppingCartViewModel scvm = new ShoppingCartViewModel(item.roba, item.kolicina, jedinicnaCena, stopa);
+    		items.add(scvm);
+    		System.out.println("kolicina: " + scvm.kolicina);
+    		System.out.println("jedinicna cena: " + scvm.jedinicnaCena);
+    		//System.out.println("pdv: " + scvm.procenatPdv);
+    		System.out.println("ukupno: " + scvm.ukupno);
+    	}
+    	
     	//List<StavkaCenovnika> cene = StavkaCenovnika.find("byCenovnik", cenovnik.id).fetch();
-		renderTemplate("Dobavljac/webshop/shoppingcart.html", proizvodi);
+		renderTemplate("Dobavljac/webshop/shoppingcart.html", items);
 	}
 	
 	public static void addToCart(long productId, int kolicina){
