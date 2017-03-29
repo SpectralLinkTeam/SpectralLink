@@ -15,6 +15,9 @@ public class Narudzbenica extends Model {
 	
 	@ManyToOne
 	public BusinessPartner kupac;
+	
+	@Column(columnDefinition="tinyint default 0")
+	public boolean fakturaGenerisana;
 
 	@Column(columnDefinition="tinyint default 0")
 	public boolean IsDeleted;

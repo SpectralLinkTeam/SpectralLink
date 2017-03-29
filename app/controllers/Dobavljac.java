@@ -2,6 +2,8 @@ package controllers;
 import models.*;
 import play.db.jpa.JPA;
 import play.mvc.Controller;
+import viewmodels.NarudzbenicaViewModel;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,7 @@ public class Dobavljac extends Controller{
 
     //WEBSHOP
     public static void webshop() {
-        List<Roba> roba = Roba.find("byIsDeleted", "0").fetch();
+        List<Roba> roba = Roba.find("byIsDeleted", 0).fetch();
         renderTemplate("Dobavljac/webshop.html", roba);
     }
 
@@ -38,7 +40,8 @@ public class Dobavljac extends Controller{
     	List<Roba> roba = Roba.find("byIsDeleted", 0).fetch();
     	//Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
     	//List<StavkaCenovnika> cene = StavkaCenovnika.find("byCenovnik", cenovnik.id).fetch();
-		renderTemplate("Dobavljac/roba.html", roba);
+    	NarudzbenicaViewModel narudzbenice = NarudzbenicaController.narudzbenice();
+		renderTemplate("Dobavljac/roba.html", roba, narudzbenice);
 	}
 
 	public static void cenovnik(){

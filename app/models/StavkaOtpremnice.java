@@ -1,10 +1,10 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import play.db.jpa.Model;
 
+@Entity
 public class StavkaOtpremnice extends Model {
 	
 	@Column
