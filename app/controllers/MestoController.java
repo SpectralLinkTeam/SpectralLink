@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.List;
 
+import models.BusinessYear;
 import models.Mesto;
 import play.mvc.Controller;
 
@@ -10,8 +11,8 @@ public class MestoController extends Controller {
 // crud i search
 	
 	public static void show(){
-	    List<Mesto> pp = Mesto.findAll();
-        renderTemplate("Dobavljac/Mesto/show.html", pp);
+	    List<Mesto> lista = Mesto.findAll();
+        renderTemplate("Dobavljac/Mesto/show.html", lista);
     }
 	
 	public static void add(Mesto mesto){
@@ -31,6 +32,7 @@ public class MestoController extends Controller {
 	}
 	
 	public static void search(String searchTerm){
-		
+		List<Mesto> lista = Mesto.find("byNaziv", "%" + searchTerm + "%").fetch();
+        renderTemplate("Dobavljac/Mesto/show.html", lista);
 	}
 }
