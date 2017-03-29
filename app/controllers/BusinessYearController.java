@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.List;
 
+import models.BusinessPartner;
 import models.BusinessYear;
 import play.mvc.Controller;
 
@@ -31,7 +32,8 @@ public class BusinessYearController extends Controller {
 		show();
 	}
 	
-	public static void search(String searchTerm){
-		
+	public static void search(String yearInput){
+		List<BusinessPartner> pp = BusinessPartner.find("byYear", yearInput).fetch();
+        renderTemplate("Dobavljac/BusinessYear/show.html", pp);
 	}
 }
