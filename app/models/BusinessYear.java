@@ -19,8 +19,17 @@ public class BusinessYear extends Model {
 	@Column
 	public boolean completed;
 	
+	@Column(columnDefinition="int default 0")
+	public int poslednjiBrFakture;
+	
+	@Column(columnDefinition="int default 0")
+	public int poslednjiBrOtpremnice;
+	
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE},mappedBy="poslovnaGodina")
 	public List<Faktura> fakture;
+	
+	@OneToMany(mappedBy="poslovnaGodina")
+	public List<Otpremnica> otpremnice;
 	
 	public BusinessYear() {
 		super();

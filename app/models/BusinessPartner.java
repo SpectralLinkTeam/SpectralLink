@@ -43,6 +43,9 @@ public class BusinessPartner extends Model {
 	@OneToMany(mappedBy="kupac")
 	public List<Narudzbenica> narudzbenice;
 	
+	@OneToMany(mappedBy="kupac")
+	public List<Otpremnica> otpremnice;
+	
 	public BusinessPartner() {
 		super();
 	}

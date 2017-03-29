@@ -39,6 +39,9 @@ public class StavkaFakture extends Model {
 	
 	@ManyToOne
 	public Roba roba;
+	
+	@Column(columnDefinition="tinyint default 0")
+	public boolean stornirano;
 
 	public StavkaFakture(int kolicina, double jedinicnaCena, double rabat,
 			double osnovicaPDV, int procenatPDV, double iznosPDV,

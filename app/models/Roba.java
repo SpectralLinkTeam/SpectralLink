@@ -36,4 +36,7 @@ public class Roba extends Model {
 
 	@OneToMany(mappedBy="roba")
 	public List<StavkaCenovnika> stavkeCenovnika;
+	
+	@OneToMany(mappedBy="roba")
+	public List<Otpremnica> stavkeOtpremnice;
 }
