@@ -21,5 +21,8 @@ public class Cenovnik extends Model {
 	
 	@ManyToOne
 	public Company preduzece;
+	
+	@Column(columnDefinition="tinyint default 0")
+	public boolean IsDeleted;
 
 }
