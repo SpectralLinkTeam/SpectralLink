@@ -40,28 +40,29 @@ public class Dobavljac extends Controller{
     	List<Roba> roba = Roba.find("byIsDeleted", 0).fetch();
     	//Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
     	//List<StavkaCenovnika> cene = StavkaCenovnika.find("byCenovnik", cenovnik.id).fetch();
-    	NarudzbenicaViewModel narudzbenice = NarudzbenicaController.narudzbenice();
-		renderTemplate("Dobavljac/roba.html", roba, narudzbenice);
+    	NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
+		renderTemplate("Dobavljac/roba.html", roba, narudzbeniceViewModel);
 	}
 
 	public static void cenovnik(){
         Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
-        NarudzbenicaViewModel narudzbenice = NarudzbenicaController.narudzbenice();
-        renderTemplate("Dobavljac/cenovnik.html", cenovnik, narudzbenice);
+        NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
+        renderTemplate("Dobavljac/cenovnik.html", cenovnik, narudzbeniceViewModel);
     }
 
     public static void poslovniPartneri(){
 	    List<BusinessPartner> pp = BusinessPartner.findAll();
-        NarudzbenicaViewModel narudzbenice = NarudzbenicaController.narudzbenice();
+        NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
 
-        renderTemplate("Dobavljac/poslovni-partneri.html", pp, narudzbenice);
+        renderTemplate("Dobavljac/poslovni-partneri.html", pp, narudzbeniceViewModel);
     }
 
     public static void narudzbenice(){
         // napraviti Narudzbenica u modelu
         List<Object> narudzbenice = new ArrayList<>();
+        NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
 
-        renderTemplate("Dobavljac/narudzbenice.html", narudzbenice);
+        renderTemplate("Dobavljac/narudzbenice.html", narudzbenice, narudzbeniceViewModel);
     }
 
 

@@ -55,7 +55,27 @@
         $(".overlay").show();
     });
     
-    
+
+
+    // ENTITY EDITING
+    $(document).on("click", ".edit-roba", function () {
+        $("#modal-container").empty();
+        $("#modal-container").load("/add-new-product-form.html");
+        fillRobaForm(1);
+        $("#modal-container").css("display", "block");
+        $(".overlay").show();
+    });
+
+
+
+    // AJAX CALLS FOR FILLING FORMS
+        function fillRobaForm(id) {
+            //konstrukcija URL-a koji gadja kontroler nad bekendu
+            //var roba = #{jsAction @searchById(':id') /};
+            var proba = listAction({id: id});
+
+
+        }
     // NARUDZBENICE
     
     $(document).on("click", ".product-list-link", function () {

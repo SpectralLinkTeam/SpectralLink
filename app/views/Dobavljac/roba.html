@@ -22,8 +22,8 @@
             <td>${stavka.raspKol}</td>
             <td>${stavka.opis}</td>
             <td>
-                <a><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                <a><i class="fa fa-times" aria-hidden="true"></i></a>
+                <a href="#" class="edit-roba" id="${stavka.id}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <a href="@{RobaController.delete(stavka.id)}"><i class="fa fa-times" aria-hidden="true"></i></a>
             </td>
         </tr>
         #{/list}

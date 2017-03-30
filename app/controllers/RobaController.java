@@ -9,8 +9,7 @@ public class RobaController extends Controller {
 // crud i search
 	
 	public static void show(){
-	    List<Roba> lista = Roba.find("byIsDeleted", "0").fetch();
-        renderTemplate("Dobavljac/Roba/show.html", lista);
+	    Dobavljac.roba();
     }
 	
 	public static void add(Roba roba){
@@ -34,5 +33,10 @@ public class RobaController extends Controller {
 	public static void search(String searchTerm){
 		List<Roba> lista = Roba.find("byIsDeletedAndNazivLikeAndOpisLike", "0", "%"+searchTerm+"%", "%"+searchTerm+"%").fetch();
         renderTemplate("Dobavljac/Roba/show.html", lista);
+	}
+
+	public static void searchById(long id){
+		Roba roba = Roba.findById(id);
+		renderJSON(roba);
 	}
 }
