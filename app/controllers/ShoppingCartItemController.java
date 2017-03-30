@@ -1,5 +1,7 @@
 package controllers;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -15,6 +17,7 @@ public class ShoppingCartItemController extends Controller {
     	List<ShoppingCartItems> proizvodi = ShoppingCartItems.findAll();
     	Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
     	List<ShoppingCartViewModel> items = new ArrayList<ShoppingCartViewModel>();
+    	double ukupno=0;
     	for(ShoppingCartItems item : proizvodi){
     		GrupaRobe grupa = item.roba.grupaRobe;
     		PDV pdv = grupa.pdv;
@@ -22,16 +25,17 @@ public class ShoppingCartItemController extends Controller {
     		int stopa = pdvStopa.procenat;
     		StavkaCenovnika cena = StavkaCenovnika.find("byRoba_idAndCenovnik_id", item.roba.id, cenovnik.id).first();
     		double jedinicnaCena = cena.cena;
-    		ShoppingCartViewModel scvm = new ShoppingCartViewModel(item.roba, item.kolicina, jedinicnaCena, stopa);
+    		ShoppingCartViewModel scvm = new ShoppingCartViewModel(item.id, item.roba, item.kolicina, jedinicnaCena, stopa);
     		items.add(scvm);
-    		System.out.println("kolicina: " + scvm.kolicina);
-    		System.out.println("jedinicna cena: " + scvm.jedinicnaCena);
-    		//System.out.println("pdv: " + scvm.procenatPdv);
-    		System.out.println("ukupno: " + scvm.ukupno);
+    		ukupno += scvm.ukupno;
     	}
-    	
+    	DecimalFormatSymbols unusualSymbols = new DecimalFormatSymbols();
+    	unusualSymbols.setDecimalSeparator(',');
+    	unusualSymbols.setGroupingSeparator('.');
+    	DecimalFormat myFormatter = new DecimalFormat("###,###.### RSD", unusualSymbols);
+    	String sum = myFormatter.format(ukupno);
     	//List<StavkaCenovnika> cene = StavkaCenovnika.find("byCenovnik", cenovnik.id).fetch();
-		renderTemplate("Dobavljac/webshop/shoppingcart.html", items);
+		renderTemplate("Dobavljac/webshop/shoppingcart.html", items, sum);
 	}
 	
 	public static void addToCart(long productId, int kolicina){

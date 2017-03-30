@@ -67,3 +67,9 @@ body{
     float: right;
     font-size: 1.2em;
 }
+
+.sumRow{
+	font-weight: bold;
+	color: #337ab7;
+	font-size: 16px;
+}

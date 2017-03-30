@@ -10,6 +10,7 @@
     <th>Cena (RSD)</th>
     <th>PDV</th>
     <th>Ukupno (RSD)</th>
+    <th></th>
     </thead>
     <tbody>
     #{list items=items, as: 'proizvod'}
@@ -20,11 +21,16 @@
         <td>${proizvod.jedinicnaCena}</td>
         <td>${proizvod.procenatPdv}%</td>
         <td>${proizvod.ukupno}</td>
+        <td><a href="/ShoppingCartItemController/deleteFromShoppingCart?itemId=${proizvod.itemId}"><i class="fa fa-times fa-2x" aria-hidden="true"></i></a></td>
     </tr>
     #{/list}
+    <tr class="sumRow">
+    	<td colspan="5" align="right">Ukupno sa PDV:</td>
+    	<td colspan="2" align="center">${sum}</td>
+    </tr>
     </tbody>
 </table>
-    <a href="@{controllers.ShoppingCartItemController.zavrsiKupovinu}" type="button" class="btn btn-primary" >Kupi!</a>
-    <a type="button" class="btn btn-danger">Isprazni korpu</a>
+    <a href="@{ShoppingCartItemController.zavrsiKupovinu()}" type="button" class="btn btn-success" >Kupi!</a>
+    <a href="@{Dobavljac.webshop()}" type="button" class="btn btn-primary">Nastavi kupovinu</a>
 </div>
 
