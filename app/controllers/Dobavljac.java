@@ -46,17 +46,21 @@ public class Dobavljac extends Controller{
 
 	public static void cenovnik(){
         Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
-        renderTemplate("Dobavljac/cenovnik.html", cenovnik);
+        NarudzbenicaViewModel narudzbenice = NarudzbenicaController.narudzbenice();
+        renderTemplate("Dobavljac/cenovnik.html", cenovnik, narudzbenice);
     }
 
     public static void poslovniPartneri(){
 	    List<BusinessPartner> pp = BusinessPartner.findAll();
-        renderTemplate("Dobavljac/poslovni-partneri.html", pp);
+        NarudzbenicaViewModel narudzbenice = NarudzbenicaController.narudzbenice();
+
+        renderTemplate("Dobavljac/poslovni-partneri.html", pp, narudzbenice);
     }
 
     public static void narudzbenice(){
         // napraviti Narudzbenica u modelu
         List<Object> narudzbenice = new ArrayList<>();
+
         renderTemplate("Dobavljac/narudzbenice.html", narudzbenice);
     }
 

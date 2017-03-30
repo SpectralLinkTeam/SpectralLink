@@ -1,20 +1,8 @@
 #{extends 'dobavljac-main.html' /}
 #{set title:'WebShop' /}
 
-#{set 'boja'}
-		#{if narudzbenice.noveNarudzbenice > 0}red#{/if}
-		#{else} #{/else}
-#{/set}
 
-<script>
-    $(document).ready(function(){
-      var hiddenNotif = document.getElementById('notif-hidden');
-      var notif = document.getElementById('notif-narudzbenice');
-      notif.innerHTML = hiddenNotif.innerHTML;
-    });
-  </script>
 
-<a href="@{controllers.Dobavljac.narudzbenice}" id="notif-hidden" style="display:none;"><i class="fa fa-bell-o fa-2x" aria-hidden="true" style="color: ${boja};">${narudzbenice.ukupnoNarudzbenica}(${narudzbenice.noveNarudzbenice})</i></a>
 
 <table class="table-bordered table-striped">
     <thead>
