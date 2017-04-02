@@ -34,7 +34,7 @@ public class Roba extends Model {
 	@OneToMany(mappedBy="roba")
 	public List<StavkaFakture> stavkeFakture;
 
-	@OneToMany(mappedBy="roba")
+	@OneToMany(mappedBy="roba", cascade = CascadeType.ALL)
 	public List<StavkaCenovnika> stavkeCenovnika;
 	
 	@OneToMany(mappedBy="roba")

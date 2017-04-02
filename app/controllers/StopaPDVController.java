@@ -12,8 +12,7 @@ public class StopaPDVController extends Controller {
 	// samo aktuelna moze da se menja - ostale read only
 	
 	public static void show(){
-	    List<StopaPDV> lista = StopaPDV.findAll();
-        renderTemplate("Dobavljac/StopaPDV/show.html", lista);
+	    Dobavljac.roba();
     }
 	
 	public static void add(StopaPDV stopa){
@@ -21,11 +20,17 @@ public class StopaPDVController extends Controller {
 	    show();
     }
 	
-	public static void edit(StopaPDV stopa){
-		Date danasnjiDatum = new Date();
-		if (stopa.datumVazenja.after(danasnjiDatum)) {
+	public static void edit(int stopaVisoki, int stopaNiski){
+		StopaPDV visokiPDV = StopaPDV.findById(1L);
+		StopaPDV niskiPDV = StopaPDV.findById(2L);
+
+		visokiPDV.procenat = stopaVisoki;
+		niskiPDV.procenat = stopaNiski;
+		/*if (stopa.datumVazenja.after(danasnjiDatum)) {
 			stopa.save();
-		}
+		}*/
+		visokiPDV.save();
+		niskiPDV.save();
 		show();
 	}
 	//-- fizicko brisanje

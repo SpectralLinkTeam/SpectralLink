@@ -2,22 +2,39 @@ package controllers;
 
 import java.util.List;
 
+import dto.BusinessPartnerDTO;
 import models.BusinessPartner;
+import models.Mesto;
+import models.Roba;
 import play.mvc.Controller;
 
 public class BusinessPartnerController extends Controller {
 
 	public static void show(){
-	    List<BusinessPartner> pp = BusinessPartner.find("byIsDeleted", "0").fetch();
-        renderTemplate("Dobavljac/BusinessPartner/show.html", pp);
+	    Dobavljac.poslovniPartneri();
     }
 	
-	public static void add(BusinessPartner partner){
+	public static void create(String naziv, String mesto, String adresa, String telefon, String email){
+		BusinessPartner partner = new BusinessPartner();
+		partner.name = naziv;
+		//za sada ovako
+		partner.mesto = Mesto.findById(Long.parseLong(mesto));
+		partner.address = adresa;
+		partner.phoneNumber = telefon;
+		partner.email = email;
+
 		partner.save();
 	    show();
     }
 	
-	public static void edit(BusinessPartner partner){
+	public static void edit(long id, String naziv, String mesto, String adresa, String telefon, String email){
+		BusinessPartner partner = BusinessPartner.findById(id);
+		partner.name = naziv;
+		partner.mesto = Mesto.findById(Long.parseLong(mesto));
+		partner.address = adresa;
+		partner.phoneNumber = telefon;
+		partner.email = email;
+
 		partner.save();
 		show();
 	}
@@ -33,6 +50,12 @@ public class BusinessPartnerController extends Controller {
 	public static void search(String searchTerm){
 		List<BusinessPartner> pp = BusinessPartner.find("byIsDeletedAndNameLike", "0", "%"+searchTerm+"%").fetch();
         renderTemplate("Dobavljac/BusinessPartner/show.html", pp);
+	}
+
+	public static void searchJsonById(long id){
+		BusinessPartner partner = BusinessPartner.findById(id);
+		BusinessPartnerDTO forNetwork = new BusinessPartnerDTO(partner);
+		renderJSON(forNetwork);
 	}
 	
 }

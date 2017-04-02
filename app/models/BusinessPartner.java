@@ -19,10 +19,10 @@ public class BusinessPartner extends Model {
 	public String address;
 
 	@Column
-	String phoneNumber;
+	public String phoneNumber;
 
 	@Column
-	String email;
+	public String email;
 	
 	//vrsta partnera
 	@Column(length=2)

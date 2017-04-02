@@ -1,10 +1,15 @@
-<form method="POST" id="modal-add-new-partner" class="modal-content">
+<form action="/BusinessPartnerController/create" method="POST" id="modal-add-new-partner" class="modal-content">
 	<div class="form-group">
-		<input type="text" placeholder="Naziv" class="form-control"> <input
-			type="text" placeholder="Mesto" class="form-control"> <input
-			type="text" placeholder="Adresa" class="form-control"> <input
-			type="tel" placeholder="Telefon" class="form-control"> <input
-			type="email" placeholder="E-mail" class="form-control">
+		<input type="hidden" name="id">
+		<input type="text" placeholder="Naziv" class="form-control" name="naziv" required>
+		<select class="form-control" name="mesto">
+			<option value="1">Novi Sad</option>
+			<option value="2">Beograd</option>
+			<option value="3">Nis</option>
+		</select>
+		<input type="text" placeholder="Adresa" class="form-control" name="adresa" required>
+		<input type="tel" placeholder="Telefon" class="form-control" name="telefon" required>
+		<input type="email" placeholder="E-mail" class="form-control" name="email" required>
 	</div>
 	<input type="submit" value="Potvrdi" class="btn btn-primary">
 	<button type="button" class="btn btn-default odustani">Odustani</button>

@@ -23,5 +23,8 @@ public class Mesto extends Model {
 
 	@OneToMany(mappedBy="mesto")
 	public List<BusinessPartner> poslovniPartneri;
-	
+
+	public Mesto(String naziv) {
+		this.naziv = naziv;
+	}
 }

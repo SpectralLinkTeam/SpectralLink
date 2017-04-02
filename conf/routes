@@ -31,3 +31,9 @@ GET     /modal-pdv.html                 staticFile:/public/html/modal-pdv.html
 GET     /modal-poslovna-godina.html                 staticFile:/public/html/modal-poslovna-godina.html
 
 GET     /view-product-list.html                 staticFile:/public/html/view-product-list.html
+
+
+# AJAX
+
+GET     /RobaController/searchJsonById/{id}          RobaController.searchJsonById
+GET     /BusinessPartnerController/searchJsonById/{id}  BusinessPartnerController.searchJsonById

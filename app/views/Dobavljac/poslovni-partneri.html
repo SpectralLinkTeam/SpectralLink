@@ -17,12 +17,12 @@
         <td>${poslovniPartner.id}</td>
         <td>${poslovniPartner.name}</td>
         <td>${poslovniPartner.mesto.naziv}</td>
-        <td>${poslovniPartner.address}y</td>
+        <td>${poslovniPartner.address}</td>
         <td>${poslovniPartner.phoneNumber}</td>
         <td>${poslovniPartner.email}</td>
         <td>
-            <a><i class="fa fa-pencil" aria-hidden="true"></i></a>
-            <a><i class="fa fa-times" aria-hidden="true"></i></a>
+            <a href="#" class="edit-partner" id="${poslovniPartner.id}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            <a href="@{controllers.BusinessPartnerController.delete(poslovniPartner.id)}"><i class="fa fa-times" aria-hidden="true"></i></a>
         </td>
     </tr>
     #{/list}

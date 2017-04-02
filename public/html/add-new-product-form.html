@@ -1,14 +1,14 @@
-<form action="/dobavljac/create" method="POST" id="modal-add-new-product" class="modal-content">
+<form action="/RobaController/create" method="POST" id="modal-add-new-product" class="modal-content">
     <select class="form-control" name="grupaRobe">
         <option value="1">Laptop</option>
         <option value="2">Racunar</option>
         <option value="3">Telefon</option>
     </select>
     <input type="hidden" id="roba-id" name="id">
-    <input type="text" placeholder="Naziv" class="form-control" name="naziv">
-    <input type="number" placeholder="Cena" class="form-control" name="cena">
-    <input type="select" placeholder="Jedinica mere" class="form-control" name="jedinicaMere">
-    <input type="number" placeholder="Rasp kolicina" class="form-control" name="raspKol">
+    <input type="text" placeholder="Naziv" class="form-control" name="naziv" required>
+    <input type="number" placeholder="Cena" class="form-control" name="cena" required>
+    <input type="select" placeholder="Jedinica mere" class="form-control" name="jedinicaMere" required>
+    <input type="number" placeholder="Rasp kolicina" class="form-control" name="raspKol" required>
     <input type="text" placeholder="Opis" class="form-control" name="opis">
     <input type="file" placeholder="Slika" class="form-control" name="slika">
     <input type="submit" value="Potvrdi" class="btn btn-primary">

@@ -10,12 +10,9 @@ import java.util.List;
 
 import javax.management.Query;
 
-/**
- * Created by alligator on 25.12.16..
- */
+// redirekcioni kontroler
 public class Dobavljac extends Controller{
 
-    // redirekcija na webshop kao default stranica Dobavljaca
     public static void redirect(){
         // ovde cemo povuci iz baze dobavljaca tipa Company
         //Company company = new Company();
@@ -23,7 +20,7 @@ public class Dobavljac extends Controller{
         roba();
     }
 
-    //WEBSHOP
+    // WEBSHOP redirection
     public static void webshop() {
         List<Roba> roba = Roba.find("byIsDeleted", 0).fetch();
         renderTemplate("Dobavljac/webshop.html", roba);
@@ -33,9 +30,8 @@ public class Dobavljac extends Controller{
 
     }
 
-    //ADMIN
+    //ADMIN - navigation
 
-    // redirekcije sa dummy podacima ( prazne liste )
     public static void roba(){
     	List<Roba> roba = Roba.find("byIsDeleted", 0).fetch();
     	//Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
@@ -65,29 +61,4 @@ public class Dobavljac extends Controller{
         renderTemplate("Dobavljac/narudzbenice.html", narudzbenice, narudzbeniceViewModel);
     }
 
-
-
-    // CREATE or EDIT entities
-
-    public static void create(String grupaRobe, String naziv, double cena, int raspKol, String opis, String jedinicaMere){
-        Roba roba = new Roba();
-        roba.grupaRobe = GrupaRobe.findById(Long.parseLong(grupaRobe));
-        roba.naziv = naziv;
-        roba.raspKol = raspKol;
-        roba.opis = opis;
-        roba.jedinicaMere = jedinicaMere;
-        roba.save();
-
-        StavkaCenovnika sc = new StavkaCenovnika();
-        sc.cena = cena;
-        sc.cenovnik = Cenovnik.findById(1L);
-        sc.roba = roba;
-        sc.save();
-        roba();
-    }
-
-    public static void addToCart(long id, String kolicina){
-        System.out.println(kolicina + String.valueOf(id));
-    }
-    
 }
