@@ -7,6 +7,7 @@ import models.BusinessPartner;
 import models.Mesto;
 import models.Roba;
 import play.mvc.Controller;
+import viewmodels.NarudzbenicaViewModel;
 
 public class BusinessPartnerController extends Controller {
 
@@ -49,7 +50,9 @@ public class BusinessPartnerController extends Controller {
 	
 	public static void search(String searchTerm){
 		List<BusinessPartner> pp = BusinessPartner.find("byIsDeletedAndNameLike", "0", "%"+searchTerm+"%").fetch();
-        renderTemplate("Dobavljac/BusinessPartner/show.html", pp);
+		NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
+
+		renderTemplate("Dobavljac/poslovni-partneri.html", pp, narudzbeniceViewModel);
 	}
 
 	public static void searchJsonById(long id){

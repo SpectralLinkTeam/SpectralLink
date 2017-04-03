@@ -14,6 +14,7 @@ import org.hibernate.jdbc.ReturningWork;
 import org.hibernate.jdbc.Work;
 import org.hibernate.stat.SessionStatistics;
 import play.mvc.Controller;
+import viewmodels.NarudzbenicaViewModel;
 
 public class RobaController extends Controller {
 
@@ -63,8 +64,9 @@ public class RobaController extends Controller {
 	}
 	
 	public static void search(String searchTerm){
-		List<Roba> lista = Roba.find("byIsDeletedAndNazivLikeAndOpisLike", "0", "%"+searchTerm+"%", "%"+searchTerm+"%").fetch();
-        renderTemplate("Dobavljac/Roba/show.html", lista);
+		List<Roba> roba = Roba.find("byIsDeletedAndNazivLikeAndOpisLike", "0", "%"+searchTerm+"%", "%"+searchTerm+"%").fetch();
+		NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
+		renderTemplate("Dobavljac/roba.html", roba, narudzbeniceViewModel);
 	}
 
 	public static void searchJsonById(long id){

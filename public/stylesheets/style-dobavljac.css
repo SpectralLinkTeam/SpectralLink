@@ -103,6 +103,28 @@ th {
 	width: 400px;
 }
 
+.search-form{
+	width: 70vw;
+	margin-bottom: 20px;
+	background-color: white;
+	border-radius: 5px;
+}
+
+.search-form input{
+	width: 67vw;
+	border: none;
+	height: 30px;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.search-form button{
+	background-color: white;
+	border: none;
+	float: right;
+	position: absolute;
+}
+
 @media print {
 	@page {
 		margin-bottom: 0;

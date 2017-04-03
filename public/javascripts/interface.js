@@ -155,7 +155,7 @@
 
         function fillProductList(id) {
             $.getJSON("/NarudzbenicaController/searchJsonProductsById/"+id, function(products) {
-                for (var p in products){
+                for (p in products){
                     $("#narudzbenica-products").append(
                       '<tr><td>'+products[p].naziv+'</td> <td>'+products[p].cena+'</td> <td>'+products[p].kolicina+'</td> <td>'+products[p].ukupnaCena+'</td></tr>'
                     );

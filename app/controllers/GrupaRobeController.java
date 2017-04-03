@@ -6,6 +6,7 @@ import dto.GrupaRobeDTO;
 import models.GrupaRobe;
 import models.PDV;
 import play.mvc.Controller;
+import viewmodels.NarudzbenicaViewModel;
 
 public class GrupaRobeController extends Controller {
 // crud i search
@@ -41,7 +42,9 @@ public class GrupaRobeController extends Controller {
 	
 	public static void search(String searchTerm){
 		List<GrupaRobe> lista = GrupaRobe.find("byIsDeletedAndNazivLike", "0", "%"+searchTerm+"%").fetch();
-        renderTemplate("Dobavljac/GrupaRobe/show.html", lista);
+		NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
+
+		renderTemplate("Dobavljac/grupe-robe.html", lista, narudzbeniceViewModel);
 	}
 
 	public static void searchJsonById(long id){
