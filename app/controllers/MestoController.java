@@ -1,8 +1,12 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import dto.GrupaRobeDTO;
+import dto.MestoDTO;
 import models.BusinessYear;
+import models.GrupaRobe;
 import models.Mesto;
 import play.mvc.Controller;
 
@@ -37,9 +41,12 @@ public class MestoController extends Controller {
 	}
 
 
-	public static void getAllJson(){
-		// prevesti u DTO !
-		List<Mesto> lista = Mesto.findAll();
-		renderJSON(lista);
+	public static void searchAllJson(){
+		List<Mesto> list = Mesto.findAll();
+		List<MestoDTO> forNetwork = new ArrayList<>();
+		for (Mesto mesto : list){
+			forNetwork.add(new MestoDTO(mesto));
+		}
+		renderJSON(forNetwork);
 	}
 }

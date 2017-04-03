@@ -1,7 +1,9 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import dto.PdvDTO;
 import models.PDV;
 import play.mvc.Controller;
 
@@ -31,5 +33,15 @@ public class PDVController extends Controller {
 	public static void search(String searchTerm){
 		List<PDV> lista = PDV.find("byNaziv", "%" + searchTerm + "%").fetch();
         renderTemplate("Dobavljac/PDV/show.html", lista);
+	}
+
+
+	public static void searchJsonPdv(){
+		List<PDV> pdv = PDV.findAll();
+		List<PdvDTO> forNetwork = new ArrayList<>();
+		for (PDV p : pdv){
+			forNetwork.add(new PdvDTO(p));
+		}
+		renderJSON(forNetwork);
 	}
 }

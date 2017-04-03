@@ -40,6 +40,8 @@ GET     /view-product-list.html                    staticFile:/public/html/view-
 
 GET     /RobaController/searchJsonById/{id}             RobaController.searchJsonById
 GET     /BusinessPartnerController/searchJsonById/{id}  BusinessPartnerController.searchJsonById
-GET     /MestoController/getAllJson/                    MestoController.getAllJson
 GET     /GrupaRobeController/searchJsonById/{id}        GrupaRobeController.searchJsonById
 GET     /NarudzbenicaController/searchJsonProductsById/{id} NarudzbenicaController.searchJsonProductsById
+GET     /PDVController/searchJsonPdv/                   PDVController.searchJsonPdv
+GET     /GrupaRobeController/searchAllJson/              GrupaRobeController.searchAllJson
+GET     /MestoController/searchAllJson/                  MestoController.searchAllJson

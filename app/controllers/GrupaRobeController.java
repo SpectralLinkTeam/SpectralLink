@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dto.GrupaRobeDTO;
@@ -50,6 +51,15 @@ public class GrupaRobeController extends Controller {
 	public static void searchJsonById(long id){
 		GrupaRobe grupaRobe = GrupaRobe.findById(id);
 		GrupaRobeDTO forNetwork = new GrupaRobeDTO(grupaRobe);
+		renderJSON(forNetwork);
+	}
+
+	public static void searchAllJson(){
+		List<GrupaRobe> list = GrupaRobe.findAll();
+		List<GrupaRobeDTO> forNetwork = new ArrayList<>();
+		for (GrupaRobe gRobe : list){
+			forNetwork.add(new GrupaRobeDTO(gRobe));
+		}
 		renderJSON(forNetwork);
 	}
 }

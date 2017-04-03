@@ -1,4 +1,8 @@
-    $(document).ready(function () {
+$.ajaxSetup({
+    async: false
+});
+
+$(document).ready(function () {
 
     
     $(document).on("click", "#print-cenovnik", function () {
@@ -17,6 +21,7 @@
     $("#pdv-admin").click(function () {
         $("#modal-container").empty();
         $("#modal-container").load("/modal-pdv.html");
+        fillPdvForm();
         $("#modal-container").css("display", "block");
         $(".overlay").show();
     });
@@ -52,6 +57,7 @@
     $(document).on("click", "#add-new-product", function () {
         $("#modal-container").empty();
         $("#modal-container").load("/add-new-product-form.html");
+        fillSelectGroup();
         $("#modal-container").css("display", "block");
         $(".overlay").show();
     });
@@ -59,6 +65,7 @@
     $(document).on("click", "#add-new-partner", function () {
         $("#modal-container").empty();
         $("#modal-container").load("/add-new-partner-form.html");
+        fillSelectLocation();
         $("#modal-container").css("display", "block");
         $(".overlay").show();
     });
@@ -77,6 +84,7 @@
     $(document).on("click", ".edit-roba", function () {
         $("#modal-container").empty();
         $("#modal-container").load("/add-new-product-form.html");
+        fillSelectGroup();
         fillRobaForm(this.id);
         $("#modal-container").css("display", "block");
         $(".overlay").show();
@@ -85,6 +93,7 @@
     $(document).on("click", ".edit-partner", function () {
         $("#modal-container").empty();
         $("#modal-container").load("/add-new-partner-form.html");
+        fillSelectLocation();
         fillPartnerForm(this.id);
         $("#modal-container").css("display", "block");
         $(".overlay").show();
@@ -119,17 +128,13 @@
                 $("#modal-add-new-partner").attr("action", "/BusinessPartnerController/edit");
                 $('input[name="id"]').val(partner.id);
                 $('input[name="naziv"]').val(partner.naziv);
-                $('input[name="mesto"]').val(partner.mesto);
+                //$('select[name="mesto"]').val(partner.mesto.id);
+
                 $('input[name="adresa"]').val(partner.adresa);
                 $('input[name="telefon"]').val(partner.telefon);
                 $('input[name="email"]').val(partner.email);
+                $('select[name="mesto"] option').each(function() { this.selected = (this.text == partner.mesto); });
             });
-
-            // FOR SELECT
-            /*$.getJSON("/MestoController/getAllJson/", function (mesta) {
-                // fill selects
-                console.log(mesta);
-            })*/
         }
 
         function fillGroupForm(id) {
@@ -140,7 +145,44 @@
                 $('select[name="pdv"] option').each(function() { this.selected = (this.text == group.pdv); });
                 });
 
-            }
+        }
+        
+        function fillPdvForm() {
+            $.getJSON("/PDVController/searchJsonPdv/", function (pdv) {
+                for (i in pdv){
+                    if(pdv[i].naziv == "Visoki PDV"){
+                        $('input[name="stopaVisoki"]').val(pdv[i].procenat);
+                    }else{
+                        $('input[name="stopaNiski"]').val(pdv[i].procenat);
+                    }
+                }
+            });
+        }
+
+        // fill select fields
+        function fillSelectGroup() {
+            $.getJSON("/GrupaRobeController/searchAllJson/", function (grupe) {
+                console.log(grupe);
+                $.each(grupe, function (i, grupe) {
+                    $('select[name="grupaRobe"]').append($('<option>', {
+                        value: grupe.id,
+                        text : grupe.naziv
+                    }));
+                });
+            });
+        }
+
+        function fillSelectLocation() {
+            $.getJSON("/MestoController/searchAllJson/", function (mesta) {
+                console.log(mesta);
+                $.each(mesta, function (i, mesta) {
+                    $('select[name="mesto"]').append($('<option>', {
+                        value: mesta.id,
+                        text : mesta.naziv
+                    }));
+                });
+            });
+        }
 
 
     // NARUDZBENICE
@@ -165,5 +207,7 @@
         }
     
 });
+
+
 
 
