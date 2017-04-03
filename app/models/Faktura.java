@@ -23,16 +23,16 @@ public class Faktura extends Model {
 	public Date datumValute;
 	
 	@Column
-	public String osnovica;
+	public double osnovica;
 	
 	@Column
-	public int ukupanPDV;
+	public double ukupanPDV;
 	
 	@Column
 	public double iznosZaPlacanje;
 	
-	@Column(length=2)
-	public String statusFakture;
+	@Column(columnDefinition="tinyint default 0")
+	public boolean fakturaIzdata;
 	
 	@ManyToOne
 	public BusinessPartner poslovniPartneri;
@@ -47,22 +47,24 @@ public class Faktura extends Model {
 	//@JoinColumn(name = "stavkeFakture_id")
 	public List<StavkaFakture> stavkeFakture;
 
-	public Faktura(int brojFakture, Date datumFakture, Date datumValute,
-			String osnovica, int ukupanPDV, double iznosZaPlacanje,
-			String statusFakture) {
+	public Faktura(Date datumFakture, Date datumValute,
+			double osnovica, double ukupanPDV, double iznosZaPlacanje,
+			boolean fakturaIzdata) {
 		super();
-		this.brojFakture = brojFakture;
 		this.datumFakture = datumFakture;
 		this.datumValute = datumValute;
 		this.osnovica = osnovica;
 		this.ukupanPDV = ukupanPDV;
 		this.iznosZaPlacanje = iznosZaPlacanje;
-		this.statusFakture = statusFakture;
+		this.fakturaIzdata = fakturaIzdata;
+		
 	}
 
 	public Faktura() {
 		super();
 	}
+	
+	
 	
 	
 

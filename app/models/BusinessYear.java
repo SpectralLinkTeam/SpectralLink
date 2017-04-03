@@ -16,7 +16,7 @@ public class BusinessYear extends Model {
 	public int year;
 	
 	//zakljucena
-	@Column
+	@Column(columnDefinition="tinyint default 0")
 	public boolean completed;
 	
 	@Column(columnDefinition="int default 0")

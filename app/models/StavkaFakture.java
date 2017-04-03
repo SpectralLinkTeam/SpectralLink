@@ -17,7 +17,7 @@ public class StavkaFakture extends Model {
 	public double jedinicnaCena;
 	
 	@Column
-	public double rabat;
+	public int rabat;
 	
 	@Column
 	public double osnovicaPDV;
@@ -43,7 +43,7 @@ public class StavkaFakture extends Model {
 	@Column(columnDefinition="tinyint default 0")
 	public boolean stornirano;
 
-	public StavkaFakture(int kolicina, double jedinicnaCena, double rabat,
+	public StavkaFakture(int kolicina, double jedinicnaCena, int rabat,
 			double osnovicaPDV, int procenatPDV, double iznosPDV,
 			double iznosStavke) {
 		super();
@@ -59,5 +59,12 @@ public class StavkaFakture extends Model {
 	public StavkaFakture() {
 		super();
 	}
+
+	public void setIznosStavke() {
+		double iznosBezPdv = this.jedinicnaCena*this.kolicina;
+		this.iznosStavke = (iznosBezPdv+this.iznosPDV)*(1-this.rabat/100);
+	}
+	
+	
 
 }
