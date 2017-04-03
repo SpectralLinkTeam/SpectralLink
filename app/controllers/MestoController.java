@@ -35,4 +35,11 @@ public class MestoController extends Controller {
 		List<Mesto> lista = Mesto.find("byNaziv", "%" + searchTerm + "%").fetch();
         renderTemplate("Dobavljac/Mesto/show.html", lista);
 	}
+
+
+	public static void getAllJson(){
+		// prevesti u DTO !
+		List<Mesto> lista = Mesto.findAll();
+		renderJSON(lista);
+	}
 }

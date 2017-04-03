@@ -36,6 +36,14 @@
         $("#modal-container").css("display", "none");
         $(".overlay").hide();
     });
+    // esc key
+    $(document).keyup(function(e) {
+        if(e.keyCode == 27){
+            $("#modal-container").empty();
+            $("#modal-container").css("display", "none");
+            $(".overlay").hide();
+        }
+    });
     
     
     
@@ -51,6 +59,13 @@
     $(document).on("click", "#add-new-partner", function () {
         $("#modal-container").empty();
         $("#modal-container").load("/add-new-partner-form.html");
+        $("#modal-container").css("display", "block");
+        $(".overlay").show();
+    });
+
+    $(document).on("click", "#add-new-group", function () {
+        $("#modal-container").empty();
+        $("#modal-container").load("/add-new-group-form.html");
         $("#modal-container").css("display", "block");
         $(".overlay").show();
     });
@@ -74,7 +89,14 @@
         $("#modal-container").css("display", "block");
         $(".overlay").show();
     });
-
+        // grupe robe
+    $(document).on("click", ".edit-grupa", function () {
+        $("#modal-container").empty();
+        $("#modal-container").load("/add-new-group-form.html");
+        fillGroupForm(this.id);
+        $("#modal-container").css("display", "block");
+        $(".overlay").show();
+    });
 
     // AJAX CALLS FOR FILLING FORMS
         function fillRobaForm(id) {
@@ -102,7 +124,23 @@
                 $('input[name="telefon"]').val(partner.telefon);
                 $('input[name="email"]').val(partner.email);
             });
+
+            // FOR SELECT
+            /*$.getJSON("/MestoController/getAllJson/", function (mesta) {
+                // fill selects
+                console.log(mesta);
+            })*/
         }
+
+        function fillGroupForm(id) {
+            $.getJSON("/GrupaRobeController/searchJsonById/"+id, function(group) {
+                $("#modal-add-new-group").attr("action", "/GrupaRobeController/edit");
+                $('input[name="id"]').val(group.id);
+                $('input[name="naziv"]').val(group.naziv);
+                $('select[name="pdv"] option').each(function() { this.selected = (this.text == group.pdv); });
+                });
+
+            }
 
 
     // NARUDZBENICE
@@ -110,10 +148,21 @@
     $(document).on("click", ".product-list-link", function () {
         $("#modal-container").empty();
         $("#modal-container").load("/view-product-list.html");
+        fillProductList(this.id);
         $("#modal-container").css("display", "block");
         $(".overlay").show();
     });
-    
+
+        function fillProductList(id) {
+            $.getJSON("/NarudzbenicaController/searchJsonProductsById/"+id, function(products) {
+                for (var p in products){
+                    $("#narudzbenica-products").append(
+                      '<tr><td>'+products[p].naziv+'</td> <td>'+products[p].cena+'</td> <td>'+products[p].kolicina+'</td> <td>'+products[p].ukupnaCena+'</td></tr>'
+                    );
+                }
+
+            });
+        }
     
 });
 

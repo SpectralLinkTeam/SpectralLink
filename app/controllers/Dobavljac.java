@@ -53,6 +53,12 @@ public class Dobavljac extends Controller{
         renderTemplate("Dobavljac/poslovni-partneri.html", pp, narudzbeniceViewModel);
     }
 
+    public static void grupeRobe(){
+        List<GrupaRobe> grupeRobe = GrupaRobe.findAll();
+        NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
+        renderTemplate("Dobavljac/grupe-robe.html", grupeRobe, narudzbeniceViewModel);
+    }
+
     public static void narudzbenice(){
         // napraviti Narudzbenica u modelu
         List<Object> narudzbenice = new ArrayList<>();

@@ -1,0 +1,12 @@
+<form action="/GrupaRobeController/create" method="POST" id="modal-add-new-group" class="modal-content">
+    <div class="form-group">
+        <input type="hidden" name="id">
+        <input type="text" placeholder="Naziv" class="form-control" name="naziv" required>
+        <select class="form-control" name="pdv">
+            <option value="2">Niski PDV</option>
+            <option value="1">Visoki PDV</option>
+        </select>
+    </div>
+    <input type="submit" value="Potvrdi" class="btn btn-primary">
+    <button type="button" class="btn btn-default odustani">Odustani</button>
+</form>

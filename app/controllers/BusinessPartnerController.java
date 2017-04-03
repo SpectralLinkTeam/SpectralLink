@@ -14,11 +14,11 @@ public class BusinessPartnerController extends Controller {
 	    Dobavljac.poslovniPartneri();
     }
 	
-	public static void create(String naziv, String mesto, String adresa, String telefon, String email){
+	public static void create(String naziv, long mesto, String adresa, String telefon, String email){
 		BusinessPartner partner = new BusinessPartner();
 		partner.name = naziv;
 		//za sada ovako
-		partner.mesto = Mesto.findById(Long.parseLong(mesto));
+		partner.mesto = Mesto.findById(mesto);
 		partner.address = adresa;
 		partner.phoneNumber = telefon;
 		partner.email = email;
