@@ -196,3 +196,5 @@ StavkaCenovnika(sc10):
     cenovnik: [c1]
     roba: [l10]
     
+BusinessYear(by2017):
+    year: 2017
