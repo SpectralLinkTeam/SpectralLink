@@ -199,7 +199,7 @@ $(document).ready(function () {
             $.getJSON("/NarudzbenicaController/searchJsonProductsById/"+id, function(products) {
                 for (p in products){
                     $("#narudzbenica-products").append(
-                      '<tr><td>'+products[p].naziv+'</td> <td>'+products[p].cena+'</td> <td>'+products[p].kolicina+'</td> <td>'+products[p].ukupnaCena+'</td></tr>'
+                      '<tr><td>'+products[p].naziv+'</td> <td>'+products[p].kolicina+'</td> </tr>'
                     );
                 }
 

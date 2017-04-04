@@ -1,4 +1,41 @@
-#{extends 'main.html' /}
-#{set title:'fakture.html' /}
+#{extends 'dobavljac-main.html' /}
+#{set title:'Fakture' /}
 
-Here goes your content.
+<!--
+<form action="../FakturaController/search" method="GET" class="search-form">
+    <input type="text" name="searchTerm">
+    <span>
+        <button type="submit"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
+    </span>
+</form> -->
+
+<table class="table-bordered table-striped">
+    <thead>
+    <th>R. br.</th>
+    <th>Datum</th>
+    <th>Kupac</th>
+    <th>Iznos</th>
+    <th>Detaljno</th>
+    <th>Izdaj fakturu</th>
+    <th>Akcija</th>
+    </thead>
+    <tbody>
+    #{list items:fakture, as: 'faktura'}
+    <tr>
+        <td>${faktura.brojFakture}-${faktura.poslovnaGodina.year}</td>
+        <td>${faktura.datumFakture}</td>
+        <td>${faktura.poslovniPartneri.name}</td>
+        <td>${faktura.iznosZaPlacanje}</td>
+        <td><a href="#">Detaljno</a></td>
+        <td><button class="btn btn-primary">Izdaj</button></td>
+        <td>
+            <a href="#" class="edit-faktura" id="${faktura.id}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
+        </td>
+
+    </tr>
+    #{/list}
+    </tbody>
+</table>
+
+<a href="@{controllers.FakturaController.novaFaktura()}" type="button" id="add-new-faktura" class="add-new-btn btn btn-primary"><i class="fa fa-plus-square-o fa-3x" aria-hidden="true"></i></a>

@@ -24,7 +24,15 @@ public class NarudzbenicaController extends Controller {
 		NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
 		renderTemplate("Dobavljac/narudzbenice.html", narudzbenice, narudzbeniceViewModel);
 	}
-	
+
+	public static void sveNarudzbenice(){
+		List<Narudzbenica> narudzbenice = Narudzbenica.find("byIsDeleted", 0).fetch();
+		//int brojNarudzbenica = narudzbenice.size();
+		NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
+		renderTemplate("Dobavljac/narudzbenice.html", narudzbenice, narudzbeniceViewModel);
+
+	}
+	// sve narudzbenice
 	public static NarudzbenicaViewModel narudzbenice(){
 		int sveNarudzbenice = Narudzbenica.find("byIsDeleted",0).fetch().size();
 		int noveNarudzbenice = Narudzbenica.find("byFakturaGenerisanaAndIsDeleted", false,0).fetch().size();

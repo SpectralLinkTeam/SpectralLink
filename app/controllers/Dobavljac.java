@@ -67,4 +67,11 @@ public class Dobavljac extends Controller{
         renderTemplate("Dobavljac/narudzbenice.html", narudzbenice, narudzbeniceViewModel);
     }
 
+    public static void fakture(){
+        List<Faktura> fakture = Faktura.findAll();
+        NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
+        renderTemplate("Dobavljac/fakture.html", fakture, narudzbeniceViewModel);
+
+    }
+
 }

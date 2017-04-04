@@ -13,45 +13,6 @@ public class FakturaController extends Controller {
 	
 	public static void generisiFakturu(long id){
 		Narudzbenica narudzbenica = Narudzbenica.findById(id);
-		generisanjeFakture(narudzbenica);
-//		Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
-//		Faktura faktura = new Faktura();
-//		faktura.datumFakture = new Date();
-//		double osnovica=0;
-//		double pdv=0;
-//		faktura.poslovniPartneri = narudzbenica.kupac;
-//		BusinessYear currentYear = BusinessYear.find("byCompletedAndOrderByIdDesc", false).first();
-//		faktura.poslovnaGodina = currentYear;
-//		faktura.brojFakture = faktura.poslovnaGodina.poslednjiBrFakture+1;
-//		faktura.save();
-//		for(StavkaNarudzbenice stavka : narudzbenica.stavkeNarudzbenice) {
-//			StavkaFakture fStavka = new StavkaFakture();
-//			fStavka.cenovnik = cenovnik;
-//			fStavka.faktura=faktura;
-//			fStavka.jedinicnaCena = izracunajJedinicnuCenu(stavka.roba, cenovnik);
-//			fStavka.rabat=0;
-//			fStavka.kolicina=stavka.kolicina;
-//			fStavka.procenatPDV = izracunajPdvProcenat(stavka.roba, cenovnik);
-//			fStavka.iznosPDV=(fStavka.jedinicnaCena*stavka.kolicina*fStavka.procenatPDV)/100;
-//			pdv += fStavka.iznosPDV;
-//			osnovica+=(fStavka.jedinicnaCena*fStavka.kolicina);
-//			fStavka.roba = stavka.roba;
-//			fStavka.setIznosStavke();
-//			//faktura.stavkeFakture.add(fStavka);
-//			fStavka.save();
-//		}
-//		faktura.osnovica = osnovica;
-//		faktura.ukupanPDV=pdv;
-//		faktura.iznosZaPlacanje=osnovica+pdv;
-//		faktura.save();
-//		currentYear.poslednjiBrFakture+=1;
-//		currentYear.save();
-//		narudzbenica.fakturaGenerisana=true;
-//		narudzbenica.save();
-		showAll();
-	}
-	
-	private static void generisanjeFakture(Narudzbenica narudzbenica){
 		Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
 		Faktura faktura = new Faktura();
 		faktura.datumFakture = new Date();
@@ -84,8 +45,7 @@ public class FakturaController extends Controller {
 		faktura.save();
 		currentYear.poslednjiBrFakture+=1;
 		currentYear.save();
-		narudzbenica.fakturaGenerisana=true;
-		narudzbenica.save();
+		showAll();
 	}
 	
 	private static double izracunajJedinicnuCenu(Roba roba, Cenovnik cenovnik) {
@@ -104,12 +64,16 @@ public class FakturaController extends Controller {
 		List<Faktura> fakture = Faktura.find("byIsDeleted", 0).fetch();
 		renderTemplate("Dobavljac/fakture.html", fakture);
 	}
-	
-	public static void generisiSve(){
-		List<Narudzbenica> narudzbenice = Narudzbenica.find("byFakturaGenerisanaAndIsDeleted", false, 0).fetch();
-		for (Narudzbenica n : narudzbenice){
-			generisanjeFakture(n);
-		}
-		showAll();
+
+	// NAPRAVITI JOIN COLUMN SA BUSINESS PARTNEROM DA IMAMO NJEGOVO IME KAO SEARCH
+	public static void search(String searchTerm){
+		List<Faktura> fakture = Faktura.find("byIsDeletedAndNazivLikeAndOpisLike", "0", "%"+searchTerm+"%", "%"+searchTerm+"%").fetch();
+		NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
+		renderTemplate("Dobavljac/fakture.html", fakture, narudzbeniceViewModel);
+	}
+
+
+	public static void novaFaktura(){
+
 	}
 }
