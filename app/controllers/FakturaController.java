@@ -14,40 +14,6 @@ public class FakturaController extends Controller {
 	public static void generisiFakturu(long id){
 		Narudzbenica narudzbenica = Narudzbenica.findById(id);
 		generisanjeFakture(narudzbenica);
-//		Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
-//		Faktura faktura = new Faktura();
-//		faktura.datumFakture = new Date();
-//		double osnovica=0;
-//		double pdv=0;
-//		faktura.poslovniPartneri = narudzbenica.kupac;
-//		BusinessYear currentYear = BusinessYear.find("byCompletedAndOrderByIdDesc", false).first();
-//		faktura.poslovnaGodina = currentYear;
-//		faktura.brojFakture = faktura.poslovnaGodina.poslednjiBrFakture+1;
-//		faktura.save();
-//		for(StavkaNarudzbenice stavka : narudzbenica.stavkeNarudzbenice) {
-//			StavkaFakture fStavka = new StavkaFakture();
-//			fStavka.cenovnik = cenovnik;
-//			fStavka.faktura=faktura;
-//			fStavka.jedinicnaCena = izracunajJedinicnuCenu(stavka.roba, cenovnik);
-//			fStavka.rabat=0;
-//			fStavka.kolicina=stavka.kolicina;
-//			fStavka.procenatPDV = izracunajPdvProcenat(stavka.roba, cenovnik);
-//			fStavka.iznosPDV=(fStavka.jedinicnaCena*stavka.kolicina*fStavka.procenatPDV)/100;
-//			pdv += fStavka.iznosPDV;
-//			osnovica+=(fStavka.jedinicnaCena*fStavka.kolicina);
-//			fStavka.roba = stavka.roba;
-//			fStavka.setIznosStavke();
-//			//faktura.stavkeFakture.add(fStavka);
-//			fStavka.save();
-//		}
-//		faktura.osnovica = osnovica;
-//		faktura.ukupanPDV=pdv;
-//		faktura.iznosZaPlacanje=osnovica+pdv;
-//		faktura.save();
-//		currentYear.poslednjiBrFakture+=1;
-//		currentYear.save();
-//		narudzbenica.fakturaGenerisana=true;
-//		narudzbenica.save();
 		showAll();
 	}
 	
