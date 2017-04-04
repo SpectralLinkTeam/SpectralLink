@@ -68,7 +68,9 @@ public class FakturaController extends Controller {
 	
 	public static void showAll(){
 		List<Faktura> fakture = Faktura.find("byIsDeleted", 0).fetch();
-		renderTemplate("Dobavljac/fakture.html", fakture);
+		NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
+
+		renderTemplate("Dobavljac/fakture.html", fakture, narudzbeniceViewModel);
 	}
 	
 	public static void generisiSve(){
@@ -77,5 +79,9 @@ public class FakturaController extends Controller {
 			generisanjeFakture(n);
 		}
 		showAll();
+	}
+
+	public static void novaFaktura(){
+
 	}
 }
