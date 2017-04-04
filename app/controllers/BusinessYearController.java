@@ -16,7 +16,13 @@ public class BusinessYearController extends Controller {
     }
 	
 	public static void add(BusinessYear poslovnaGodina){
-		poslovnaGodina.save();
+		complete(poslovnaGodina);
+		BusinessYear novaPoslovnaGodina = new BusinessYear();
+		novaPoslovnaGodina.year = poslovnaGodina.year++;
+		novaPoslovnaGodina.save();
+//		poslovnaGodina.save();
+		//pronaci poslednju aktivnu
+		//na njoj pozvati complete
 	    show();
     }
 	
@@ -25,11 +31,10 @@ public class BusinessYearController extends Controller {
 		show();
 	}
 	
-	public static void complete(long id){
-		BusinessYear poslovnaGodina = BusinessYear.findById(id);
+	private static void complete(BusinessYear poslovnaGodina){
+//		BusinessYear poslovnaGodina = BusinessYear.findById(id);
 		poslovnaGodina.completed = true;
 		poslovnaGodina.save();
-		show();
 	}
 	
 	public static void search(String yearInput){
