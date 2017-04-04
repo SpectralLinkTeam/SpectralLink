@@ -13,6 +13,11 @@ public class FakturaController extends Controller {
 	
 	public static void generisiFakturu(long id){
 		Narudzbenica narudzbenica = Narudzbenica.findById(id);
+		generisanjeFakture(narudzbenica);
+		showAll();
+	}
+	
+	private static void generisanjeFakture(Narudzbenica narudzbenica){
 		Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
 		Faktura faktura = new Faktura();
 		faktura.datumFakture = new Date();
@@ -45,7 +50,8 @@ public class FakturaController extends Controller {
 		faktura.save();
 		currentYear.poslednjiBrFakture+=1;
 		currentYear.save();
-		showAll();
+		narudzbenica.fakturaGenerisana=true;
+		narudzbenica.save();
 	}
 	
 	private static double izracunajJedinicnuCenu(Roba roba, Cenovnik cenovnik) {
@@ -64,16 +70,12 @@ public class FakturaController extends Controller {
 		List<Faktura> fakture = Faktura.find("byIsDeleted", 0).fetch();
 		renderTemplate("Dobavljac/fakture.html", fakture);
 	}
-
-	// NAPRAVITI JOIN COLUMN SA BUSINESS PARTNEROM DA IMAMO NJEGOVO IME KAO SEARCH
-	public static void search(String searchTerm){
-		List<Faktura> fakture = Faktura.find("byIsDeletedAndNazivLikeAndOpisLike", "0", "%"+searchTerm+"%", "%"+searchTerm+"%").fetch();
-		NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
-		renderTemplate("Dobavljac/fakture.html", fakture, narudzbeniceViewModel);
-	}
-
-
-	public static void novaFaktura(){
-
+	
+	public static void generisiSve(){
+		List<Narudzbenica> narudzbenice = Narudzbenica.find("byFakturaGenerisanaAndIsDeleted", false, 0).fetch();
+		for (Narudzbenica n : narudzbenice){
+			generisanjeFakture(n);
+		}
+		showAll();
 	}
 }
