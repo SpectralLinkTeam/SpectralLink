@@ -62,15 +62,14 @@ public class FakturaController extends Controller {
 
 	public static int izracunajPdvProcenat(Roba roba, Cenovnik cenovnik) {
 		PDV pdv = roba.grupaRobe.pdv;
-		StopaPDV pdvStopa = StopaPDV.find("byPdv_idAndOrderByDatumVazenjaDesc", pdv.id).first();
+		StopaPDV pdvStopa = StopaPDV.find("Pdv_id=? order by datumVazenja desc", pdv.id).first();
 		return pdvStopa.procenat;
 	}
 	// ..... fakture koje su zakljucene se ne mogu menjati - READONLY
 	
 	public static void showAll(){
-		List<Faktura> fakture = Faktura.find("byIsDeleted", 0).fetch();
+		List<Faktura> fakture = Faktura.find("isDeleted=? order by id desc", 0).fetch();
 		NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
-
 		renderTemplate("Dobavljac/fakture.html", fakture, narudzbeniceViewModel);
 	}
 	
@@ -90,7 +89,8 @@ public class FakturaController extends Controller {
 		Faktura faktura = Faktura.findById(id);
 		Company company = Company.findById(1L);
 		NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
-		renderTemplate("fakture/fakture-detaljno.html", faktura, company, narudzbeniceViewModel);
+		String slovima = Faktura.Slovima(faktura.iznosZaPlacanje);
+		renderTemplate("fakture/fakture-detaljno.html", faktura, company, narudzbeniceViewModel, slovima);
 	}
 
 	public static void delete(long id){

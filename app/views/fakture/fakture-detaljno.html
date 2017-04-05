@@ -18,7 +18,7 @@
     </span>
 
     <span id="faktura-info">
-        <div>br. fakture: <span style="font-weight: bold">${faktura.brojFakture}</span></div>
+        <div>br. fakture: <span style="font-weight: bold">${faktura.brojFakture}-${faktura.poslovnaGodina.year}</span></div>
         <div>datum: <span style="font-weight: bold">${faktura.datumFakture}</span></div>
     </span>
 </div>
@@ -65,4 +65,8 @@
 <br><br><br><br>
 
 <div style="width: 70vw; font-size: 1.5em;"><span style="float:right">Ukupno: ${faktura.iznosZaPlacanje} RSD</span></div>
+<br><br>
+<div style="width: 70vw; font-size: 1em;"><span style="float:right"><strong>Slovima:</strong> ${slovima}</span></div>
+
+
 

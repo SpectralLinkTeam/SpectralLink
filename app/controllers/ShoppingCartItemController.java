@@ -21,7 +21,7 @@ public class ShoppingCartItemController extends Controller {
     	for(ShoppingCartItems item : proizvodi){
     		GrupaRobe grupa = item.roba.grupaRobe;
     		PDV pdv = grupa.pdv;
-    		StopaPDV pdvStopa = StopaPDV.find("byPdv_idAndOrderByDatumVazenjaDesc", pdv.id).first();
+    		StopaPDV pdvStopa = StopaPDV.find("Pdv_id=? order by datumVazenja desc", pdv.id).first();
     		int stopa = pdvStopa.procenat;
     		StavkaCenovnika cena = StavkaCenovnika.find("byRoba_idAndCenovnik_id", item.roba.id, cenovnik.id).first();
     		double jedinicnaCena = cena.cena;

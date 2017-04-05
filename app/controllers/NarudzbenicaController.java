@@ -26,7 +26,7 @@ public class NarudzbenicaController extends Controller {
 	}
 
 	public static void sveNarudzbenice(){
-		List<Narudzbenica> narudzbenice = Narudzbenica.find("byIsDeleted", 0).fetch();
+		List<Narudzbenica> narudzbenice = Narudzbenica.find("isDeleted=? order by id desc", 0).fetch();
 		//int brojNarudzbenica = narudzbenice.size();
 		NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
 		renderTemplate("Dobavljac/narudzbenice.html", narudzbenice, narudzbeniceViewModel);
