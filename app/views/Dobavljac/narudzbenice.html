@@ -12,7 +12,7 @@
 	#{list items:narudzbenice, as: 'narudzbenica'}
 		<tr>
 		#{set 'lastColumnHtml'}
-			#{if narudzbenica.fakturaGenerisana == 1}Faktura je generisana#{/if}
+			#{if narudzbenica.fakturaGenerisana == true}Faktura je generisana#{/if}
 			#{else}<a href="@{FakturaController.generisiFakturu(narudzbenica.id)}" class="btn btn-primary">Generisi Fakturu</a>#{/else}
 		#{/set}
 			<td>${narudzbenica.id}</td>

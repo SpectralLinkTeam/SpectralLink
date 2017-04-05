@@ -56,7 +56,7 @@ th {
 	color: #EAEAEA;
 }
 
-#print-cenovnik {
+#print-me {
 	float: right;
 	margin-right: 5vw;
 	width: 60px;
@@ -125,11 +125,45 @@ th {
 	position: absolute;
 }
 
+#zaglavlje-fakture{
+	width: 70vw;
+	height: 160px;
+	display: inline-block;
+	border-bottom: 3px solid;
+}
+
+#zaglavlje-fakture span{
+	display: inline-block;
+}
+
+#company-info{
+	margin-left: 30px;
+}
+
+#faktura-info{
+	float: right;
+	margin-top: 10px;
+	margin-right: 20px;
+}
+
+#logo-faktura{
+	width: 150px;
+	vertical-align: bottom;
+}
+
+#zaglavlje-kupac{
+	width: 70vw;
+	border-bottom: 1px solid;
+}
+
 @media print {
 	@page {
 		margin-bottom: 0;
+		margin-left: -50px;
+		size: A4 landscape;
 	}
-	#print-cenovnik {
+
+	#print-me {
 		display: none;
 	}
 }

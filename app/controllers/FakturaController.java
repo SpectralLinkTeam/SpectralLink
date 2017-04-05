@@ -5,6 +5,7 @@ import java.util.List;
 
 import models.*;
 import play.mvc.Controller;
+import play.mvc.results.RenderTemplate;
 import viewmodels.NarudzbenicaViewModel;
 
 public class FakturaController extends Controller {
@@ -83,5 +84,12 @@ public class FakturaController extends Controller {
 
 	public static void novaFaktura(){
 
+	}
+
+	public static void prikaziDetaljno(long id){
+		Faktura faktura = Faktura.findById(id);
+		Company company = Company.findById(1L);
+		NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
+		renderTemplate("fakture/fakture-detaljno.html", faktura, company, narudzbeniceViewModel);
 	}
 }

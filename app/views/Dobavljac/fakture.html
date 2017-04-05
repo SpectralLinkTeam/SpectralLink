@@ -26,7 +26,7 @@
         <td>${faktura.datumFakture}</td>
         <td>${faktura.poslovniPartneri.name}</td>
         <td>${faktura.iznosZaPlacanje}</td>
-        <td><a href="#">Detaljno</a></td>
+        <td><a href="@{controllers.FakturaController.prikaziDetaljno(faktura.id)}">Detaljno</a></td>
         <td><button class="btn btn-primary">Izdaj</button></td>
         <td>
             <a href="#" class="edit-faktura" id="${faktura.id}"><i class="fa fa-pencil" aria-hidden="true"></i></a>

@@ -1,0 +1,65 @@
+#{extends 'dobavljac-main.html'/} #{set title:'Faktura' /}
+
+<button id="print-me">
+    <i class="fa fa-print fa-2x" aria-hidden="true"></i>
+</button>
+
+<div id="zaglavlje-fakture">
+    <span>
+        <img src="/public/images/logo/SpectralLink_LOGO_vertical.png" id="logo-faktura">
+    </span>
+
+    <span id="company-info">
+        <div style="font-size: 2em">Spectral Link D.O.O.</div>
+        <div>Ulica i broj: <span style="font-weight: bold">${company.address}</span></div>
+        <div>Telefon: <span style="font-weight: bold">${company.telephone}</span></div>
+        <div>PIB: <span style="font-weight: bold">${company.PIB}</span></div>
+        <div>E-mail: <span style="font-weight: bold">${company.email}</span></div>
+    </span>
+
+    <span id="faktura-info">
+        <div>br. fakture: <span style="font-weight: bold">${faktura.brojFakture}</span></div>
+        <div>datum: <span style="font-weight: bold">${faktura.datumFakture}</span></div>
+    </span>
+</div>
+
+<div id="zaglavlje-kupac">
+    <h3 style="text-align: center">Kupac</h3>
+    <div>
+        <span style="display: inline-block; margin-left: 20%">
+            <div>Ime: <span style="font-weight: bold">${faktura.poslovniPartneri.name}</span></div>
+            <div>Adresa: <span style="font-weight: bold">${faktura.poslovniPartneri.address}</span></div>
+        </span>
+        <span style="display: inline-block; float:right; margin-right: 30%;">
+            <div>Telefon: <span style="font-weight: bold">${faktura.poslovniPartneri.phoneNumber}</span></div>
+            <div>E-mail: <span style="font-weight: bold">${faktura.poslovniPartneri.email}</span></div>
+        </span>
+    </div>
+</div>
+
+<br>
+<table class="table-bordered table-striped">
+    <thead>
+    <th>R. br.</th>
+    <th>Opis dobra/usluge</th>
+    <th>JM</th>
+    <th>Cena</th>
+    <th>Kolicina</th>
+    <th>PDV</th>
+    <th>Prodajna cena</th>
+    </thead>
+    <tbody>
+    #{list items:faktura.stavkeFakture, as: 'stavka'}
+    <tr>
+            <td>${stavka.id}</td>
+            <td>${stavka.roba.opis}</td>
+            <td>${stavka.roba.jedinicaMere}</td>
+            <td>${stavka.jedinicnaCena} RSD</td>
+            <td>${stavka.kolicina}</td>
+            <td>${stavka.procenatPDV} %</td>
+            <td>${stavka.iznosStavke} RSD</td>
+    </tr>
+    #{/list}
+    </tbody>
+</table>
+

@@ -5,7 +5,7 @@ $.ajaxSetup({
 $(document).ready(function () {
 
     
-    $(document).on("click", "#print-cenovnik", function () {
+    $(document).on("click", "#print-me", function () {
         window.print();
     });
 
