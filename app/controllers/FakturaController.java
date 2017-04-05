@@ -92,4 +92,10 @@ public class FakturaController extends Controller {
 		NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
 		renderTemplate("fakture/fakture-detaljno.html", faktura, company, narudzbeniceViewModel);
 	}
+
+	public static void delete(long id){
+		Faktura faktura = Faktura.findById(id);
+		faktura.delete();
+		showAll();
+	}
 }

@@ -43,7 +43,7 @@ public class Faktura extends Model {
 	@ManyToOne
 	public Company preduzece;
 
-	@OneToMany(mappedBy="faktura")
+	@OneToMany(mappedBy="faktura", cascade = CascadeType.ALL)
 	//@JoinColumn(name = "stavkeFakture_id")
 	public List<StavkaFakture> stavkeFakture;
 
