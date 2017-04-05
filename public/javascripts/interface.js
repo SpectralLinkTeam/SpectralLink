@@ -2,9 +2,16 @@ $.ajaxSetup({
     async: false
 });
 
+
 $(document).ready(function () {
 
-    
+
+    $.getJSON("/NarudzbenicaController/getNarudzbeniceNumber/", function (broj) {
+        // napuni zagradu
+        $("#brojNarudzbenica").text(broj);
+    });
+
+
     $(document).on("click", "#print-me", function () {
         window.print();
     });

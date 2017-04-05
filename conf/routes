@@ -45,3 +45,4 @@ GET     /NarudzbenicaController/searchJsonProductsById/{id} NarudzbenicaControll
 GET     /PDVController/searchJsonPdv/                   PDVController.searchJsonPdv
 GET     /GrupaRobeController/searchAllJson/              GrupaRobeController.searchAllJson
 GET     /MestoController/searchAllJson/                  MestoController.searchAllJson
+GET     /NarudzbenicaController/getNarudzbeniceNumber/   NarudzbenicaController.getNarudzbeniceNumber

@@ -49,4 +49,9 @@ public class NarudzbenicaController extends Controller {
 		}
 		renderJSON(forNetwork);
 	}
+
+	public static void getNarudzbeniceNumber(){
+		List<Narudzbenica> list = Narudzbenica.findAll();
+		renderJSON(list.size());
+	}
 }
