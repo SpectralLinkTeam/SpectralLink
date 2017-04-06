@@ -47,14 +47,14 @@ public class Dobavljac extends Controller{
     }
 
     public static void poslovniPartneri(){
-	    List<BusinessPartner> pp = BusinessPartner.findAll();
+	    List<BusinessPartner> pp = BusinessPartner.find("byIsDeleted", 0).fetch(); //.findAll();
         NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
 
         renderTemplate("Dobavljac/poslovni-partneri.html", pp, narudzbeniceViewModel);
     }
 
     public static void grupeRobe(){
-        List<GrupaRobe> grupeRobe = GrupaRobe.findAll();
+        List<GrupaRobe> grupeRobe = GrupaRobe.find("byIsDeleted", 0).fetch(); //.findAll();
         NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
         renderTemplate("Dobavljac/grupe-robe.html", grupeRobe, narudzbeniceViewModel);
     }
@@ -68,7 +68,7 @@ public class Dobavljac extends Controller{
     }
 
     public static void fakture(){
-        List<Faktura> fakture = Faktura.findAll();
+        List<Faktura> fakture = Faktura.find("byIsDeleted", 0).fetch(); //.findAll();
         NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
         renderTemplate("Dobavljac/fakture.html", fakture, narudzbeniceViewModel);
 
