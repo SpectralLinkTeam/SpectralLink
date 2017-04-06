@@ -70,7 +70,8 @@ public class FakturaController extends Controller {
 	public static void showAll(){
 		List<Faktura> fakture = Faktura.find("isDeleted=? order by id desc", 0).fetch();
 		NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
-		renderTemplate("Dobavljac/fakture.html", fakture, narudzbeniceViewModel);
+		List<BusinessPartner> kupci = BusinessPartner.find("byIsDeleted", 0).fetch();
+		renderTemplate("Dobavljac/fakture.html", fakture, narudzbeniceViewModel, kupci);
 	}
 	
 	public static void generisiSve(){
@@ -81,6 +82,13 @@ public class FakturaController extends Controller {
 		showAll();
 	}
 
+	
+	public static void novaFakturaForm(){
+		List<BusinessPartner> kupci = BusinessPartner.find("byIsDeleted", 0).fetch();
+		renderTemplate("fakture/nova-faktura.html", kupci);
+
+	}
+	
 	public static void novaFaktura(){
 
 	}
@@ -95,7 +103,8 @@ public class FakturaController extends Controller {
 
 	public static void delete(long id){
 		Faktura faktura = Faktura.findById(id);
-		faktura.delete();
+		faktura.IsDeleted=true;
+		faktura.save();
 		showAll();
 	}
 }

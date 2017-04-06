@@ -69,6 +69,14 @@ $(document).ready(function () {
         $(".overlay").show();
     });
     
+    $(document).on("click", "#add-new-faktura", function () {
+        $("#modal-container").empty();
+        $("#modal-container").load("/add-new-faktura-form.html");
+        fillSelectGroup();
+        $("#modal-container").css("display", "block");
+        $(".overlay").show();
+    });
+    
     $(document).on("click", "#add-new-partner", function () {
         $("#modal-container").empty();
         $("#modal-container").load("/add-new-partner-form.html");

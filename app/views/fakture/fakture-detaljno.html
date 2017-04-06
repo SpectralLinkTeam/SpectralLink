@@ -45,17 +45,18 @@
     <th>JM</th>
     <th>Cena</th>
     <th>Kolicina</th>
+    <th>Rabat %</th>
     <th>PDV</th>
     <th>Prodajna cena</th>
     </thead>
     <tbody>
     #{list items:faktura.stavkeFakture, as: 'stavka'}
     <tr>
-            <td>${stavka.id}</td>
             <td>${stavka.roba.opis}</td>
             <td>${stavka.roba.jedinicaMere}</td>
             <td>${stavka.jedinicnaCena} RSD</td>
             <td>${stavka.kolicina}</td>
+            <td>${stavka.rabat}</td>
             <td>${stavka.procenatPDV} %</td>
             <td>${stavka.iznosStavke} RSD</td>
     </tr>
@@ -69,4 +70,15 @@
 <div style="width: 70vw; font-size: 1em;"><span style="float:right"><strong>Slovima:</strong> ${slovima}</span></div>
 
 
+
+<script>
+    var tables = document.getElementsByTagName('table');
+    var table = tables[tables.length - 1];
+    var rows = table.rows;
+    for(var i = 1, td; i < rows.length; i++){
+        td = document.createElement('td');
+        td.appendChild(document.createTextNode(i));
+        rows[i].insertBefore(td, rows[i].firstChild);
+    }
+</script>
 
