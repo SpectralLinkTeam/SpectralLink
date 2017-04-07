@@ -62,11 +62,13 @@ public class CenovnikController extends Controller {
 		}
 	}
 	
-	public static CenovnikViewModel popuniFormuStavkeCenovnika(String cenovnikId) {
+	public static CenovnikViewModel popuniFormuStavkeCenovnika() {
     	List<Roba> roba = Roba.find("byIsDeleted", 0).fetch();
     	Cenovnik stariCenovnik = Cenovnik.find("order by datumVazenja desc").first();
+    	Cenovnik noviCenovnik = new Cenovnik();
+    	noviCenovnik.save();
     	List<StavkaCenovnika> stavke = StavkaCenovnika.find("byCenovnik_id", stariCenovnik.id).fetch();
-		CenovnikViewModel cenovnikViewModel = new CenovnikViewModel(Long.parseLong(cenovnikId), roba, stavke, stariCenovnik.id);
+		CenovnikViewModel cenovnikViewModel = new CenovnikViewModel(noviCenovnik.id, roba, stavke, stariCenovnik.id);
 		return cenovnikViewModel;
 	}
 	
