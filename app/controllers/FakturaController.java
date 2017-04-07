@@ -3,8 +3,7 @@ package controllers;
 import java.util.Date;
 import java.util.List;
 
-import dto.FakturaDTO;
-import dto.RobaDTO;
+import dto.*;
 import models.*;
 import play.mvc.Controller;
 import play.mvc.results.RenderTemplate;
@@ -32,7 +31,8 @@ public class FakturaController extends Controller {
 		faktura.brojFakture = faktura.poslovnaGodina.poslednjiBrFakture+1;
 		faktura.save();
 		for(StavkaNarudzbenice stavka : narudzbenica.stavkeNarudzbenice) {
-			StavkaFakture fStavka = popuniStavku(stavka.roba, stavka.kolicina, 0, faktura);
+			StavkaFakture fStavka = new StavkaFakture();
+			fStavka = popuniStavku(stavka.roba, stavka.kolicina, 0, faktura, fStavka);
 			fStavka.save();
 		}
 		
@@ -137,36 +137,57 @@ public class FakturaController extends Controller {
 	public static void dodajStavku(String proizvod, int kolicina, int rabat, String fakturaId){
 		Faktura faktura = Faktura.findById(Long.parseLong(fakturaId));
 		Roba roba = Roba.findById(Long.parseLong(proizvod));
-		StavkaFakture stavka = popuniStavku(roba, kolicina, rabat, faktura);
+		StavkaFakture stavka = new StavkaFakture();
+		stavka = popuniStavku(roba, kolicina, rabat, faktura, stavka);
 		stavka.save();
 		faktura = izracunajIznose(faktura);
 		faktura.save();
 		prikaziDetaljno(faktura.id);
 	}
 	
-	private static StavkaFakture popuniStavku(Roba roba, int kolicina, int rabat, Faktura faktura) {
+	private static StavkaFakture popuniStavku(Roba roba, int kolicina, int rabat, Faktura faktura, StavkaFakture retStavka) {
 		Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
-		StavkaFakture retStavka = new StavkaFakture();
+//		StavkaFakture retStavka = new StavkaFakture();
 		retStavka.roba = roba;
 		retStavka.kolicina = kolicina;
 		retStavka.rabat = rabat;
 		retStavka.faktura = faktura;
+		retStavka.cenovnik = cenovnik;
 		
 		retStavka.jedinicnaCena = izracunajJedinicnuCenu(roba, cenovnik);
 		double osnovica = retStavka.jedinicnaCena*kolicina;
-		retStavka.osnovicaPDV = osnovica*(1-(double)rabat/100);
+		retStavka.osnovicaPDV = Math.round(osnovica*(1-(double)rabat/100));
 		int procenatPDV = izracunajPdvProcenat(roba, cenovnik);
 		retStavka.procenatPDV = procenatPDV;
-		retStavka.iznosPDV = retStavka.osnovicaPDV * ((double)procenatPDV/100);
+		retStavka.iznosPDV = Math.round(retStavka.osnovicaPDV * ((double)procenatPDV/100));
 		retStavka.iznosStavke=retStavka.osnovicaPDV+retStavka.iznosPDV;
 		
 		return retStavka;
+	}
+	
+	public static void editStavka(long id, String proizvod, int kolicina, int rabat) {
+		StavkaFakture stavka = StavkaFakture.findById(id);
+		Roba roba = Roba.findById(Long.parseLong(proizvod));
+		Faktura faktura = izracunajIznose(stavka.faktura);
+		stavka.roba = roba;
+		stavka.kolicina = kolicina;
+		stavka.rabat = rabat;
+		stavka = popuniStavku(roba, kolicina, rabat, faktura, stavka);
+		stavka.save();
+		faktura.save();
+		prikaziDetaljno(faktura.id);
 	}
 	
 	
 	public static void searchJsonById(long id){
 		Faktura faktura = Faktura.findById(id);
 		FakturaDTO forNetwork = new FakturaDTO(faktura);
+		renderJSON(forNetwork);
+	}
+	
+	public static void searchJsonByStavkaId(long id){
+		StavkaFakture stavka = StavkaFakture.findById(id);
+		StavkaFaktureDTO forNetwork = new StavkaFaktureDTO(stavka);
 		renderJSON(forNetwork);
 	}
 }
