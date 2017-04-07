@@ -7,6 +7,7 @@ import models.Cenovnik;
 import models.Roba;
 import models.StavkaCenovnika;
 import play.mvc.Controller;
+import viewmodels.CenovnikViewModel;
 
 public class CenovnikController extends Controller {
 	
@@ -44,12 +45,29 @@ public class CenovnikController extends Controller {
 		show();
 	}
 	
-	public static void dodajStavku(double cena,String cenovnikId, String robaId) {
+	public static void dodajStavku(double cena, long cenovnikId, long robaId) {
 		StavkaCenovnika stavka = new StavkaCenovnika();
+		Cenovnik cenovnik =Cenovnik.findById(cenovnikId); //Long.parseLong(cenovnikId));
 		stavka.cena = cena;
-		stavka.cenovnik = Cenovnik.findById(Long.parseLong(cenovnikId));
-		stavka.roba = Roba.findById(Long.parseLong(robaId));
+		stavka.cenovnik = cenovnik; // Cenovnik.findById(Long.parseLong(cenovnikId));
+		stavka.roba = Roba.findById(robaId); //Long.parseLong(robaId));
 		stavka.save();
+		cenovnik.stavkeCenovnika.add(stavka);
+		cenovnik.save();
+	}
+	
+	public static void popuniCenovnikStavkama(CenovnikViewModel cenovnikViewModel) {
+		for (StavkaCenovnika stavka : cenovnikViewModel.stavkeCenovnika) {
+			dodajStavku(stavka.cena, cenovnikViewModel.cenovnikId, stavka.roba.id);
+		}
+	}
+	
+	public static CenovnikViewModel popuniFormuStavkeCenovnika(String cenovnikId) {
+    	List<Roba> roba = Roba.find("byIsDeleted", 0).fetch();
+    	Cenovnik stariCenovnik = Cenovnik.find("order by datumVazenja desc").first();
+    	List<StavkaCenovnika> stavke = StavkaCenovnika.find("byCenovnik_id", stariCenovnik.id).fetch();
+		CenovnikViewModel cenovnikViewModel = new CenovnikViewModel(Long.parseLong(cenovnikId), roba, stavke, stariCenovnik.id);
+		return cenovnikViewModel;
 	}
 	
 	//	ne vidim potrebu pretrage cenovnika sem po datumu vazenja |
