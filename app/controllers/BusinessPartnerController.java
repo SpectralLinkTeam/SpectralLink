@@ -1,9 +1,12 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dto.BusinessPartnerDTO;
+import dto.GrupaRobeDTO;
 import models.BusinessPartner;
+import models.GrupaRobe;
 import models.Mesto;
 import models.Roba;
 import play.mvc.Controller;
@@ -58,6 +61,15 @@ public class BusinessPartnerController extends Controller {
 	public static void searchJsonById(long id){
 		BusinessPartner partner = BusinessPartner.findById(id);
 		BusinessPartnerDTO forNetwork = new BusinessPartnerDTO(partner);
+		renderJSON(forNetwork);
+	}
+	
+	public static void searchAllJson(){
+		List<BusinessPartner> list = BusinessPartner.findAll();
+		List<BusinessPartnerDTO> forNetwork = new ArrayList<>();
+		for (BusinessPartner kupac : list){
+			forNetwork.add(new BusinessPartnerDTO(kupac));
+		}
 		renderJSON(forNetwork);
 	}
 	

@@ -48,10 +48,15 @@
     <th>Rabat %</th>
     <th>PDV</th>
     <th>Prodajna cena</th>
+    <th>Akcija</th>
     </thead>
     <tbody>
     #{list items:faktura.stavkeFakture, as: 'stavka'}
-    <tr>
+    	#{set 'borderstyle'}
+			#{if stavka.stornirano == true}3px solid red#{/if}
+			#{else}none#{/else}
+		#{/set}
+    <tr style="border: ${borderstyle}">
             <td>${stavka.roba.opis}</td>
             <td>${stavka.roba.jedinicaMere}</td>
             <td>${stavka.jedinicnaCena} RSD</td>
@@ -59,6 +64,10 @@
             <td>${stavka.rabat}</td>
             <td>${stavka.procenatPDV} %</td>
             <td>${stavka.iznosStavke} RSD</td>
+            <td>
+	            <a href="#" class="edit-stavka" id="${stavka.id}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+	            <a href="@{FakturaController.storniraj(stavka.id)}"><i class="fa fa-times" aria-hidden="true"></i></a>
+        	</td>
     </tr>
     #{/list}
     </tbody>

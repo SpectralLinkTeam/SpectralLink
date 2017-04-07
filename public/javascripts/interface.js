@@ -72,7 +72,7 @@ $(document).ready(function () {
     $(document).on("click", "#add-new-faktura", function () {
         $("#modal-container").empty();
         $("#modal-container").load("/add-new-faktura-form.html");
-        fillSelectGroup();
+        fillSelectPartner();
         $("#modal-container").css("display", "block");
         $(".overlay").show();
     });
@@ -101,6 +101,15 @@ $(document).ready(function () {
         $("#modal-container").load("/add-new-product-form.html");
         fillSelectGroup();
         fillRobaForm(this.id);
+        $("#modal-container").css("display", "block");
+        $(".overlay").show();
+    });
+    
+    $(document).on("click", ".edit-faktura", function () {
+        $("#modal-container").empty();
+        $("#modal-container").load("/add-new-faktura-form.html");
+        fillSelectPartner();
+        fillFakturaForm(this.id);
         $("#modal-container").css("display", "block");
         $(".overlay").show();
     });
@@ -134,6 +143,15 @@ $(document).ready(function () {
                 $('input[name="jedinicaMere"]').val(roba.jedinicaMere);
                 $('input[name="raspKol"]').val(roba.raspKol);
                 $('input[name="opis"]').val(roba.opis);
+            });
+        }
+        
+        function fillFakturaForm(id) {
+            $.getJSON("/FakturaController/searchJsonById/"+id, function(faktura) {
+                // fill it for editing
+                $("#modal-add-new-faktura").attr("action", "/FakturaController/edit");
+                $("#faktura-id").val(faktura.id);
+                $('select[name="kupac"]').val(faktura.kupac);
             });
         }
         
@@ -182,6 +200,18 @@ $(document).ready(function () {
                     $('select[name="grupaRobe"]').append($('<option>', {
                         value: grupe.id,
                         text : grupe.naziv
+                    }));
+                });
+            });
+        }
+        
+        function fillSelectPartner() {
+            $.getJSON("/BusinessPartnerController/searchAllJson/", function (kupci) {
+                console.log(kupci);
+                $.each(kupci, function (i, kupci) {
+                    $('select[name="kupac"]').append($('<option>', {
+                        value: kupci.id,
+                        text : kupci.naziv
                     }));
                 });
             });

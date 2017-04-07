@@ -3,6 +3,8 @@ package controllers;
 import java.util.Date;
 import java.util.List;
 
+import dto.FakturaDTO;
+import dto.RobaDTO;
 import models.*;
 import play.mvc.Controller;
 import play.mvc.results.RenderTemplate;
@@ -25,7 +27,7 @@ public class FakturaController extends Controller {
 		double osnovica=0;
 		double pdv=0;
 		faktura.poslovniPartneri = narudzbenica.kupac;
-		BusinessYear currentYear = BusinessYear.find("byCompletedAndOrderByIdDesc", false).first();
+		BusinessYear currentYear = BusinessYearController.trenutnaGodina();
 		faktura.poslovnaGodina = currentYear;
 		faktura.brojFakture = faktura.poslovnaGodina.poslednjiBrFakture+1;
 		faktura.save();
@@ -70,8 +72,7 @@ public class FakturaController extends Controller {
 	public static void showAll(){
 		List<Faktura> fakture = Faktura.find("isDeleted=? order by id desc", 0).fetch();
 		NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
-		List<BusinessPartner> kupci = BusinessPartner.find("byIsDeleted", 0).fetch();
-		renderTemplate("Dobavljac/fakture.html", fakture, narudzbeniceViewModel, kupci);
+		renderTemplate("Dobavljac/fakture.html", fakture, narudzbeniceViewModel);
 	}
 	
 	public static void generisiSve(){
@@ -83,14 +84,21 @@ public class FakturaController extends Controller {
 	}
 
 	
-	public static void novaFakturaForm(){
-		List<BusinessPartner> kupci = BusinessPartner.find("byIsDeleted", 0).fetch();
-		renderTemplate("fakture/nova-faktura.html", kupci);
-
-	}
-	
-	public static void novaFaktura(){
-
+	public static void novaFaktura(long kupac){
+		BusinessPartner partner = BusinessPartner.findById(kupac);
+		BusinessYear poslovnaGodina = BusinessYearController.trenutnaGodina();
+		Company company = Company.findById(1L);
+		Faktura faktura = new Faktura();
+		faktura.brojFakture = poslovnaGodina.poslednjiBrFakture+1;
+		faktura.datumFakture = new Date();
+		faktura.poslovnaGodina = poslovnaGodina;
+		faktura.poslovniPartneri = partner;
+		faktura.save();
+		poslovnaGodina.poslednjiBrFakture+=1;
+		poslovnaGodina.save();
+		String slovima = Faktura.Slovima(faktura.iznosZaPlacanje);
+		NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
+		renderTemplate("fakture/fakture-detaljno.html", faktura, company, narudzbeniceViewModel, slovima);
 	}
 
 	public static void prikaziDetaljno(long id){
@@ -106,5 +114,21 @@ public class FakturaController extends Controller {
 		faktura.IsDeleted=true;
 		faktura.save();
 		showAll();
+	}
+	
+	public static void storniraj(long stavkaId){
+	}
+	
+	public static void edit(long id, String kupac){
+		Faktura faktura = Faktura.findById(id);
+		faktura.poslovniPartneri = BusinessPartner.findById(Long.parseLong(kupac));
+		faktura.save();
+		showAll();
+	}
+	
+	public static void searchJsonById(long id){
+		Faktura faktura = Faktura.findById(id);
+		FakturaDTO forNetwork = new FakturaDTO(faktura);
+		renderJSON(forNetwork);
 	}
 }

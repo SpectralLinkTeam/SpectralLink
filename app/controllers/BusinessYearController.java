@@ -41,4 +41,8 @@ public class BusinessYearController extends Controller {
 		List<BusinessYear> pp = BusinessYear.find("byYear", yearInput).fetch();
         renderTemplate("Dobavljac/BusinessYear/show.html", pp);
 	}
+	
+	public static BusinessYear trenutnaGodina(){
+		return BusinessYear.find("completed=? order by id desc", false).first();
+	}
 }

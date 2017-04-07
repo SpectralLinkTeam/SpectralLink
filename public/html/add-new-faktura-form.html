@@ -1,9 +1,9 @@
-<form action="/FakturaController/novaFaktura" method="POST" id="modal-add-new-group" class="modal-content">
+<form action="/FakturaController/novaFaktura" method="POST" id="modal-add-new-faktura" class="modal-content">
+    <label for="kupac">Faktura za kupca:</label>
     <select class="form-control" name="kupac">
-        #{list items:kupci, as: 'kupac'}
-        	<option value="${kupac.id}">${kupac.name}</option>
-        #{/list}
+        
     </select>
+    <input type="hidden" id="faktura-id" name="id">
     <input type="submit" value="Potvrdi" class="btn btn-primary">
     <button type="button" class="btn btn-default odustani">Odustani</button>
 </form>

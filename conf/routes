@@ -27,6 +27,7 @@ GET     /table-narudzbenice.html                   staticFile:/public/html/table
 
 GET     /add-new-partner-form.html                 staticFile:/public/html/add-new-partner-form.html
 GET     /add-new-product-form.html                 staticFile:/public/html/add-new-product-form.html
+GET     /add-new-faktura-form.html                 staticFile:/public/html/add-new-faktura-form.html
 GET     /add-new-group-form.html                   staticFile:/public/html/add-new-group-form.html
 GET     /add-new-location-form.html                staticFile:/public/html/add-new-location-form.html
 
@@ -39,10 +40,12 @@ GET     /view-product-list.html                    staticFile:/public/html/view-
 # AJAX
 
 GET     /RobaController/searchJsonById/{id}             RobaController.searchJsonById
+GET     /FakturaController/searchJsonById/{id}          FakturaController.searchJsonById
 GET     /BusinessPartnerController/searchJsonById/{id}  BusinessPartnerController.searchJsonById
 GET     /GrupaRobeController/searchJsonById/{id}        GrupaRobeController.searchJsonById
 GET     /NarudzbenicaController/searchJsonProductsById/{id} NarudzbenicaController.searchJsonProductsById
 GET     /PDVController/searchJsonPdv/                   PDVController.searchJsonPdv
 GET     /GrupaRobeController/searchAllJson/              GrupaRobeController.searchAllJson
+GET     /BusinessPartnerController/searchAllJson/        BusinessPartnerController.searchAllJson
 GET     /MestoController/searchAllJson/                  MestoController.searchAllJson
 GET     /NarudzbenicaController/getNarudzbeniceNumber/   NarudzbenicaController.getNarudzbeniceNumber
