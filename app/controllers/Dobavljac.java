@@ -74,4 +74,9 @@ public class Dobavljac extends Controller{
 
     }
 
+    public static void magacin(){
+        List<Roba> roba = Roba.findAll();
+        renderTemplate("Dobavljac/magacin.html", roba);
+    }
+
 }
