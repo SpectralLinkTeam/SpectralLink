@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import models.Cenovnik;
+import models.Roba;
+import models.StavkaCenovnika;
 import play.mvc.Controller;
 
 public class CenovnikController extends Controller {
@@ -42,8 +44,12 @@ public class CenovnikController extends Controller {
 		show();
 	}
 	
-	public static void dodajStavku(String cenovnikId) {
-		
+	public static void dodajStavku(double cena,String cenovnikId, String robaId) {
+		StavkaCenovnika stavka = new StavkaCenovnika();
+		stavka.cena = cena;
+		stavka.cenovnik = Cenovnik.findById(Long.parseLong(cenovnikId));
+		stavka.roba = Roba.findById(Long.parseLong(robaId));
+		stavka.save();
 	}
 	
 	//	ne vidim potrebu pretrage cenovnika sem po datumu vazenja |
