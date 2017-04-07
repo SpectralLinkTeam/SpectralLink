@@ -32,29 +32,31 @@ public class FakturaController extends Controller {
 		faktura.brojFakture = faktura.poslovnaGodina.poslednjiBrFakture+1;
 		faktura.save();
 		for(StavkaNarudzbenice stavka : narudzbenica.stavkeNarudzbenice) {
-			StavkaFakture fStavka = new StavkaFakture();
-			fStavka.cenovnik = cenovnik;
-			fStavka.faktura=faktura;
-			fStavka.jedinicnaCena = izracunajJedinicnuCenu(stavka.roba, cenovnik);
-			fStavka.rabat=0;
-			fStavka.kolicina=stavka.kolicina;
-			fStavka.procenatPDV = izracunajPdvProcenat(stavka.roba, cenovnik);
-			fStavka.iznosPDV=(fStavka.jedinicnaCena*stavka.kolicina*fStavka.procenatPDV)/100;
-			pdv += fStavka.iznosPDV;
-			osnovica+=(fStavka.jedinicnaCena*fStavka.kolicina);
-			fStavka.roba = stavka.roba;
-			fStavka.setIznosStavke();
-			//faktura.stavkeFakture.add(fStavka);
+			StavkaFakture fStavka = popuniStavku(stavka.roba, stavka.kolicina, 0, faktura);
 			fStavka.save();
 		}
-		faktura.osnovica = osnovica;
-		faktura.ukupanPDV=pdv;
-		faktura.iznosZaPlacanje=osnovica+pdv;
+		
+		faktura = izracunajIznose(faktura);
 		faktura.save();
 		currentYear.poslednjiBrFakture+=1;
 		currentYear.save();
 		narudzbenica.fakturaGenerisana=true;
 		narudzbenica.save();
+	}
+	
+	private static Faktura izracunajIznose(Faktura faktura) {
+		List<StavkaFakture> stavke = StavkaFakture.find("byStorniranoAndFaktura_id", false, faktura.id).fetch();
+		double osnovica = 0;
+		double pdv = 0;
+		
+		for (StavkaFakture stavka : stavke) {
+			osnovica += stavka.osnovicaPDV;
+			pdv += stavka.iznosPDV;
+		}
+		faktura.osnovica = osnovica;
+		faktura.ukupanPDV = pdv;
+		faktura.iznosZaPlacanje = osnovica+pdv;
+		return faktura;
 	}
 	
 	private static double izracunajJedinicnuCenu(Roba roba, Cenovnik cenovnik) {
@@ -117,6 +119,12 @@ public class FakturaController extends Controller {
 	}
 	
 	public static void storniraj(long stavkaId){
+		StavkaFakture stavka = StavkaFakture.findById(stavkaId);
+		stavka.stornirano = true;
+		stavka.save();
+		Faktura faktura = izracunajIznose(stavka.faktura);
+		faktura.save();
+		prikaziDetaljno(faktura.id);
 	}
 	
 	public static void edit(long id, String kupac){
@@ -130,6 +138,10 @@ public class FakturaController extends Controller {
 		Faktura faktura = Faktura.findById(Long.parseLong(fakturaId));
 		Roba roba = Roba.findById(Long.parseLong(proizvod));
 		StavkaFakture stavka = popuniStavku(roba, kolicina, rabat, faktura);
+		stavka.save();
+		faktura = izracunajIznose(faktura);
+		faktura.save();
+		prikaziDetaljno(faktura.id);
 	}
 	
 	private static StavkaFakture popuniStavku(Roba roba, int kolicina, int rabat, Faktura faktura) {
@@ -142,6 +154,11 @@ public class FakturaController extends Controller {
 		
 		retStavka.jedinicnaCena = izracunajJedinicnuCenu(roba, cenovnik);
 		double osnovica = retStavka.jedinicnaCena*kolicina;
+		retStavka.osnovicaPDV = osnovica*(1-(double)rabat/100);
+		int procenatPDV = izracunajPdvProcenat(roba, cenovnik);
+		retStavka.procenatPDV = procenatPDV;
+		retStavka.iznosPDV = retStavka.osnovicaPDV * ((double)procenatPDV/100);
+		retStavka.iznosStavke=retStavka.osnovicaPDV+retStavka.iznosPDV;
 		
 		return retStavka;
 	}
