@@ -12,18 +12,19 @@ public class BusinessYearController extends Controller {
 	//crud i search
 	
 	public static void show(){
-	    List<BusinessYear> pp = BusinessYear.findAll();
-        renderTemplate("Dobavljac/BusinessYear/show.html", pp);
+	    Dobavljac.roba();
     }
 	
-	public static void add(BusinessYear poslovnaGodina){
-		complete(poslovnaGodina);
+	public static void add(){
+
 		BusinessYear novaPoslovnaGodina = new BusinessYear();
-		novaPoslovnaGodina.year = poslovnaGodina.year++;
+		novaPoslovnaGodina.year = trenutnaGodina().year + 1;
+        complete(trenutnaGodina());
 		novaPoslovnaGodina.save();
 //		poslovnaGodina.save();
 		//pronaci poslednju aktivnu
 		//na njoj pozvati complete
+
 	    show();
     }
 	
