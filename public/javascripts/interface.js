@@ -124,6 +124,15 @@ $(document).ready(function () {
         $("#modal-container").css("display", "block");
         $(".overlay").show();
     });
+    
+    $(document).on("click", ".edit-stavka", function () {
+        $("#modal-container").empty();
+        $("#modal-container").load("/add-new-stavka-form.html");
+        fillSelectProduct();
+        fillStavkaForm(this.id);
+        $("#modal-container").css("display", "block");
+        $(".overlay").show();
+    });
         // poslovni partneri
     $(document).on("click", ".edit-partner", function () {
         $("#modal-container").empty();
@@ -163,6 +172,18 @@ $(document).ready(function () {
                 $("#modal-add-new-faktura").attr("action", "/FakturaController/edit");
                 $("#faktura-id").val(faktura.id);
                 $('select[name="kupac"]').val(faktura.kupac);
+                $('input[name="id"]').val(partner.id);
+            });
+        }
+        
+        function fillStavkaForm(id) {
+            $.getJSON("/FakturaController/searchJsonByStavkaId/"+id, function(stavka) {
+                // fill it for editing
+                $("#modal-add-new-stavka").attr("action", "/FakturaController/editStavka");
+                $("#stavka-id").val(stavka.id);
+                $('select[name="proizvod"]').val(stavka.proizvod);
+                $('input[name="kolicina"]').val(stavka.kolicina);
+                $('input[name="rabat"]').val(stavka.rabat);
             });
         }
         

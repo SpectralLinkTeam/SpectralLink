@@ -43,37 +43,48 @@
     <th>R. br.</th>
     <th>Opis dobra/usluge</th>
     <th>JM</th>
-    <th>Cena</th>
+    <th>Cena RSD</th>
     <th>Kolicina</th>
     <th>Rabat %</th>
-    <th>PDV</th>
-    <th>Prodajna cena</th>
+    <th>Poreska osnovica</th>
+    <th>PDV %</th>
+    <th>PDV Iznos</th>
+    <th>Ukupno RSD</th>
     <th class="no-print">Akcija</th>
     </thead>
     <tbody>
     #{list items:faktura.stavkeFakture, as: 'stavka'}
-    	#{set 'borderstyle'}
-			#{if stavka.stornirano == true}3px solid red#{/if}
-			#{else}none#{/else}
-		#{/set}
-    <tr style="border: ${borderstyle}">
+    	#{if stavka.stornirano == true}
+    		#{set 'borderstyle'}3px solid red#{/set}
+    		#{set 'actiondisplay'}none#{/set}
+    		#{set 'printclass'}no-print#{/set}
+    	#{/if}
+		#{else}
+			#{set 'borderstyle'}none#{/set}
+    		#{set 'actiondisplay'}inline#{/set}
+    		#{set 'printclass'}print#{/set}
+		#{/else}
+		
+		
+    <tr style="border: ${borderstyle}" class="${printclass}">
             <td>${stavka.roba.opis}</td>
             <td>${stavka.roba.jedinicaMere}</td>
-            <td>${stavka.jedinicnaCena} RSD</td>
+            <td>${stavka.jedinicnaCena}</td>
             <td>${stavka.kolicina}</td>
             <td>${stavka.rabat}</td>
-            <td>${stavka.procenatPDV} %</td>
-            <td>${stavka.iznosStavke} RSD</td>
+            <td>${stavka.osnovicaPDV}</td>
+            <td>${stavka.procenatPDV}</td>
+            <td>${stavka.iznosPDV}</td>
+            <td>${stavka.iznosStavke}</td>
             <td class="no-print">
-	            <a href="#" class="edit-stavka" id="${stavka.id}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-	            <a href="@{FakturaController.storniraj(stavka.id)}"><i class="fa fa-times" aria-hidden="true"></i></a>
+	            <a style="display: ${actiondisplay}" href="#" class="edit-stavka" id="${stavka.id}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+	            <a style="display: ${actiondisplay}" href="@{FakturaController.storniraj(stavka.id)}"><i class="fa fa-times" aria-hidden="true"></i></a>
         	</td>
     </tr>
     #{/list}
     <tr class="trAdd no-print" id="add-new-stavka" data-faktura="${faktura.id}">
     	<td><i class="fa fa-plus fa-2x" aria-hidden="true"></i></td>
     	<td>Dodaj novu stavku</td>
-    	<td colspan="7"></td>
     </tr>
     </tbody>
 </table>
@@ -89,10 +100,18 @@
     var tables = document.getElementsByTagName('table');
     var table = tables[tables.length - 1];
     var rows = table.rows;
+    var brojac = 1;
     for(var i = 1, td; i < rows.length-1; i++){
         td = document.createElement('td');
-        td.appendChild(document.createTextNode(i));
+        var text=brojac;
+        if ($(rows[i]).hasClass('no-print')) {
+        	var text = "-";
+        } else {
+        	brojac++;
+        }
+        td.appendChild(document.createTextNode(text));
         rows[i].insertBefore(td, rows[i].firstChild);
+        
     }
 </script>
 
