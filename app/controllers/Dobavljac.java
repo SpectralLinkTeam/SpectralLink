@@ -79,4 +79,9 @@ public class Dobavljac extends Controller{
         renderTemplate("Dobavljac/magacin.html", roba);
     }
 
+    public static void izvestaji(){
+        NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
+        renderTemplate("Dobavljac/izvestaji.html", narudzbeniceViewModel);
+    }
+
 }

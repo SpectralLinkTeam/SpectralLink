@@ -1,0 +1,30 @@
+#{extends 'dobavljac-main.html'/} #{set title:'Izvestaji' /}
+
+<div style="margin: 0 auto;text-align: center; width: 70%; padding-bottom: 100px;">
+<h3 style="text-align: center">Generisi izvestaj za pariod</h3>
+<form action="/IzvestajiController/generisi" method="POST" style="margin-top: 50px">
+    <label>Od:</label>
+    <input type="date" name="datumOd">
+    <label>Do:</label>
+    <input type="date" name="datumDo">
+    <br>
+    <input type="submit" class="btn btn-primary" value="Generisi" style="margin-left: 31%;margin-top: 15px;"/>
+</form>
+</div>
+
+<table class="table-bordered table-striped" id="cenovnik-print">
+
+    <thead>
+    <th>Naziv artikla</th>
+    <th>Cena (RSD)</th>
+    </thead>
+    <tbody>
+    *{#{list items=cenovnik.stavkeCenovnika, as: 'stavka'}
+    <tr>
+        <td>${stavka.roba.naziv}</td>
+        <td>${stavka.cena}</td>
+    </tr>
+    #{/list}}*
+    </tbody>
+</table>
+
