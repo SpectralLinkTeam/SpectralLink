@@ -54,3 +54,4 @@ GET     /RobaController/searchAllJson/              	RobaController.searchAllJso
 GET     /BusinessPartnerController/searchAllJson/       BusinessPartnerController.searchAllJson
 GET     /MestoController/searchAllJson/                 MestoController.searchAllJson
 GET     /NarudzbenicaController/getNarudzbeniceNumber/  NarudzbenicaController.getNarudzbeniceNumber
+GET     /BusinessYearController/searchJsonYear/         BusinessYearController.searchJsonYear

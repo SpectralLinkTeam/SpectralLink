@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.List;
 
+import dto.BusinessYearDTO;
 import models.BusinessPartner;
 import models.BusinessYear;
 import play.mvc.Controller;
@@ -44,5 +45,10 @@ public class BusinessYearController extends Controller {
 	
 	public static BusinessYear trenutnaGodina(){
 		return BusinessYear.find("completed=? order by id desc", false).first();
+	}
+
+	public static void searchJsonYear(){
+		BusinessYear by = BusinessYear.find("completed=? order by id desc", false).first();
+		renderJSON(new BusinessYearDTO(by));
 	}
 }
