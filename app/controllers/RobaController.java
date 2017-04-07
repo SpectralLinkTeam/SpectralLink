@@ -2,8 +2,10 @@ package controllers;
 
 import java.io.Serializable;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
+import dto.GrupaRobeDTO;
 import dto.RobaDTO;
 import models.Cenovnik;
 import models.GrupaRobe;
@@ -67,6 +69,15 @@ public class RobaController extends Controller {
 		List<Roba> roba = Roba.find("byIsDeletedAndNazivLikeAndOpisLike", "0", "%"+searchTerm+"%", "%"+searchTerm+"%").fetch();
 		NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
 		renderTemplate("Dobavljac/roba.html", roba, narudzbeniceViewModel);
+	}
+	
+	public static void searchAllJson(){
+		List<Roba> list = Roba.findAll();
+		List<RobaDTO> forNetwork = new ArrayList<>();
+		for (Roba roba : list){
+			forNetwork.add(new RobaDTO(roba));
+		}
+		renderJSON(forNetwork);
 	}
 
 	public static void searchJsonById(long id){

@@ -73,6 +73,16 @@ $(document).ready(function () {
         $("#modal-container").empty();
         $("#modal-container").load("/add-new-faktura-form.html");
         fillSelectPartner();
+        
+        $("#modal-container").css("display", "block");
+        $(".overlay").show();
+    });
+    
+    $(document).on("click", "#add-new-stavka", function () {
+        $("#modal-container").empty();
+        $("#modal-container").load("/add-new-stavka-form.html");
+        fillSelectProduct();
+        setFakturaId($(this).data('faktura'));
         $("#modal-container").css("display", "block");
         $(".overlay").show();
     });
@@ -192,6 +202,10 @@ $(document).ready(function () {
             });
         }
 
+        function setFakturaId(id) {
+        	$('#modal-add-new-stavka').append('<input type="hidden" name="fakturaId" value="'+id+'" />');
+        }
+        
         // fill select fields
         function fillSelectGroup() {
             $.getJSON("/GrupaRobeController/searchAllJson/", function (grupe) {
@@ -212,6 +226,18 @@ $(document).ready(function () {
                     $('select[name="kupac"]').append($('<option>', {
                         value: kupci.id,
                         text : kupci.naziv
+                    }));
+                });
+            });
+        }
+        
+        function fillSelectProduct() {
+            $.getJSON("/RobaController/searchAllJson/", function (robe) {
+                console.log(robe);
+                $.each(robe, function (i, robe) {
+                    $('select[name="proizvod"]').append($('<option>', {
+                        value: robe.id,
+                        text : robe.naziv
                     }));
                 });
             });

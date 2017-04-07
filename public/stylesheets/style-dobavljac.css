@@ -156,6 +156,16 @@ th {
 	border-bottom: 1px solid;
 }
 
+.trAdd {
+	color: #337ab7; 
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.trAdd:hover {
+	background-color:rgba(0,0,255,0.1) !important;
+}
+
 @media print {
 	@page {
 		margin-bottom: 0;
@@ -166,4 +176,9 @@ th {
 	#print-me {
 		display: none;
 	}
+	
+	.no-print, .no-print *
+    {
+        display: none !important;
+    }
 }

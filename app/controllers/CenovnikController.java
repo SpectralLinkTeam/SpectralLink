@@ -42,6 +42,10 @@ public class CenovnikController extends Controller {
 		show();
 	}
 	
+	public static void dodajStavku(String cenovnikId) {
+		
+	}
+	
 	//	ne vidim potrebu pretrage cenovnika sem po datumu vazenja |
 	public static void searchByDate(String datum){
 		List<Cenovnik> pp = Cenovnik.find("byIsDeletedAndDatumVazenja", 0, datum).fetch();

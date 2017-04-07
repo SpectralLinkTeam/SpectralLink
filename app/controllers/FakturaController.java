@@ -126,6 +126,27 @@ public class FakturaController extends Controller {
 		showAll();
 	}
 	
+	public static void dodajStavku(String proizvod, int kolicina, int rabat, String fakturaId){
+		Faktura faktura = Faktura.findById(Long.parseLong(fakturaId));
+		Roba roba = Roba.findById(Long.parseLong(proizvod));
+		StavkaFakture stavka = popuniStavku(roba, kolicina, rabat, faktura);
+	}
+	
+	private static StavkaFakture popuniStavku(Roba roba, int kolicina, int rabat, Faktura faktura) {
+		Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
+		StavkaFakture retStavka = new StavkaFakture();
+		retStavka.roba = roba;
+		retStavka.kolicina = kolicina;
+		retStavka.rabat = rabat;
+		retStavka.faktura = faktura;
+		
+		retStavka.jedinicnaCena = izracunajJedinicnuCenu(roba, cenovnik);
+		double osnovica = retStavka.jedinicnaCena*kolicina;
+		
+		return retStavka;
+	}
+	
+	
 	public static void searchJsonById(long id){
 		Faktura faktura = Faktura.findById(id);
 		FakturaDTO forNetwork = new FakturaDTO(faktura);

@@ -48,7 +48,7 @@
     <th>Rabat %</th>
     <th>PDV</th>
     <th>Prodajna cena</th>
-    <th>Akcija</th>
+    <th class="no-print">Akcija</th>
     </thead>
     <tbody>
     #{list items:faktura.stavkeFakture, as: 'stavka'}
@@ -64,19 +64,24 @@
             <td>${stavka.rabat}</td>
             <td>${stavka.procenatPDV} %</td>
             <td>${stavka.iznosStavke} RSD</td>
-            <td>
+            <td class="no-print">
 	            <a href="#" class="edit-stavka" id="${stavka.id}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 	            <a href="@{FakturaController.storniraj(stavka.id)}"><i class="fa fa-times" aria-hidden="true"></i></a>
         	</td>
     </tr>
     #{/list}
+    <tr class="trAdd no-print" id="add-new-stavka" data-faktura="${faktura.id}">
+    	<td><i class="fa fa-plus fa-2x" aria-hidden="true"></i></td>
+    	<td>Dodaj novu stavku</td>
+    	<td colspan="7"></td>
+    </tr>
     </tbody>
 </table>
 <br><br><br><br>
 
 <div style="width: 70vw; font-size: 1.5em;"><span style="float:right">Ukupno: ${faktura.iznosZaPlacanje} RSD</span></div>
 <br><br>
-<div style="width: 70vw; font-size: 1em;"><span style="float:right"><strong>Slovima:</strong> ${slovima}</span></div>
+<div style="width: 70vw; font-size: 1em;"><span style="clear:both; float:right"><strong>Slovima:</strong> ${slovima}</span></div>
 
 
 
@@ -84,7 +89,7 @@
     var tables = document.getElementsByTagName('table');
     var table = tables[tables.length - 1];
     var rows = table.rows;
-    for(var i = 1, td; i < rows.length; i++){
+    for(var i = 1, td; i < rows.length-1; i++){
         td = document.createElement('td');
         td.appendChild(document.createTextNode(i));
         rows[i].insertBefore(td, rows[i].firstChild);
