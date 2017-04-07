@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.List;
 
+import dto.BusinessYearDTO;
 import models.BusinessPartner;
 import models.BusinessYear;
 import play.mvc.Controller;
@@ -11,18 +12,19 @@ public class BusinessYearController extends Controller {
 	//crud i search
 	
 	public static void show(){
-	    List<BusinessYear> pp = BusinessYear.findAll();
-        renderTemplate("Dobavljac/BusinessYear/show.html", pp);
+	    Dobavljac.roba();
     }
 	
-	public static void add(BusinessYear poslovnaGodina){
-		complete(poslovnaGodina);
+	public static void add(){
+
 		BusinessYear novaPoslovnaGodina = new BusinessYear();
-		novaPoslovnaGodina.year = poslovnaGodina.year++;
+		novaPoslovnaGodina.year = trenutnaGodina().year + 1;
+        complete(trenutnaGodina());
 		novaPoslovnaGodina.save();
 //		poslovnaGodina.save();
 		//pronaci poslednju aktivnu
 		//na njoj pozvati complete
+
 	    show();
     }
 	
@@ -44,5 +46,10 @@ public class BusinessYearController extends Controller {
 	
 	public static BusinessYear trenutnaGodina(){
 		return BusinessYear.find("completed=? order by id desc", false).first();
+	}
+
+	public static void searchJsonYear(){
+		BusinessYear by = BusinessYear.find("completed=? order by id desc", false).first();
+		renderJSON(new BusinessYearDTO(by));
 	}
 }

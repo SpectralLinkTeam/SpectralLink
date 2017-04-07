@@ -20,6 +20,7 @@ $(document).ready(function () {
     $("#poslovna-godina-admin").click(function () {
         $("#modal-container").empty();
         $("#modal-container").load("/modal-poslovna-godina.html");
+        fillPoslovnaGodinaForm();
         $("#modal-container").css("display", "block");
         $(".overlay").show();
     });
@@ -199,6 +200,13 @@ $(document).ready(function () {
                         $('input[name="stopaNiski"]').val(pdv[i].procenat);
                     }
                 }
+            });
+        }
+        
+        function fillPoslovnaGodinaForm() {
+            $.getJSON("/BusinessYearController/searchJsonYear/", function (year) {
+                console.log(year);
+                $("#trenutnaPoslGod").append(year.year);
             });
         }
 
