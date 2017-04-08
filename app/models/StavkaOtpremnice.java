@@ -18,5 +18,8 @@ public class StavkaOtpremnice extends Model {
 	
 	@Column
 	public String napomena;
+	
+	@ManyToOne
+	public Otpremnica otpremnica;
 
 }

@@ -31,6 +31,7 @@ GET     /add-new-partner-form.html                 staticFile:/public/html/add-n
 GET     /add-new-product-form.html                 staticFile:/public/html/add-new-product-form.html
 GET     /add-new-faktura-form.html                 staticFile:/public/html/add-new-faktura-form.html
 GET     /add-new-stavka-form.html                  staticFile:/public/html/add-new-stavka-form.html
+GET     /add-napomena-form.html                    staticFile:/public/html/add-napomena-form.html
 GET     /add-new-group-form.html                   staticFile:/public/html/add-new-group-form.html
 GET     /add-new-location-form.html                staticFile:/public/html/add-new-location-form.html
 

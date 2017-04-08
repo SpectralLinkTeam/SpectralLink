@@ -186,6 +186,7 @@ public class FakturaController extends Controller {
 			umanjiStanjeRobe(stavke);
 			faktura.fakturaIzdata=true;
 			faktura.save();
+			OtpremnicaController.generisiOtpremnicu(faktura.id);
 			showAll();
 		} else {
 			NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
@@ -205,7 +206,8 @@ public class FakturaController extends Controller {
 	
 	public static boolean fakturaSpremna(List<StavkaFakture> stavke) {
 		for (StavkaFakture stavka : stavke) {
-			if(stavka.roba.raspKol < stavka.kolicina) {
+			Roba roba = Roba.findById(stavka.roba.id);
+			if(roba.raspKol < stavka.kolicina) {
 				return false;
 			}
 		}

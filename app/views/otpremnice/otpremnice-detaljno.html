@@ -1,0 +1,77 @@
+#{extends 'dobavljac-main.html'/} #{set title:'Otpremnica' /}
+
+<button id="print-me">
+    <i class="fa fa-print fa-2x" aria-hidden="true"></i>
+</button>
+
+<div id="zaglavlje-otpremnice">
+    <span>
+        <img src="/public/images/logo/SpectralLink_LOGO_vertical.png" id="logo-faktura">
+    </span>
+
+    <span id="company-info">
+        <div style="font-size: 2em">Spectral Link D.O.O.</div>
+        <div>Ulica i broj: <span style="font-weight: bold">${company.address}</span></div>
+        <div>Telefon: <span style="font-weight: bold">${company.telephone}</span></div>
+        <div>PIB: <span style="font-weight: bold">${company.PIB}</span></div>
+        <div>E-mail: <span style="font-weight: bold">${company.email}</span></div>
+    </span>
+
+    <span id="otpremnica-info">
+        <div>br. otpremnice: <span style="font-weight: bold">${otpremnica.brojOtpremnice}-${otpremnica.poslovnaGodina.year}</span></div>
+        <div>datum: <span style="font-weight: bold">${otpremnica.datumOtpremnice}</span></div>
+    </span>
+</div>
+
+<div id="zaglavlje-kupac">
+    <h3 style="text-align: center">Kupac</h3>
+    <div>
+        <span style="display: inline-block; margin-left: 20%">
+            <div>Ime: <span style="font-weight: bold">${otpremnica.kupac.name}</span></div>
+            <div>Adresa: <span style="font-weight: bold">${otpremnica.kupac.address}</span></div>
+        </span>
+        <span style="display: inline-block; float:right; margin-right: 30%;">
+            <div>Telefon: <span style="font-weight: bold">${otpremnica.kupac.phoneNumber}</span></div>
+            <div>E-mail: <span style="font-weight: bold">${otpremnica.kupac.email}</span></div>
+        </span>
+    </div>
+</div>
+
+<br>
+<table class="table-bordered table-striped">
+    <thead>
+    <th>R. br.</th>
+    <th>Opis dobra/usluge</th>
+    <th>JM</th>
+    <th>Kolicina</th>
+    <th>Cena RSD</th>
+    <th>Napomena</th>
+    </thead>
+    <tbody>
+    #{list items:otpremnica.stavkeOtpremnice, as: 'stavka'}
+    	#{set 'napomenaHtml'}
+			#{if stavka.napomena == ""}<button type="button" id="add-napomena" data-stavka="${stavka.id}" style="color: #337ab7"><i class="fa fa-plus" aria-hidden="true"></i></button>#{/if}
+			#{else}${stavka.napomena}#{/else}
+		#{/set}
+		
+    <tr style="border: ${borderstyle}" class="${printclass}">
+            <td>${stavka.roba.opis}</td>
+            <td>${stavka.roba.jedinicaMere}</td>
+            <td>${stavka.kolicina}</td>
+            <td>${stavka.iznosStavke}</td>
+            <td>${napomenaHtml.raw(true)}</td>
+    </tr>
+    #{/list}
+    </tbody>
+</table>
+<script>
+    var tables = document.getElementsByTagName('table');
+    var table = tables[tables.length - 1];
+    var rows = table.rows;
+    for(var i = 1, td; i < rows.length; i++){
+        td = document.createElement('td');
+        td.appendChild(document.createTextNode(i));
+        rows[i].insertBefore(td, rows[i].firstChild);
+        
+    }
+</script>

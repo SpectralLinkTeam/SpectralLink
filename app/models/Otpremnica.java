@@ -1,6 +1,7 @@
 package models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -23,4 +24,8 @@ public class Otpremnica extends Model {
 	
 	@ManyToOne
 	public BusinessPartner kupac;
+	
+	@OneToMany(mappedBy="otpremnica", cascade = CascadeType.ALL)
+	//@JoinColumn(name = "stavkeFakture_id")
+	public List<StavkaOtpremnice> stavkeOtpremnice;
 }

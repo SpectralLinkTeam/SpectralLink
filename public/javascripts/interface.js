@@ -70,11 +70,18 @@ $(document).ready(function () {
         $(".overlay").show();
     });
     
+    $(document).on("click", "#add-napomena", function () {
+        $("#modal-container").empty();
+        $("#modal-container").load("/add-napomena-form.html");
+        setStavkaOtpremniceId($(this).data('stavka'));
+        $("#modal-container").css("display", "block");
+        $(".overlay").show();
+    });
+    
     $(document).on("click", "#add-new-faktura", function () {
         $("#modal-container").empty();
         $("#modal-container").load("/add-new-faktura-form.html");
         fillSelectPartner();
-        
         $("#modal-container").css("display", "block");
         $(".overlay").show();
     });
@@ -233,6 +240,10 @@ $(document).ready(function () {
 
         function setFakturaId(id) {
         	$('#modal-add-new-stavka').append('<input type="hidden" name="fakturaId" value="'+id+'" />');
+        }
+        
+        function setStavkaOtpremniceId(id) {
+        	$('#modal-add-napomena').append('<input type="hidden" name="id" value="'+id+'" />');
         }
         
         // fill select fields

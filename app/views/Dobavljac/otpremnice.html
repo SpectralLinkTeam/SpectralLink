@@ -1,0 +1,21 @@
+#{extends 'dobavljac-main.html' /}
+#{set title:'Otpremnice' /}
+
+<table class="table-bordered table-striped">
+    <thead>
+    <th>Br. Otpremnice</th>
+    <th>Datum</th>
+    <th>Kupac</th>
+    <th>Detaljno</th>
+    </thead>
+    <tbody>
+    #{list items:otpremnice, as: 'otpremnica'}
+    <tr>
+        <td>${otpremnica.brojOtpremnice}-${otpremnica.poslovnaGodina.year}</td>
+        <td>${otpremnica.datumOtpremnice}</td>
+        <td>${otpremnica.kupac.name}</td>
+        <td><a href="@{controllers.OtpremnicaController.prikaziDetaljno(otpremnica.id)}">Detaljno</a></td>
+    </tr>
+    #{/list}
+    </tbody>
+</table>
