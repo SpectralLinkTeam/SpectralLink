@@ -27,24 +27,21 @@ public class CenovnikController extends Controller {
 	
 	public static void add(long[] idRobe, double[] cena){
 		Cenovnik noviCenovnik = new Cenovnik();
+        Cenovnik stariCenovnik = Cenovnik.find("order by datumVazenja desc").first();
+        noviCenovnik.datumVazenja = new Date(stariCenovnik.datumVazenja.getYear(), stariCenovnik.datumVazenja.getMonth()+1,1,0,0);
+        noviCenovnik.preduzece = Company.findById(1l);
+        noviCenovnik.save();
+
 		List<StavkaCenovnika> stavkeCenovnika = new ArrayList<StavkaCenovnika>();
 		for (int i = 0; i< idRobe.length; i++){
 			if (cena[i] != 0){
 				StavkaCenovnika stavka = new StavkaCenovnika();
 				stavka.cena = cena[i];
 				stavka.roba = Roba.findById(idRobe[i]);
-				stavkeCenovnika.add(stavka);
+                stavka.cenovnik = Cenovnik.find("order by datumVazenja desc").first();
+				stavka.save();
 			}
 		}
-		noviCenovnik.stavkeCenovnika = stavkeCenovnika;
-
-		Cenovnik stariCenovnik = Cenovnik.find("order by datumVazenja desc").first();
-		noviCenovnik.datumVazenja = new Date(stariCenovnik.datumVazenja.getYear(), stariCenovnik.datumVazenja.getMonth()+1,1,0,0);
-		noviCenovnik.preduzece = Company.findById(1l);
-		noviCenovnik.save();
-
-
-
 		show();
     }
 	
