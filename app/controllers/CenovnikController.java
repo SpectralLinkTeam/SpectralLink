@@ -42,7 +42,7 @@ public class CenovnikController extends Controller {
 				stavka.save();
 			}
 		}
-		show();
+ 		show();
     }
 	
 	public static void edit(Cenovnik cenovnik){
