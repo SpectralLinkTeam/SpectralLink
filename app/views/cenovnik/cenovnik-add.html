@@ -16,7 +16,7 @@
         <tr>
             <input type="hidden" value=${stavka.roba.id} name="idRobe">
             <td>${stavka.roba.naziv}</td>
-            <td style="text-align: center;"><input type="number" value="0" style="text-align:center;" name="cena"></td>
+            <td style="text-align: center;"><input type="number" min="1" value="0" style="text-align:center;" name="cena"></td>
         </tr>
         #{/list}
         <input type="submit" class="btn btn-primary" value="Potvrdi" id="cenovnik-submit">

@@ -42,23 +42,6 @@ $(document).ready(function () {
         
     });
 
-    // CENOVNIK
-    $("#cenovnik-form").submit(function(e) {
-        var url = "/CenovnikController/add/"; // the script where you handle the form input.
-        var datoo = $("#cenovnik-form").serialize();
-        $.ajax({
-            type: "POST",
-            url: url,
-            dataType:'text/plain',
-            data: $("#cenovnik-form").serialize(), // serializes the form's elements.
-            success: function(data)
-            {
-                alert(data); // show response from the php script.
-            }
-        });
-        e.preventDefault(); // avoid to execute the actual submit of the form.
-    });
-
 
     // Cancel dugme
     $(document).on("click", ".odustani", function () {

@@ -22,27 +22,31 @@ public class CenovnikController extends Controller {
 	//napomena editovanje dozvoljeno samo aktuelnom cenovniku / ostale readonly
 	
 	public static void show(){
-		Dobavljac.cenovnik();
+		System.out.println("pozvao show");
+		Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
+        NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
+        renderTemplate("Dobavljac/cenovnik.html", cenovnik, narudzbeniceViewModel);
     }
 	
 	public static void add(long[] idRobe, double[] cena){
 		Cenovnik noviCenovnik = new Cenovnik();
-        Cenovnik stariCenovnik = Cenovnik.find("order by datumVazenja desc").first();
-        noviCenovnik.datumVazenja = new Date(stariCenovnik.datumVazenja.getYear(), stariCenovnik.datumVazenja.getMonth()+1,1,0,0);
+        noviCenovnik.datumVazenja = new Date();
         noviCenovnik.preduzece = Company.findById(1l);
         noviCenovnik.save();
 
-		List<StavkaCenovnika> stavkeCenovnika = new ArrayList<StavkaCenovnika>();
 		for (int i = 0; i< idRobe.length; i++){
 			if (cena[i] != 0){
 				StavkaCenovnika stavka = new StavkaCenovnika();
 				stavka.cena = cena[i];
 				stavka.roba = Roba.findById(idRobe[i]);
-                stavka.cenovnik = Cenovnik.find("order by datumVazenja desc").first();
+                stavka.cenovnik = noviCenovnik;
 				stavka.save();
 			}
+			System.out.println("ubacio cenu " + i+1);
 		}
+		System.out.println("izasao iz fora");
  		show();
+ 		
     }
 	
 	public static void edit(Cenovnik cenovnik){
