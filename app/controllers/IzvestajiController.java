@@ -10,16 +10,16 @@ import java.util.Date;
 import java.util.List;
 
 import models.Faktura;
+import models.Otpremnica;
 
 /**
  * Created by alligator on 7.4.17..
  */
 public class IzvestajiController extends Controller {
 
-    public static void show(List<Faktura> fakture){
-    	fakture = fakture==null ? new ArrayList<Faktura>() : fakture;
+    public static void show(){
     	NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
-		renderTemplate("Dobavljac/izvestaji.html", fakture, narudzbeniceViewModel);
+		renderTemplate("Dobavljac/izvestaji.html", narudzbeniceViewModel);
 
     }
 
