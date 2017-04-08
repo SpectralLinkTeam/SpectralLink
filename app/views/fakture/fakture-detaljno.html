@@ -1,5 +1,10 @@
 #{extends 'dobavljac-main.html'/} #{set title:'Faktura' /}
 
+#{if faktura.fakturaIzdata == true}
+    #{set 'addnewdisplay'}none#{/set}
+    #{set 'actiondisplay'}none#{/set}
+#{/if}
+
 <button id="print-me">
     <i class="fa fa-print fa-2x" aria-hidden="true"></i>
 </button>
@@ -61,7 +66,6 @@
     	#{/if}
 		#{else}
 			#{set 'borderstyle'}none#{/set}
-    		#{set 'actiondisplay'}inline#{/set}
     		#{set 'printclass'}print#{/set}
 		#{/else}
 		
@@ -82,7 +86,7 @@
         	</td>
     </tr>
     #{/list}
-    <tr class="trAdd no-print" id="add-new-stavka" data-faktura="${faktura.id}">
+    <tr class="trAdd no-print" id="add-new-stavka" style="display: ${addnewdisplay}" data-faktura="${faktura.id}">
     	<td><i class="fa fa-plus fa-2x" aria-hidden="true"></i></td>
     	<td>Dodaj novu stavku</td>
     </tr>

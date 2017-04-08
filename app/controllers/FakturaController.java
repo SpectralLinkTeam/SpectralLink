@@ -178,6 +178,39 @@ public class FakturaController extends Controller {
 		prikaziDetaljno(faktura.id);
 	}
 	
+	public static void izdajFakturu(long id) {
+		Faktura faktura = Faktura.findById(id);
+		List<StavkaFakture> stavke = StavkaFakture.find("byFaktura_idAndStornirano", faktura.id, false).fetch();
+		if(fakturaSpremna(stavke)) {
+			System.out.println("pozvao umanji");
+			umanjiStanjeRobe(stavke);
+			faktura.fakturaIzdata=true;
+			faktura.save();
+			showAll();
+		} else {
+			NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
+			renderTemplate("fakture/greska.html", narudzbeniceViewModel);
+		}
+	}
+	
+	private static void umanjiStanjeRobe(List<StavkaFakture> stavke) {
+		System.out.println("usao u umanji");
+		for (StavkaFakture stavka : stavke){
+			System.out.println("iteriraaaaaaaaaa");
+			Roba roba = Roba.findById(stavka.roba.id);
+			roba.raspKol -= stavka.kolicina;
+			roba.save();
+		}
+	}
+	
+	public static boolean fakturaSpremna(List<StavkaFakture> stavke) {
+		for (StavkaFakture stavka : stavke) {
+			if(stavka.roba.raspKol < stavka.kolicina) {
+				return false;
+			}
+		}
+		return true;
+	}
 	
 	public static void searchJsonById(long id){
 		Faktura faktura = Faktura.findById(id);
