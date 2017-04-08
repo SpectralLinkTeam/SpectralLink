@@ -39,7 +39,7 @@ public class CenovnikController extends Controller {
 		noviCenovnik.stavkeCenovnika = stavkeCenovnika;
 
 		Cenovnik stariCenovnik = Cenovnik.find("order by datumVazenja desc").first();
-		noviCenovnik.datumVazenja = new Date(stariCenovnik.datumVazenja.getYear()+1, 1,1,0,0);
+		noviCenovnik.datumVazenja = new Date(stariCenovnik.datumVazenja.getYear(), stariCenovnik.datumVazenja.getMonth()+1,1,0,0);
 		noviCenovnik.preduzece = Company.findById(1l);
 		noviCenovnik.save();
 
