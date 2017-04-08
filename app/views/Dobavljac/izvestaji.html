@@ -1,6 +1,10 @@
 #{extends 'dobavljac-main.html'/} #{set title:'Izvestaji' /}
 
-<div style="margin: 0 auto;text-align: center; width: 70%; padding-bottom: 100px;">
+<button id="print-me">
+    <i class="fa fa-print fa-2x" aria-hidden="true"></i>
+</button>
+
+<div style="margin: 0 auto;text-align: center; width: 70%; padding-bottom: 100px;" class="no-print">
 <h3 style="text-align: center">Generisi izvestaj za period</h3>
 <form action="/IzvestajiController/generisi" method="POST" style="margin-top: 50px">
     <label>Od:</label>
@@ -11,20 +15,26 @@
     <input type="submit" class="btn btn-primary" value="Generisi" style="margin-left: 31%;margin-top: 15px;"/>
 </form>
 </div>
-
+<center><h3>Izlazne fakture</h3>
+<p>ZA PERIOD: ${datumOdStr} - ${datumDoStr}</p></center>
 <table class="table-bordered table-striped" id="cenovnik-print">
-
     <thead>
-    <th>Naziv artikla</th>
-    <th>Cena (RSD)</th>
+    <th>Broj fakture</th>
+    <th>Kupac</th>
+    <th>Datum</th>
+    <th>Iznos</th>
+    <th class="no-print">Pogledaj Fakturu</th>
     </thead>
     <tbody>
-    *{#{list items=cenovnik.stavkeCenovnika, as: 'stavka'}
+    #{list items=fakture, as: 'faktura'}
     <tr>
-        <td>${stavka.roba.naziv}</td>
-        <td>${stavka.cena}</td>
+        <td>${faktura.brojFakture}-${faktura.poslovnaGodina.year}</td>
+        <td>${faktura.poslovniPartneri.name}</td>
+        <td>${faktura.datumFakture}</td>
+        <td>${faktura.iznosZaPlacanje}</td>
+        <td class="no-print"><a href="@{controllers.FakturaController.prikaziDetaljno(faktura.id)}">Detaljno</a></td>
     </tr>
-    #{/list}}*
+    #{/list}
     </tbody>
 </table>
 
