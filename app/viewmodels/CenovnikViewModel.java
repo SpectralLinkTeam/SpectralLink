@@ -23,6 +23,15 @@ public class CenovnikViewModel {
 		this.stavkeCenovnika = stavkeCenovnika;
 		this.stariCenovnikId = stariCenovnikId;
 	}
+	
+	public CenovnikViewModel(List<Roba> svaRoba, List<StavkaCenovnika> stavkeCenovnika,
+			long stariCenovnikId) {
+		super();
+		this.cenovnikId = 0;
+		this.svaRoba = svaRoba;
+		this.stavkeCenovnika = stavkeCenovnika;
+		this.stariCenovnikId = stariCenovnikId;
+	}
 
 		
 	
