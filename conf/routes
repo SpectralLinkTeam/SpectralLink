@@ -56,3 +56,5 @@ GET     /BusinessPartnerController/searchAllJson/       BusinessPartnerControlle
 GET     /MestoController/searchAllJson/                 MestoController.searchAllJson
 GET     /NarudzbenicaController/getNarudzbeniceNumber/  NarudzbenicaController.getNarudzbeniceNumber
 GET     /BusinessYearController/searchJsonYear/         BusinessYearController.searchJsonYear
+
+POST    /CenovnikController/add/                        CenovnikController.add

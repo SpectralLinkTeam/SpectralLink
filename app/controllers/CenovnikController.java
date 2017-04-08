@@ -1,13 +1,19 @@
 package controllers;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import models.Cenovnik;
+import models.Company;
 import models.Roba;
 import models.StavkaCenovnika;
 import play.mvc.Controller;
+import play.mvc.Http;
 import viewmodels.CenovnikViewModel;
+import viewmodels.NarudzbenicaViewModel;
 
 public class CenovnikController extends Controller {
 	
@@ -16,13 +22,30 @@ public class CenovnikController extends Controller {
 	//napomena editovanje dozvoljeno samo aktuelnom cenovniku / ostale readonly
 	
 	public static void show(){
-	    List<Cenovnik> cenovnici = Cenovnik.find("byIsDeleted",0).fetch();
-        renderTemplate("Dobavljac/Cenovnik/show.html", cenovnici);
+		Dobavljac.cenovnik();
     }
 	
-	public static void add(Cenovnik cenovnik){
-		cenovnik.save();
-	    show();
+	public static void add(long[] idRobe, double[] cena){
+		Cenovnik noviCenovnik = new Cenovnik();
+		List<StavkaCenovnika> stavkeCenovnika = new ArrayList<StavkaCenovnika>();
+		for (int i = 0; i< idRobe.length; i++){
+			if (cena[i] != 0){
+				StavkaCenovnika stavka = new StavkaCenovnika();
+				stavka.cena = cena[i];
+				stavka.roba = Roba.findById(idRobe[i]);
+				stavkeCenovnika.add(stavka);
+			}
+		}
+		noviCenovnik.stavkeCenovnika = stavkeCenovnika;
+
+		Cenovnik stariCenovnik = Cenovnik.find("order by datumVazenja desc").first();
+		noviCenovnik.datumVazenja = new Date(stariCenovnik.datumVazenja.getYear()+1, 1,1,0,0);
+		noviCenovnik.preduzece = Company.findById(1l);
+		noviCenovnik.save();
+
+
+
+		show();
     }
 	
 	public static void edit(Cenovnik cenovnik){
@@ -56,7 +79,7 @@ public class CenovnikController extends Controller {
 		cenovnik.save();
 	}
 	
-	public static void popuniCenovnikStavkama(CenovnikViewModel cenovnikViewModel) {
+	/*public static void popuniCenovnikStavkama(CenovnikViewModel cenovnikViewModel) {
 		Cenovnik noviCenovnik = new Cenovnik();
     	noviCenovnik.save();
     	cenovnikViewModel.cenovnikId = noviCenovnik.id;
@@ -73,11 +96,18 @@ public class CenovnikController extends Controller {
     	List<StavkaCenovnika> stavke = StavkaCenovnika.find("byCenovnik_id", stariCenovnik.id).fetch();
 		CenovnikViewModel cenovnikViewModel = new CenovnikViewModel(roba, stavke, stariCenovnik.id);
 		return cenovnikViewModel;
-	}
+	}*/
 	
 	//	ne vidim potrebu pretrage cenovnika sem po datumu vazenja |
 	public static void searchByDate(String datum){
 		List<Cenovnik> pp = Cenovnik.find("byIsDeletedAndDatumVazenja", 0, datum).fetch();
         renderTemplate("Dobavljac/Cenovnik/show.html", pp);
+	}
+
+
+	public static void fillNewCenovnik(){
+		Cenovnik stariCenovnik = Cenovnik.find("order by datumVazenja asc").first();
+		NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
+		renderTemplate("cenovnik/cenovnik-add.html", stariCenovnik, narudzbeniceViewModel);
 	}
 }

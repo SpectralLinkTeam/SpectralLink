@@ -41,7 +41,7 @@ public class Dobavljac extends Controller{
 	}
 
 	public static void cenovnik(){
-        Cenovnik cenovnik = Cenovnik.find("order by datumVazenja desc").first();
+        Cenovnik cenovnik = Cenovnik.find("order by datumVazenja asc").first();
         NarudzbenicaViewModel narudzbeniceViewModel = NarudzbenicaController.narudzbenice();
         renderTemplate("Dobavljac/cenovnik.html", cenovnik, narudzbeniceViewModel);
     }

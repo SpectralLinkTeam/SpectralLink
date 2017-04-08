@@ -1,0 +1,28 @@
+#{extends 'dobavljac-main.html'/} #{set title:'Dodaj cenovnik' /}
+
+
+<table class="table-bordered table-striped" id="cenovnik-print">
+
+    <thead>
+    <th>Naziv artikla</th>
+    <th>Cena (RSD)</th>
+    </thead>
+    <form action="@{controllers.CenovnikController.add()}" method="POST" id="cenovnik-form">
+    <tbody>
+
+
+
+        #{list items=stariCenovnik.stavkeCenovnika, as: 'stavka'}
+        <tr>
+            <input type="hidden" value=${stavka.roba.id} name="idRobe">
+            <td>${stavka.roba.naziv}</td>
+            <td style="text-align: center;"><input type="number" value="0" style="text-align:center;" name="cena"></td>
+        </tr>
+        #{/list}
+        <input type="submit" class="btn btn-primary" value="Potvrdi" id="cenovnik-submit">
+
+
+    </tbody>
+    </form>
+</table>
+
